@@ -1,0 +1,2137 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>9.11 C 程序中常见的与内存有关的错误 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tabs/bootstrap.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="9.12-summary.html" />
+    
+    
+    <link rel="prev" href="9.10-garbage-collection.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    本电子书信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">出版信息</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../publish-info/publisher-words.html">
+            
+                <a href="../../publish-info/publisher-words.html">
+            
+                    
+                    出版者的话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../publish-info/chinese-preface-1.html">
+            
+                <a href="../../publish-info/chinese-preface-1.html">
+            
+                    
+                    中文版序一
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../publish-info/chinese-preface-2.html">
+            
+                <a href="../../publish-info/chinese-preface-2.html">
+            
+                    
+                    中文版序二
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../../publish-info/translators-preface.html">
+            
+                <a href="../../publish-info/translators-preface.html">
+            
+                    
+                    译者序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../../publish-info/preface.html">
+            
+                <a href="../../publish-info/preface.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../../publish-info/about-authors.html">
+            
+                <a href="../../publish-info/about-authors.html">
+            
+                    
+                    关于作者
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../ch01-a-tour-of-computer-systems/">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/">
+            
+                    
+                    第 1 章：计算机系统漫游
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../../ch01-a-tour-of-computer-systems/1.1.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.1.html">
+            
+                    
+                    1.1 信息就是位 + 上下文
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../../ch01-a-tour-of-computer-systems/1.2.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.2.html">
+            
+                    
+                    1.2 程序被其他程序翻译成不同的格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../../ch01-a-tour-of-computer-systems/1.3.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.3.html">
+            
+                    
+                    1.3 了解编译系统如何工作是大有益处的
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../../ch01-a-tour-of-computer-systems/1.4.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.4.html">
+            
+                    
+                    1.4 处理器读并解释储存在内存中的指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="../../ch01-a-tour-of-computer-systems/1.5.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.5.html">
+            
+                    
+                    1.5 高速缓存至关重要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="../../ch01-a-tour-of-computer-systems/1.6.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.6.html">
+            
+                    
+                    1.6 存储设备形成层次结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="../../ch01-a-tour-of-computer-systems/1.7.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.7.html">
+            
+                    
+                    1.7 操作系统管理硬件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="../../ch01-a-tour-of-computer-systems/1.8.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.8.html">
+            
+                    
+                    1.8 系统之间利用网络通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.9" data-path="../../ch01-a-tour-of-computer-systems/1.9.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.9.html">
+            
+                    
+                    1.9 重要主题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.10" data-path="../../ch01-a-tour-of-computer-systems/1.10-xiao-jie.html">
+            
+                <a href="../../ch01-a-tour-of-computer-systems/1.10-xiao-jie.html">
+            
+                    
+                    1.10 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分：程序结构和执行</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../part1/ch02-representing-and-manipulating-information/">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/">
+            
+                    
+                    第 2 章：信息的表示和处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../part1/ch02-representing-and-manipulating-information/2.1-xin-xi-cun-chu.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/2.1-xin-xi-cun-chu.html">
+            
+                    
+                    2.1 信息存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../part1/ch02-representing-and-manipulating-information/2.2-zheng-shu-biao-shi.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/2.2-zheng-shu-biao-shi.html">
+            
+                    
+                    2.2 整数表示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../part1/ch02-representing-and-manipulating-information/2.3-zheng-shu-yun-suan.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/2.3-zheng-shu-yun-suan.html">
+            
+                    
+                    2.3 整数运算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../part1/ch02-representing-and-manipulating-information/2.4-fu-dian-shu.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/2.4-fu-dian-shu.html">
+            
+                    
+                    2.4 浮点数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../../part1/ch02-representing-and-manipulating-information/2.5-xiao-jie.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/2.5-xiao-jie.html">
+            
+                    
+                    2.5 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="../../part1/ch02-representing-and-manipulating-information/jia-ting-zuo-ye.html">
+            
+                <a href="../../part1/ch02-representing-and-manipulating-information/jia-ting-zuo-ye.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../part1/ch03-machine-level-representing-of-programs/">
+            
+                <a href="../../part1/ch03-machine-level-representing-of-programs/">
+            
+                    
+                    第 3 章：程序的机器级表示
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../part1/ch03-machine-level-representing-of-programs/3.1-a-historial-perspective.html">
+            
+                <a href="../../part1/ch03-machine-level-representing-of-programs/3.1-a-historial-perspective.html">
+            
+                    
+                    3.1 历史观点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../part1/ch03-machine-level-representing-of-programs/3.2-program-encodings.html">
+            
+                <a href="../../part1/ch03-machine-level-representing-of-programs/3.2-program-encodings.html">
+            
+                    
+                    3.2 程序编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../../part1/ch03-machine-level-representing-of-programs/3.3-data-formats.html">
+            
+                <a href="../../part1/ch03-machine-level-representing-of-programs/3.3-data-formats.html">
+            
+                    
+                    3.3 数据格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../../part1/ch03-machine-level-representing-of-programs/3.4-accessing-information.html">
+            
+                <a href="../../part1/ch03-machine-level-representing-of-programs/3.4-accessing-information.html">
+            
+                    
+                    3.4 访问信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../../part1/ch04-processor-architecture.html">
+            
+                <a href="../../part1/ch04-processor-architecture.html">
+            
+                    
+                    第 4 章：处理器体系结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../../part1/ch05-optimizing-program-performance.html">
+            
+                <a href="../../part1/ch05-optimizing-program-performance.html">
+            
+                    
+                    第 5 章：优化程序性能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../../part1/ch06-the-memory-hierarchy.html">
+            
+                <a href="../../part1/ch06-the-memory-hierarchy.html">
+            
+                    
+                    第 6 章：存储器层次结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分：在系统上运行程序</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../ch07-linking/">
+            
+                <a href="../ch07-linking/">
+            
+                    
+                    第 7 章：链接
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../ch07-linking/7.1-compiler-drviers.html">
+            
+                <a href="../ch07-linking/7.1-compiler-drviers.html">
+            
+                    
+                    7.1 编译器驱动程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../ch07-linking/7.2-static-linking.html">
+            
+                <a href="../ch07-linking/7.2-static-linking.html">
+            
+                    
+                    7.2 静态链接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="../ch07-linking/7.3-object-files.html">
+            
+                <a href="../ch07-linking/7.3-object-files.html">
+            
+                    
+                    7.3 目标文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4" data-path="../ch07-linking/7.4-relocatable-object-files.html">
+            
+                <a href="../ch07-linking/7.4-relocatable-object-files.html">
+            
+                    
+                    7.4 可重定位目标文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" data-path="../ch07-linking/7.5-symbols-and-symbol-tables.html">
+            
+                <a href="../ch07-linking/7.5-symbols-and-symbol-tables.html">
+            
+                    
+                    7.5 符号和符号表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.6" data-path="../ch07-linking/7.6-symbol-resolution.html">
+            
+                <a href="../ch07-linking/7.6-symbol-resolution.html">
+            
+                    
+                    7.6 符号解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.7" data-path="../ch07-linking/7.7-relocation.html">
+            
+                <a href="../ch07-linking/7.7-relocation.html">
+            
+                    
+                    7.7 重定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.8" data-path="../ch07-linking/7.8-executable-object-files.html">
+            
+                <a href="../ch07-linking/7.8-executable-object-files.html">
+            
+                    
+                    7.8 可执行目标文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.9" data-path="../ch07-linking/7.9-loading-executable-object-files.html">
+            
+                <a href="../ch07-linking/7.9-loading-executable-object-files.html">
+            
+                    
+                    7.9 加载可执行目标文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.10" data-path="../ch07-linking/7.10-dynamic-linking-with-shared-libraries.html">
+            
+                <a href="../ch07-linking/7.10-dynamic-linking-with-shared-libraries.html">
+            
+                    
+                    7.10 动态链接共享库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.11" data-path="../ch07-linking/7.11-loading-and-linking-shared-libraries-from-applications.html">
+            
+                <a href="../ch07-linking/7.11-loading-and-linking-shared-libraries-from-applications.html">
+            
+                    
+                    7.11 从应用程序中加载和链接共享库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.12" data-path="../ch07-linking/7.12-position-independent-code.html">
+            
+                <a href="../ch07-linking/7.12-position-independent-code.html">
+            
+                    
+                    7.12 位置无关代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.13" data-path="../ch07-linking/7.13-library-interpositioning.html">
+            
+                <a href="../ch07-linking/7.13-library-interpositioning.html">
+            
+                    
+                    7.13 库打桩机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.14" data-path="../ch07-linking/7.14-tools-for-manipulating-object-files.html">
+            
+                <a href="../ch07-linking/7.14-tools-for-manipulating-object-files.html">
+            
+                    
+                    7.14 处理目标文件的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.15" data-path="../ch07-linking/7.15-summary.html">
+            
+                <a href="../ch07-linking/7.15-summary.html">
+            
+                    
+                    7.15 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.16" data-path="../ch07-linking/homework.html">
+            
+                <a href="../ch07-linking/homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../ch08-exceptional-control-flow/">
+            
+                <a href="../ch08-exceptional-control-flow/">
+            
+                    
+                    第 8 章：异常控制流
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="../ch08-exceptional-control-flow/8.1-exceptions.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.1-exceptions.html">
+            
+                    
+                    8.1 异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="../ch08-exceptional-control-flow/8.2-processes.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.2-processes.html">
+            
+                    
+                    8.2 进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.3" data-path="../ch08-exceptional-control-flow/8.3-system-call-error-handling.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.3-system-call-error-handling.html">
+            
+                    
+                    8.3 系统调用错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.4" data-path="../ch08-exceptional-control-flow/8.4-process-control.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.4-process-control.html">
+            
+                    
+                    8.4 进程控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.5" data-path="../ch08-exceptional-control-flow/8.5-signals.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.5-signals.html">
+            
+                    
+                    8.5 信号
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.6" data-path="../ch08-exceptional-control-flow/8.6-nonlocal-jumps.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.6-nonlocal-jumps.html">
+            
+                    
+                    8.6 非本地跳转
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.7" data-path="../ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.html">
+            
+                    
+                    8.7 操作进程的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.8" data-path="../ch08-exceptional-control-flow/8.8-summary.html">
+            
+                <a href="../ch08-exceptional-control-flow/8.8-summary.html">
+            
+                    
+                    8.8 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.9" data-path="../ch08-exceptional-control-flow/homework.html">
+            
+                <a href="../ch08-exceptional-control-flow/homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第 9 章：虚拟内存
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="9.1-physical-and-virtual-addressing.html">
+            
+                <a href="9.1-physical-and-virtual-addressing.html">
+            
+                    
+                    9.1 物理和虚拟寻址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.2" data-path="9.2-address-spaces.html">
+            
+                <a href="9.2-address-spaces.html">
+            
+                    
+                    9.2 地址空间
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.3" data-path="9.3-vm-as-a-tool-for-caching.html">
+            
+                <a href="9.3-vm-as-a-tool-for-caching.html">
+            
+                    
+                    9.3 虚拟内存作为缓存的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.4" data-path="9.4-vm-as-a-tool-for-memory-management.html">
+            
+                <a href="9.4-vm-as-a-tool-for-memory-management.html">
+            
+                    
+                    9.4 虚拟内存作为内存管理的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.5" data-path="9.5-vm-as-a-tool-for-memory-protection.html">
+            
+                <a href="9.5-vm-as-a-tool-for-memory-protection.html">
+            
+                    
+                    9.5 虚拟内存作为内存保护的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.6" data-path="9.6-address-translation.html">
+            
+                <a href="9.6-address-translation.html">
+            
+                    
+                    9.6 地址翻译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.7" data-path="9.7-case-study-the-intel-core-i7-linux-memory-system.html">
+            
+                <a href="9.7-case-study-the-intel-core-i7-linux-memory-system.html">
+            
+                    
+                    9.7 案例研究：Intel Core i7 / Linux 内存系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.8" data-path="9.8-memory-mapping.html">
+            
+                <a href="9.8-memory-mapping.html">
+            
+                    
+                    9.8 内存映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.9" data-path="9.9-dynamic-memory-allocation.html">
+            
+                <a href="9.9-dynamic-memory-allocation.html">
+            
+                    
+                    9.9 动态内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.10" data-path="9.10-garbage-collection.html">
+            
+                <a href="9.10-garbage-collection.html">
+            
+                    
+                    9.10 垃圾收集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.3.11" data-path="9.11-common-memoory-related-bugs-in-c-programs.html">
+            
+                <a href="9.11-common-memoory-related-bugs-in-c-programs.html">
+            
+                    
+                    9.11 C 程序中常见的与内存有关的错误
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.12" data-path="9.12-summary.html">
+            
+                <a href="9.12-summary.html">
+            
+                    
+                    9.12 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.13" data-path="homework.html">
+            
+                <a href="homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分：程序间的交互和通信</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../part3/ch10-system-level-io/">
+            
+                <a href="../../part3/ch10-system-level-io/">
+            
+                    
+                    第 10 章：系统级 I/O
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="../../part3/ch10-system-level-io/10.1-unix-io.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.1-unix-io.html">
+            
+                    
+                    10.1 Unix I/O
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" data-path="../../part3/ch10-system-level-io/10.2-files.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.2-files.html">
+            
+                    
+                    10.2 文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" data-path="../../part3/ch10-system-level-io/10.3-opening-and-closing-files.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.3-opening-and-closing-files.html">
+            
+                    
+                    10.3 打开和关闭文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" data-path="../../part3/ch10-system-level-io/10.4-reading-and-writing-files.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.4-reading-and-writing-files.html">
+            
+                    
+                    10.4 读和写文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" data-path="../../part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.html">
+            
+                    
+                    10.5 用 RIO 包健壮地读写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.6" data-path="../../part3/ch10-system-level-io/10.6-reading-file-metadata.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.6-reading-file-metadata.html">
+            
+                    
+                    10.6 读取文件元数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.7" data-path="../../part3/ch10-system-level-io/10.7-reading-directory-contents.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.7-reading-directory-contents.html">
+            
+                    
+                    10.7 读取目录内容
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.8" data-path="../../part3/ch10-system-level-io/10.8-sharing-files.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.8-sharing-files.html">
+            
+                    
+                    10.8 共享文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.9" data-path="../../part3/ch10-system-level-io/10.9-io-redirection.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.9-io-redirection.html">
+            
+                    
+                    10.9 I/O 重定向
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.10" data-path="../../part3/ch10-system-level-io/10.10-standard-io.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.10-standard-io.html">
+            
+                    
+                    10.10 标准 I/O
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.11" data-path="../../part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.html">
+            
+                    
+                    10.11 综合：我该使用哪些 I/O 函数？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.12" data-path="../../part3/ch10-system-level-io/10.12-summary.html">
+            
+                <a href="../../part3/ch10-system-level-io/10.12-summary.html">
+            
+                    
+                    10.12 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.13" data-path="../../part3/ch10-system-level-io/homework.html">
+            
+                <a href="../../part3/ch10-system-level-io/homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../../part3/ch11-network-programming/">
+            
+                <a href="../../part3/ch11-network-programming/">
+            
+                    
+                    第 11 章：网络编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.2.1" data-path="../../part3/ch11-network-programming/11.1-the-client-server-programming-model.html">
+            
+                <a href="../../part3/ch11-network-programming/11.1-the-client-server-programming-model.html">
+            
+                    
+                    11.1 客户端—服务器编程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.2" data-path="../../part3/ch11-network-programming/11.2-networks.html">
+            
+                <a href="../../part3/ch11-network-programming/11.2-networks.html">
+            
+                    
+                    11.2 网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.3" data-path="../../part3/ch11-network-programming/11.3-the-global-ip-internet.html">
+            
+                <a href="../../part3/ch11-network-programming/11.3-the-global-ip-internet.html">
+            
+                    
+                    11.3 全球 IP 因特网
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.4" data-path="../../part3/ch11-network-programming/11.4-the-sockets-interface.html">
+            
+                <a href="../../part3/ch11-network-programming/11.4-the-sockets-interface.html">
+            
+                    
+                    11.4 套接字接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.5" data-path="../../part3/ch11-network-programming/11.5-web-servers.html">
+            
+                <a href="../../part3/ch11-network-programming/11.5-web-servers.html">
+            
+                    
+                    11.5 Web 服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.6" data-path="../../part3/ch11-network-programming/11.6-putting-it-together-the-tiny-web-server.html">
+            
+                <a href="../../part3/ch11-network-programming/11.6-putting-it-together-the-tiny-web-server.html">
+            
+                    
+                    11.6 综合：TINY Web 服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.7" data-path="../../part3/ch11-network-programming/11.7-summary.html">
+            
+                <a href="../../part3/ch11-network-programming/11.7-summary.html">
+            
+                    
+                    11.7 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2.8" data-path="../../part3/ch11-network-programming/homework.html">
+            
+                <a href="../../part3/ch11-network-programming/homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../../part3/ch12-concurrent-programming/">
+            
+                <a href="../../part3/ch12-concurrent-programming/">
+            
+                    
+                    第 12 章：并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.3.1" data-path="../../part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.html">
+            
+                    
+                    12.1 基于进程的并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.2" data-path="../../part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.html">
+            
+                    
+                    12.2 基于 I/O 多路复用的并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.3" data-path="../../part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.html">
+            
+                    
+                    12.3 基于线程的并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.4" data-path="../../part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.html">
+            
+                    
+                    12.4 多线程程序中的共享变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.5" data-path="../../part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.html">
+            
+                    
+                    12.5 用信号量同步线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.6" data-path="../../part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.html">
+            
+                    
+                    12.6 使用线程提高并行性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.7" data-path="../../part3/ch12-concurrent-programming/12.7-other-concurrency-issues.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.7-other-concurrency-issues.html">
+            
+                    
+                    12.7 其他并发问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.8" data-path="../../part3/ch12-concurrent-programming/12.8-summary.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/12.8-summary.html">
+            
+                    
+                    12.8 小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3.9" data-path="../../part3/ch12-concurrent-programming/homework.html">
+            
+                <a href="../../part3/ch12-concurrent-programming/homework.html">
+            
+                    
+                    家庭作业
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../appendix-error-handling.html">
+            
+                <a href="../../appendix-error-handling.html">
+            
+                    
+                    附录 A：错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../references.html">
+            
+                <a href="../../references.html">
+            
+                    
+                    参考文献
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../../labs/labs-overview/">
+            
+                <a href="../../labs/labs-overview/">
+            
+                    
+                    实验总览
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.1" data-path="../../labs/labs-overview/common-problems.html">
+            
+                <a href="../../labs/labs-overview/common-problems.html">
+            
+                    
+                    常见问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="../../labs/data-lab/">
+            
+                <a href="../../labs/data-lab/">
+            
+                    
+                    实验 1：Data Lab
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.2.1" data-path="../../labs/data-lab/readme-instructor.html">
+            
+                <a href="../../labs/data-lab/readme-instructor.html">
+            
+                    
+                    README（讲师版）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2.2" data-path="../../labs/data-lab/readme-student.html">
+            
+                <a href="../../labs/data-lab/readme-student.html">
+            
+                    
+                    README（学生版）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2.3" data-path="../../labs/data-lab/writeup.html">
+            
+                <a href="../../labs/data-lab/writeup.html">
+            
+                    
+                    Writeup
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="../../labs/bomb-lab/">
+            
+                <a href="../../labs/bomb-lab/">
+            
+                    
+                    实验 2：Bomb Lab
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.3.1" data-path="../../labs/bomb-lab/readme-jiang-shi-ban.html">
+            
+                <a href="../../labs/bomb-lab/readme-jiang-shi-ban.html">
+            
+                    
+                    README（讲师版）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3.2" data-path="../../labs/bomb-lab/writeup.html">
+            
+                <a href="../../labs/bomb-lab/writeup.html">
+            
+                    
+                    Writeup
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="../../labs/attack-lab.html">
+            
+                <a href="../../labs/attack-lab.html">
+            
+                    
+                    实验 3：Attack Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="../../labs/arch-lab.html">
+            
+                <a href="../../labs/arch-lab.html">
+            
+                    
+                    实验 4：Architechture Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="../../labs/cache-lab.html">
+            
+                <a href="../../labs/cache-lab.html">
+            
+                    
+                    实验 5：Cache Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="../../labs/perf-lab.html">
+            
+                <a href="../../labs/perf-lab.html">
+            
+                    
+                    实验 6：Performance Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.8" data-path="../../labs/shell-lab.html">
+            
+                <a href="../../labs/shell-lab.html">
+            
+                    
+                    实验 7：Shell Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="../../labs/malloc-lab.html">
+            
+                <a href="../../labs/malloc-lab.html">
+            
+                    
+                    实验 8：Malloc Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.10" data-path="../../labs/proxy-lab.html">
+            
+                <a href="../../labs/proxy-lab.html">
+            
+                    
+                    实验 9：Proxy Lab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >9.11 C 程序中常见的与内存有关的错误</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="911-c-程序中常见的与内存有关的错误">9.11 C 程序中常见的与内存有关的错误</h1>
+<p>对 c 程序员来说，管理和使用虚拟内存可能是个困难的、容易出错的任务。与内存有关的错误属于那些最令人惊恐的错误，因为它们在时间和空间上，经常在距错误源一段距离之后才表现出来。将错误的数据写到错误的位置，你的程序可能在最终失败之前运行了好几个小时，且使程序中止的位置距离错误的位置已经很远了。我们用一些常见的与内存有关错误的讨论，来结束对虚拟内存的讨论。</p>
+<h2 id="9111-间接引用坏指针">9.11.1 间接引用坏指针</h2>
+<p>正如我们在 9.7.2 节中学到的，在进程的虚拟地址空间中有较大的洞，没有映射到任何有意义的数据。如果我们试图间接引用一个指向这些洞的指针，那么操作系统就会以段异常中止程序。而且，虚拟内存的某些区域是只读的。试图写这些区域将会以保护异常中止这个程序。</p>
+<p>间接引用坏指针的一个常见示例是经典的 scanf 错误。假设我们想要使用 scanf 从 stdin 读一个整数到一个变量。正确的方法是传递给 scanf 一个格式串和变量的地址：</p>
+<pre><code class="lang-c"><span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;val)
+</code></pre>
+<p>然而，对于 C 程序员初学者而言（对有经验者也是如此！），很容易传递 val 的内容，而不是它的地址：</p>
+<pre><code class="lang-c"><span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, val)
+</code></pre>
+<p>在这种情况下，scanf 将把 val 的内容解释为一个地址，并试图将一个字写到这个位置。在最好的情况下，程序立即以异常终止。在最糟糕的情况下，val 的内容对应于虚拟内存的某个合法的读/写区域，于是我们就覆盖了这块内存，这通常会在相当长的一段时间以后造成灾难性的、令人困惑的后果。</p>
+<h2 id="9112-读未初始化的内存">9.11.2 读未初始化的内存</h2>
+<p>虽然 bss 内存位置（诸如未初始化的全局 C 变量）总是被加载器初始化为零，但是对于堆内存却并不是这样的。一个常见的错误就是假设堆内存被初始化为零：</p>
+<pre><code class="lang-c"><span class="hljs-comment">/* Return y = Ax */</span>
+<span class="hljs-type">int</span> *<span class="hljs-title function_">matvec</span><span class="hljs-params">(<span class="hljs-type">int</span> **A, <span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-type">int</span> i, j;
+
+    <span class="hljs-type">int</span> *y = (<span class="hljs-type">int</span> *)Malloc(n * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; i++)
+        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; n; j++)
+            y[i] += A[i][j] * x[j];
+    <span class="hljs-keyword">return</span> y;
+}
+</code></pre>
+<p>在这个示例中，程序员不正确地假设向量 y 被初始化为零。正确的实现方式是显式地将 y[i] 设置为零，或者使用 calloc。</p>
+<h2 id="9113-允许栈缓冲区溢出">9.11.3 允许栈缓冲区溢出</h2>
+<p>正如我们在 3.10.3 节中看到的，如果一个程序不检查输入串的大小就写入栈中的目标缓冲区，那么这个程序就会有缓冲区溢出错误（buffer overflow bug）。例如，下面的函数就有缓冲区溢出错误，因为 gets 函数复制一个任意长度的串到缓冲区。为了纠正这个错误，我们必须使用 fgets 函数，这个函数限制了输入串的大小：</p>
+<pre><code class="lang-c"><span class="hljs-type">void</span> <span class="hljs-title function_">bufoverflow</span><span class="hljs-params">()</span>
+{
+    <span class="hljs-type">char</span> buf[<span class="hljs-number">64</span>];
+    gets(buf); <span class="hljs-comment">/* Here is the stack buffer overflow bug */</span>
+    <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<h2 id="9114-假设指针和它们指向的对象是相同大小的">9.11.4 假设指针和它们指向的对象是相同大小的</h2>
+<p>一种常见的错误是假设指向对象的指针和它们所指向的对象是相同大小的：</p>
+<pre><code class="lang-c"><span class="hljs-comment">/* Create an nxm array */</span>
+<span class="hljs-type">int</span> **<span class="hljs-title function_">makeArray1</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> m)</span>
+{
+    <span class="hljs-type">int</span> i;
+    <span class="hljs-type">int</span> **A = (<span class="hljs-type">int</span> **)Malloc(n * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; i++)
+        A[i] = (<span class="hljs-type">int</span> *)Malloc(m * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+    <span class="hljs-keyword">return</span> A;
+}
+</code></pre>
+<p>这里的目的是创建一个由 n 个指针组成的数组，每个指针都指向一个包含 m 个 int 的数组。然而，因为程序员在第 5 行将 <strong>sizeof(int *)</strong> 写成了 <strong>sizeof(int)</strong>，代码实际上创建的是一个 int 的数组。</p>
+<p>这段代码只有在 int 和指向 int 的指针大小相同的机器上运行良好。但是，如果我们在像 Core i7 这样的机器上运行这段代码，其中指针大于 int，那么第 7 行和第 8 行的循环将写到超出 A 数组结尾的地方。因为这些字中的一个很可能是已分配块的边界标记脚部，所以我们可能不会发现这个错误，直到在这个程序的后面很久释放这个块时，此时，分配器中的合并代码会戏剧性地失败，而没有任何明显的原因。这是“在远处起作用（action at distance）”的一个阴险的示例，这类“在远处起作用”是与内存有关的编程错误的典型情况。</p>
+<h2 id="9115-造成错位错误">9.11.5 造成错位错误</h2>
+<p>错位（off-by-one）错误是另一种很常见的造成覆盖错误的来源：</p>
+<pre><code class="lang-c"><span class="hljs-comment">/* Create an nxm array */</span>
+<span class="hljs-type">int</span> **<span class="hljs-title function_">makeArray2</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> m)</span>
+{
+    <span class="hljs-type">int</span> i;
+    <span class="hljs-type">int</span> **A = (<span class="hljs-type">int</span> **)Malloc(n * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span> *));
+
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt;= n; i++)
+        A[i] = (<span class="hljs-type">int</span> *)Malloc(m * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+    <span class="hljs-keyword">return</span> A;
+}
+</code></pre>
+<p>这是前面一节中程序的另一个版本。这里我们在第 5 行创建了一个 n 个元素的指针数组，但是随后在第 7 行和第 8 行试图初始化这个数组的 n+1 个元素，在这个过程中覆盖了 A 数组后面的某个内存位置。</p>
+<h2 id="9116-引用指针，而不是它所指向的对象">9.11.6 引用指针，而不是它所指向的对象</h2>
+<p>如果不太注意 C 操作符的优先级和结合性，我们就会错误地操作指针，而不是指针所指向的对象。比如，考虑下面的函数，其目的是删除一个有  <strong>*size</strong> 项的二叉堆里的第一项，然后对剩下的 <strong>*size-1</strong> 项重新建堆：</p>
+<pre><code class="lang-c"><span class="hljs-type">int</span> *<span class="hljs-title function_">binheapDelete</span><span class="hljs-params">(<span class="hljs-type">int</span> **binheap, <span class="hljs-type">int</span> *size)</span>
+{
+    <span class="hljs-type">int</span> *packet = binheap[<span class="hljs-number">0</span>];
+
+    binheap[<span class="hljs-number">0</span>] = binheap[*size - <span class="hljs-number">1</span>];
+    *size--; <span class="hljs-comment">/* This should be (*size)-- */</span>
+    heapify(binheap, *size, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">return</span> (packet);
+}
+</code></pre>
+<p>在第 6 行，目的是减少 size 指针指向的整数的值。然而，因为一元运算符——和 * 的优先级相同，从右向左结合，所以第 6 行中的代码实际减少的是指针自己的值，而不是它所指向的整数的值。如果幸运地话，程序会立即失败；但是更有可能发生的是，当程序在执行过程后很久才产生出一个不正确的结果时，我们只有一头的雾水。这里的原则是当你对优先级和结合性有疑问的时候，就使用括号。比如，在第 6 行，我们可以使用表达式 <strong>(*size)--</strong>，清晰地表明我们的意图。</p>
+<h2 id="9117-误解指针运算">9.11.7 误解指针运算</h2>
+<p>另一种常见的错误是忘记了指针的算术操作是以它们指向的对象的大小为单位来进行的，而这种大小単位并不一定是字节。例如，下面函数的目的是扫描一个 int 的数组，并返回一个指针，指向 val 的首次出现：</p>
+<pre><code class="lang-c"><span class="hljs-type">int</span> *<span class="hljs-title function_">search</span><span class="hljs-params">(<span class="hljs-type">int</span> *p, <span class="hljs-type">int</span> val)</span>
+{
+    <span class="hljs-keyword">while</span> (*p &amp;&amp; *p != val)
+        p += <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>); <span class="hljs-comment">/* Should be p++ */</span>
+    <span class="hljs-keyword">return</span> p;
+}
+</code></pre>
+<p>然而，因为每次循环时，第 4 行都把指针加了 4（一个整数的字节数），函数就不正确地扫描数组中每 4 个整数。</p>
+<h2 id="9118-引用不存在的变量">9.11.8 引用不存在的变量</h2>
+<p>没有太多经验的 C 程序员不理解栈的规则，有时会引用不再合法的本地变量，如下列所示：</p>
+<pre><code class="lang-c"><span class="hljs-type">int</span> *<span class="hljs-title function_">stackref</span> <span class="hljs-params">()</span>
+{
+    <span class="hljs-type">int</span> val;
+
+    <span class="hljs-keyword">return</span> &amp;val;
+}
+</code></pre>
+<p>这个函数返回一个指针（比如说是 p），指向栈里的一个局部变量，然后弹出它的栈帧。尽管 p 仍然指向一个合法的内存地址，但是它已经不再指向一个合法的变量了。当以后在程序中调用其他函数时，内存将重用它们的栈帧。再后来，如果程序分配某个值给 <strong>*p</strong>，那么它可能实际上正在修改另一个函数的栈帧中的一个条目，从而潜在地带来灾难性的、令人困惑的后果。</p>
+<h2 id="9119-引用空闲堆块中的数据">9.11.9 引用空闲堆块中的数据</h2>
+<p>一个相似的错误是引用已经被释放了的堆块中的数据。例如，考虑下面的示例，这个示例在第 6 行分配了一个整数数组 x，在第 10 行中先释放了块 x，然后在第 14 行中又引用了它：</p>
+<pre><code class="lang-c"><span class="hljs-type">int</span> *<span class="hljs-title function_">heapref</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> m)</span>
+{
+    <span class="hljs-type">int</span> i;
+    <span class="hljs-type">int</span> *x, *y;
+
+    x = (<span class="hljs-type">int</span> *)Malloc(n * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+.
+. <span class="hljs-comment">// Other calls to malloc and free go here</span>
+.
+    <span class="hljs-built_in">free</span>(x);
+
+    y = (<span class="hljs-type">int</span> *)Malloc(m * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; m; i++)
+        y[i] = x[i]++; <span class="hljs-comment">/* Oops! x[i] is a word in a free block */</span>
+
+    <span class="hljs-keyword">return</span> y;
+}
+</code></pre>
+<p>取决于在第 6 行和第 10 行发生的 malloc 和 free 的调用模式，当程序在第 14 行引用 x[i] 时，数组 x 可能是某个其他已分配堆块的一部分了，因此其内容被重写了。和其他许多与内存有关的错误一样，这个错误只会在程序执行的后面，当我们注意到 y 中的值被破坏了时才会显现出来。</p>
+<h2 id="91110-引起内存泄漏">9.11.10 引起内存泄漏</h2>
+<p>内存泄漏是缓慢、隐性的杀手，当程序员不小心忘记释放已分配块，而在堆里创建了垃圾时，会发生这种问题。例如，下面的函数分配了一个堆块 x，然后不释放它就返回：</p>
+<pre><code class="lang-c"><span class="hljs-type">void</span> <span class="hljs-title function_">leak</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>
+{
+    <span class="hljs-type">int</span> *x = (<span class="hljs-type">int</span> *)Malloc(n * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+    <span class="hljs-keyword">return</span>;  <span class="hljs-comment">/* x is garbage at this point */</span>
+}
+</code></pre>
+<p>如果经常调用 leak，那么渐渐地，堆里就会充满了垃圾，最糟糕的情况下，会占用整个虚拟地址空间。对于像守护进程和服务器这样的程序来说，内存泄漏是特别严重的，根据定义这些程序是不会终止的。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="9.10-garbage-collection.html" class="navigation navigation-prev " aria-label="Previous page: 9.10 垃圾收集">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="9.12-summary.html" class="navigation navigation-next " aria-label="Next page: 9.12 小结">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"9.11 C 程序中常见的与内存有关的错误","level":"5.3.11","depth":2,"next":{"title":"9.12 小结","level":"5.3.12","depth":2,"path":"part2/ch09-virtual-memory/9.12-summary.md","ref":"part2/ch09-virtual-memory/9.12-summary.md","articles":[]},"previous":{"title":"9.10 垃圾收集","level":"5.3.10","depth":2,"path":"part2/ch09-virtual-memory/9.10-garbage-collection.md","ref":"part2/ch09-virtual-memory/9.10-garbage-collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.11-common-memoory-related-bugs-in-c-programs.md","mtime":"2026-04-28T05:06:03.294Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-tabs/bootstrap.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

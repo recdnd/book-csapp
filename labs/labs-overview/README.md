@@ -23,23 +23,15 @@
 
 ## 实验链接
 
-{% page-ref page="../data-lab/" %}
-
-{% page-ref page="../bomb-lab/" %}
-
-{% page-ref page="../attack-lab.md" %}
-
-{% page-ref page="../arch-lab.md" %}
-
-{% page-ref page="../cache-lab.md" %}
-
-{% page-ref page="../perf-lab.md" %}
-
-{% page-ref page="../shell-lab.md" %}
-
-{% page-ref page="../malloc-lab.md" %}
-
-{% page-ref page="../proxy-lab.md" %}
+- [Data Lab](../data-lab/)
+- [Bomb Lab](../bomb-lab/)
+- [Attack Lab](../attack-lab.md)
+- [Arch Lab](../arch-lab.md)
+- [Cache Lab](../cache-lab.md)
+- [Perf Lab](../perf-lab.md)
+- [Shell Lab](../shell-lab.md)
+- [Malloc Lab](../malloc-lab.md)
+- [Proxy Lab](../proxy-lab.md)
 
 
 

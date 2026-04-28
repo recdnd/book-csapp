@@ -8,8 +8,10 @@
 
 在 Kernighan 和 Ritchie 的关于 C 编程语言的经典教材【61】中，他们通过图 1-1 中所示的 hello 程序来向读者介绍 C。尽管 hello 程序非常简单，但是为了让它实现运行，系统的每个主要组成部分都需要协调工作。从某种意义上来说，本书的目的就是要帮助你了解当你在系统上执行 hello 程序时，系统发生了什么以及为什么会这样。
 
-{% tabs %}
-{% tab title="code/intro/hello.c" %}
+
+
+#### code/intro/hello.c
+
 ```c
 #include <stdio.h>
 int main()
@@ -18,8 +20,8 @@ int main()
     return 0;
 }
 ```
-{% endtab %}
-{% endtabs %}
+
+
 
 > 图 1-1 hello 程序（来源：【60】\)
 

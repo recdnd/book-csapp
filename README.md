@@ -14,21 +14,14 @@ GitHub：[https://github.com/Hansimov/csapp](https://github.com/Hansimov/csapp)
 
 待施工部分：第 2、3、4、5、6 章，实验 3、4、5、6、7、8、9 文档
 
-{% page-ref page="ch01-a-tour-of-computer-systems/" %}
-
-{% page-ref page="part2/ch07-linking/" %}
-
-{% page-ref page="part2/ch08-exceptional-control-flow/" %}
-
-{% page-ref page="part2/ch09-virtual-memory/" %}
-
-{% page-ref page="part3/ch10-system-level-io/" %}
-
-{% page-ref page="part3/ch11-network-programming/" %}
-
-{% page-ref page="part3/ch12-concurrent-programming/" %}
-
-{% page-ref page="labs/labs-overview/" %}
+- [第 1 章：计算机系统漫游](ch01-a-tour-of-computer-systems/)
+- [第 7 章：链接](part2/ch07-linking/)
+- [第 8 章：异常控制流](part2/ch08-exceptional-control-flow/)
+- [第 9 章：虚拟内存](part2/ch09-virtual-memory/)
+- [第 10 章：系统级 I/O](part3/ch10-system-level-io/)
+- [第 11 章：网络编程](part3/ch11-network-programming/)
+- [第 12 章：并发编程](part3/ch12-concurrent-programming/)
+- [实验总览](labs/labs-overview/)
 
 
 
