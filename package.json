@@ -1,0 +1,27 @@
+{
+  "name": "book-csapp",
+  "version": "1.0.0",
+  "description": "个人整理的《深入理解计算机系统》中文电子版（原书第 3 版）与实验材料：[https://hansimov.gitbook.io/csapp/](https://hansimov.gitbook.io/csapp/)",
+  "main": "index.js",
+  "scripts": {
+    "prepare:honkit": "node scripts/prepare-honkit.js",
+    "build": "npm run prepare:honkit && honkit build",
+    "serve": "npm run prepare:honkit && honkit serve",
+    "deploy": "./deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recdnd/book-csapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/recdnd/book-csapp/issues"
+  },
+  "homepage": "https://github.com/recdnd/book-csapp#readme",
+  "devDependencies": {
+    "gitbook-plugin-tabs": "^0.0.7",
+    "honkit": "^6.1.7"
+  }
+}
