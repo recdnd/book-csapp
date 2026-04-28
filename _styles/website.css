@@ -1,0 +1,11 @@
+/* Make page navigation hover respond instantly (no fade-in/out). */
+.navigation,
+.navigation:hover,
+.navigation:focus,
+.navigation-prev,
+.navigation-next,
+.navigation-prev:hover,
+.navigation-next:hover {
+  transition: none !important;
+  animation: none !important;
+}
