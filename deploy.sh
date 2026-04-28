@@ -39,16 +39,19 @@ npm run build
 echo "[3/6] Writing CNAME (${DOMAIN})..."
 echo "${DOMAIN}" > _book/CNAME
 
-echo "[4/6] Preparing temporary deploy branch (${TMP_BRANCH})..."
+echo "[4/6] Disabling Jekyll processing..."
+touch _book/.nojekyll
+
+echo "[5/6] Preparing temporary deploy branch (${TMP_BRANCH})..."
 if git show-ref --verify --quiet "refs/heads/${TMP_BRANCH}"; then
   git branch -D "${TMP_BRANCH}" >/dev/null 2>&1
 fi
 git subtree split --prefix _book -b "${TMP_BRANCH}"
 
-echo "[5/6] Pushing to ${REMOTE}/${TARGET_BRANCH}..."
+echo "[6/6] Pushing to ${REMOTE}/${TARGET_BRANCH}..."
 git push "${REMOTE}" "${TMP_BRANCH}:${TARGET_BRANCH}" --force
 
-echo "[6/6] Cleaning up..."
+echo "[7/7] Cleaning up..."
 git branch -D "${TMP_BRANCH}" >/dev/null 2>&1 || true
 
 echo "Done."
