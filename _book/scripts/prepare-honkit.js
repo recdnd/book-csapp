@@ -47,11 +47,6 @@ function normalize(content) {
   });
   next = next.replace(/\{\%\s*endhint\s*\%\}/g, "");
 
-  // Normalize image/static asset paths for HonKit output.
-  next = next.replace(/\.\.\/_imgs\//g, "/_imgs/");
-  next = next.replace(/\.gitbook\/assets\//g, "/_imgs/gitbook-assets/");
-  next = next.replace(/(^|[^/])_imgs\//g, "$1/_imgs/");
-
   return next;
 }
 
