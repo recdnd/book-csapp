@@ -12,7 +12,7 @@
 
 A. 虚拟地址格式
 
-![](../../.gitbook/assets/09-04%20练习题9.4%20虚拟地址格式.png)
+![](../..//_imgs/gitbook-assets/09-04%20练习题9.4%20虚拟地址格式.png)
 
 B. 地址翻译
 
@@ -27,7 +27,7 @@ B. 地址翻译
 
 C. 物理地址格式
 
-![](../../.gitbook/assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
+![](../..//_imgs/gitbook-assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
 
 D. 物理地址引用
 
@@ -53,7 +53,7 @@ D. 物理地址引用
 
 A. 虚拟地址格式
 
-![](../../.gitbook/assets/09-04%20练习题9.4%20虚拟地址格式.png)
+![](../..//_imgs/gitbook-assets/09-04%20练习题9.4%20虚拟地址格式.png)
 
 B. 地址翻译
 
@@ -68,7 +68,7 @@ B. 地址翻译
 
 C. 物理地址格式
 
-![](../../.gitbook/assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
+![](../..//_imgs/gitbook-assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
 
 D. 物理地址引用
 
@@ -96,7 +96,7 @@ D. 物理地址引用
 
 A. 虚拟地址格式
 
-![](../../.gitbook/assets/09-04%20练习题9.4%20虚拟地址格式.png)
+![](../..//_imgs/gitbook-assets/09-04%20练习题9.4%20虚拟地址格式.png)
 
 B. 地址翻译
 
@@ -111,7 +111,7 @@ B. 地址翻译
 
 C. 物理地址格式
 
-![](../../.gitbook/assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
+![](../..//_imgs/gitbook-assets/0904-lian-xi-ti-9.4-wu-li-di-zhi-ge-shi-.png)
 
 D. 物理地址引用
 

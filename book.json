@@ -1,5 +1,13 @@
 {
+  "styles": {
+    "website": "_styles/website.css"
+  },
   "plugins": [
     "tabs"
-  ]
+  ],
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": true
+    }
+  }
 }
