@@ -20,6 +20,19 @@
   animation: none !important;
 }
 
+/* 桌面端字體選單（左上 A）：改為純 hover，移入即開、移出即關。 */
+@media screen and (min-width: 601px) {
+  .book .book-header .font-settings .dropdown-menu,
+  .book .book-header .font-settings .dropdown-menu.open {
+    display: none !important;
+  }
+
+  .book .book-header .font-settings:hover .dropdown-menu,
+  .book .book-header .font-settings:hover .dropdown-menu.open {
+    display: block !important;
+  }
+}
+
 /* ============================================================
    翻頁按鈕 — 小型實體 ◀ / ▶ 圓鈕，收掉整側大熱區
    關鍵：維持 position:absolute（相對內容區 .book-body），這樣按鈕

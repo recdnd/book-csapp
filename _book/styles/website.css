@@ -20,6 +20,19 @@
   animation: none !important;
 }
 
+/* 桌面端字體選單（左上 A）：改為純 hover，移入即開、移出即關。 */
+@media screen and (min-width: 601px) {
+  .book .book-header .font-settings .dropdown-menu,
+  .book .book-header .font-settings .dropdown-menu.open {
+    display: none !important;
+  }
+
+  .book .book-header .font-settings:hover .dropdown-menu,
+  .book .book-header .font-settings:hover .dropdown-menu.open {
+    display: block !important;
+  }
+}
+
 /* ============================================================
    翻頁按鈕 — 小型實體 ◀ / ▶ 圓鈕，收掉整側大熱區
    關鍵：維持 position:absolute（相對內容區 .book-body），這樣按鈕
@@ -35,24 +48,23 @@
   margin: 0 !important;
   min-width: 0 !important;
   max-width: none !important;
-  width: 2.6rem !important;
-  height: 2.6rem !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 18px !important;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+  padding: 4px 6px !important;
+  font-size: 20px !important;
   line-height: 1 !important;
   color: #9a9a9a !important;
-  background: rgba(255, 255, 255, 0.92) !important;
-  border: 0.5px solid rgba(0, 0, 0, 0.12) !important;
-  border-radius: 999px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   z-index: 5 !important;
 }
-.navigation.navigation-prev { left: 12px !important; right: auto !important; }
-.navigation.navigation-next { right: 12px !important; left: auto !important; }
+.navigation.navigation-prev { left: 50% !important; margin-left: -440px !important; right: auto !important; }
+.navigation.navigation-next { right: 50% !important; margin-right: -440px !important; left: auto !important; }
 .navigation:hover { color: #e04e19 !important; text-decoration: none !important; }
 .navigation .fa-angle-left,
-.navigation .fa-angle-right { font-size: 18px !important; }
+.navigation .fa-angle-right { font-size: 20px !important; }
 .navigation .fa-angle-left::before  { content: "\25C0"; font-family: -apple-system, "Segoe UI", "PingFang TC", sans-serif; }
 .navigation .fa-angle-right::before { content: "\25B6"; font-family: -apple-system, "Segoe UI", "PingFang TC", sans-serif; }
 
