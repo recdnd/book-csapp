@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# One-click deploy for HonKit output to GitHub Pages.
+# Legacy deploy script for GitHub Pages.
+# NOTE:
+# - Project deployment target is now Vercel.
+# - Keep this script only for fallback/manual gh-pages publishing.
+# - Preferred deploy path: push to repo -> Vercel builds via vercel.json.
 # Defaults:
 #   DOMAIN=csapp.bin.ooo
 #   REMOTE=origin

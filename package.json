@@ -7,7 +7,7 @@
     "prepare:honkit": "node scripts/prepare-honkit.js",
     "build": "npm run prepare:honkit && honkit build",
     "serve": "npm run prepare:honkit && honkit serve",
-    "deploy": "./deploy.sh"
+    "deploy:ghpages": "./deploy.sh"
   },
   "repository": {
     "type": "git",

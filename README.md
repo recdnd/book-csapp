@@ -27,3 +27,13 @@ GitHub：[https://github.com/Hansimov/csapp](https://github.com/Hansimov/csapp)
 
 ![&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#x7EDF; - Computer Systems: A Programmer&apos;s Perspective](.gitbook/assets/shen-ru-li-jie-ji-suan-ji-xi-tong-yuan-shu-di-3-ban-.pdf..2020092219095231900.png)
 
+
+## 部署说明（Vercel）
+
+本项目已切换到 Vercel 静态部署，避免 GitHub Pages/Jekyll 对 `.` / `_` 开头目录（如 `.gitbook/assets`、`_imgs`）的处理导致资源丢失。
+
+- Build Command：`npm run build`
+- Output Directory：`_book`
+- Framework Preset：`Other`
+
+仓库中保留了 `deploy.sh`，仅作为 GitHub Pages 的备用方案（legacy），不再是主流程。
