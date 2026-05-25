@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2147,9 +2149,12 @@
 </blockquote>
 <p>在发送了响应的第一部分后，我们会派生一个新的子进程（第 11 行）。子进程用来自请求 URI 的 CGI 参数初始化 QUERY_STRING 环境变量（第 13 行）。注意，一个真正的服务器还会在此处设置其他的 CGI 环境变量。为了简短，我们省略了这一步。</p>
 <p>接下来，子进程重定向它的标准输出到已连接文件描述符（第 14 行），然后加载并运行 CGI 程序（第 15 行）。因为 CGI 程序运行在子进程的上下文中，它能够访问所有在调用 ex¬ecve 函数之前就存在的打开文件和环境变量。因此，CGI 程序写到标准输出上的任何东西都将直接送到客户端进程，不会受到任何来自父进程的干涉。其间，父进程阻塞在对 wait 的调用中，等待当子进程终止的时候，回收操作系统分配给子进程的资源（第 17 行）。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---处理过早关闭的连接">旁注 - 处理过早关闭的连接</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%A4%84%E7%90%86%E8%BF%87%E6%97%A9%E5%85%B3%E9%97%AD%E7%9A%84%E8%BF%9E%E6%8E%A5">旁注 - 处理过早关闭的连接</h3>
 <p>尽管一个 Web 服务器的基本功能非常简单，但是我们不想给你一个假象，以为编写一个实际的 Web 服务器是非常简单的。构造一个长时间运行而不崩溃的健壮的 Web 服务器是一件困难的任务，比起在这里我们已经学习了的内容，它要求对 Linux 系统编程有更加深入的理解。例如，如果一个服务器写一个已经被客户端关闭了的连接（比如，因为你在浏览器上单击了 “Stop” 按钮），那么第一次这样的写会正常返回，但是第二次写就会引起发送 SIGPIPE 信号，这个信号的默认行为就是终止这个进程。如果捕获或者忽略 SIGPIPE 信号，那么第二次写操作会返回值 -1，并将 errno 设置为 EPIPE。strerr 和 perror 函数将 EPIPE 错误报告为 “Broken pipe”，这是一个迷惑了很多人的不太直观的信息。总的来说，一个健壮的服务器必须捕获这些 SIGPIPE 信号，并且检查 write 函数调用是否有 EPIPE 错误。</p>
+</div>
+
+
 
                                 
                                 </section>
@@ -2193,7 +2198,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"11.6 综合：TINY Web 服务器","level":"6.2.6","depth":2,"next":{"title":"11.7 小结","level":"6.2.7","depth":2,"path":"part3/ch11-network-programming/11.7-summary.md","ref":"part3/ch11-network-programming/11.7-summary.md","articles":[]},"previous":{"title":"11.5 Web 服务器","level":"6.2.5","depth":2,"path":"part3/ch11-network-programming/11.5-web-servers.md","ref":"part3/ch11-network-programming/11.5-web-servers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.6-putting-it-together-the-tiny-web-server.md","mtime":"2026-04-28T05:30:23.969Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"11.6 综合：TINY Web 服务器","level":"6.2.6","depth":2,"next":{"title":"11.7 小结","level":"6.2.7","depth":2,"path":"part3/ch11-network-programming/11.7-summary.md","ref":"part3/ch11-network-programming/11.7-summary.md","articles":[]},"previous":{"title":"11.5 Web 服务器","level":"6.2.5","depth":2,"path":"part3/ch11-network-programming/11.5-web-servers.md","ref":"part3/ch11-network-programming/11.5-web-servers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.6-putting-it-together-the-tiny-web-server.md","mtime":"2026-05-24T19:44:41.866Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../styles/website.css">
+        
     
         
     
@@ -1888,11 +1890,14 @@
 <p><img src="../.gitbook/assets/01-10%20计算机系统的分层视图.png" alt="图 1-10 计算机系统的分层视图"></img></p>
 <p>操作系统有两个基本功能∶（1）防止硬件被失控的应用程序滥用；（2）向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。操作系统通过几个基本的抽象概念（<strong>进程</strong>、<strong>虚拟内存</strong>和<strong>文件</strong>）来实现这两个功能。如图 1-11 所示，文件是对 I/O 设备的抽象表示，虚拟内存是对主存和磁盘 I/O 设备的抽象表示，进程则是对处理器、主存和 I/O 设备的抽象表示。我们将依次讨论每种抽象表示。</p>
 <p><img src="../.gitbook/assets/01-11%20操作系统提供的抽象表示.png" alt="图 1-11 操作系统提供的抽象表示"></img></p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---unix、posix-和标准-unix-规范">旁注 - Unix、Posix 和标准 Unix 规范</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-unix%E3%80%81posix-%E5%92%8C%E6%A0%87%E5%87%86-unix-%E8%A7%84%E8%8C%83">旁注 - Unix、Posix 和标准 Unix 规范</h3>
 <p>20 世纪 60 年代是大型、复杂操作系统盛行的年代，比如 IBM 的 OS/360 和 Honey-well 的 Multics 系统。OS/360 是历史上最成功的软件项目之一，而 Multics 虽然持续存在了多年，却从来没有被广泛应用过。贝尔实验室曾经是 Multics 项目的最初参与者，但是因为考虑到该项目的复杂性和缺乏进展而于 1969 年退出。鉴于 Mutics 项目不愉快的经历，一群贝尔实验室的研究人员——Ken Thompson、Dennis Ritchie、Doug Mcllroy 和 Joe Ossanna，从 1969 年开始在 DEC PDP-7 计算机上完全用机器语言编写了一个简单得多的操作系统。这个新系统中的很多思想，比如层次文件系统、作为用户级进程的 shell 概念，都是来自于 Multics，只不过在一个更小、更简单的程序包里实现。1970 年，Brian Kernighan 给新系统命名为 “Unix”，这也是一个双关语，暗指 “Multics” 的复杂性。1973 年用 C 重新编写其内核，1974 年，Unix 开始正式对外发布【93】。</p>
 <p>贝尔实验室以慷慨的条件向学校提供源代码，所以 Unix 在大专院校里获得了很多支持并得以持续发展。最有影响的工作发生在 20 世纪 70 年代晚期到 80 年代早期，在美国加州大学伯克利分校，研究人员在一系列发布版本中增加了虚拟内存和 Internet 协议，称为 Unix 4.xBSD（Berkeley Software Distribution）。与此同时，贝尔实验室也在发布自己的版本，称为 System V Unix。其他厂商的版本，比如 Sun Microsystems 的 Solaris 系统，则是从这些原始的 BSD 和 System V 版本中衍生而来。</p>
 <p>20 世纪 80 年代中期，Unix 厂商试图通过加入新的、往往不兼容的特性来使它们的程序与众不同，麻烦也就随之而来了。为了阻止这种趋势，IEEE（电气和电子工程师协会）开始努力标准化 Unix 的开发，后来由 Richard Stallman 命名为 “Posix”。结果就得到了一系列的标准，称作 Posix 标准。这套标准涵盖了很多方面，比如 Unix 系统调用的 C 语言接口、shell 程序和工具、线程及网络编程。最近，一个被称为“标准 Unix 规范”的独立标准化工作已经与 Posix 一起创建了统一的 Unix 系统标准。这些标准化工作的结果是 Unix 版本之间的差异已经基本消失。</p>
+</div>
+
+
 <h2 id="171-进程">1.7.1 进程</h2>
 <p>像 hello 这样的程序在现代系统上运行时，操作系统会提供一种假象，就好像系统上只有这个程序在运行。程序看上去是独占地使用处理器、主存和 I/O 设备。处理器看上去就像在不间断地一条接一条地执行程序中的指令，即该程序的代码和数据是系统内存中唯一的对象。这些假象是通过进程的概念来实现的，进程是计算机科学中最重要和最成功的概念之一。</p>
 <p><strong>进程</strong>是操作系统对一个正在运行的程序的一种抽象。在一个系统上可以同时运行多个进程，而每个进程都好像在独占地使用硬件。而<strong>并发运行</strong>，则是说一个进程的指令和另一个进程的指令是交错执行的。在大多数系统中，需要运行的进程数是多于可以运行它们的 CPU 个数的。传统系统在一个时刻只能执行一个程序，而先进的<strong>多核</strong>处理器同时能够执行多个程序。无论是在单核还是多核系统中，一个 CPU 看上去都像是在并发地执行多个进程，这是通过处理器在进程间切换来实现的。操作系统实现这种交错执行的机制称为<strong>上下文切换</strong>。为了简化讨论，我们只考虑包含一个 CPU 的<strong>单处理器系统</strong>的情况。我们会在 1.9.2 节中讨论<strong>多处理器系统</strong>。</p>
@@ -1918,8 +1923,8 @@
 <h2 id="174-文件">1.7.4 文件</h2>
 <p><strong>文件</strong>就是字节序列，仅此而已。每个I/O设备，包括磁盘、键盘、显示器，甚至网络，都可以看成是文件。系统中的所有输入输出都是通过使用一小组称为 Unix I/O 的系统函数调用读写文件来实现的。</p>
 <p>文件这个简单而精致的概念是非常强大的，因为它向应用程序提供了一个统一的视图，来看待系统中可能含有的所有各式各样的 I/O 设备。例如，处理磁盘文件内容的应用程序员可以非常幸福，因为他们无须了解具体的磁盘技术。进一步说，同一个程序可以在使用不同磁盘技术的不同系统上运行。你将在第 10 章中学习 Unix I/O。 </p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---linux项目">旁注 - Linux项目</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-linux%E9%A1%B9%E7%9B%AE">旁注 - Linux项目</h3>
 <p>1991年8月，芬兰研究生 Linus Torvalds 谨慎地发布了一个新的类 Unix 的操作系统内核，内容如下。</p>
 <blockquote>
 <p>来自∶ torvalds@klaava.Helsinki.FI（Linus Benedict Torvalds）</p>
@@ -1933,6 +1938,9 @@
 <p><strong>Linus (torvalds@kruna.helsinki.fi)</strong></p>
 </blockquote>
 <p>就像 Torvalds 所说的，他创建 Linux 的起点是 Minix，由 Andrew S. Tanenbaum 出于教育目的开发的一个操作系统【113】。 接下来，如他们所说，这就成了历史。Linux 逐渐发展成为一个技术和文化现象。通过和 GNU 项目的力量结合，Linux 项目发展成了一个完整的、符合 Posix 标准的 Unix 操作系统的版本，包括内核和所有支撑的基础设施。从手持设备到大型计算机，Linux 在范围如此广泛的计算机上得到了应用。IBM 的一个工作组甚至把 Linux 移植到了一块腕表中！</p>
+</div>
+
+
 
                                 
                                 </section>
@@ -1976,7 +1984,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.7 操作系统管理硬件","level":"3.1.7","depth":2,"next":{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},"previous":{"title":"1.6 存储设备形成层次结构","level":"3.1.6","depth":2,"path":"ch01-a-tour-of-computer-systems/1.6.md","ref":"ch01-a-tour-of-computer-systems/1.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.7.md","mtime":"2026-04-28T05:30:23.946Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.7 操作系统管理硬件","level":"3.1.7","depth":2,"next":{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},"previous":{"title":"1.6 存储设备形成层次结构","level":"3.1.6","depth":2,"path":"ch01-a-tour-of-computer-systems/1.6.md","ref":"ch01-a-tour-of-computer-systems/1.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.7.md","mtime":"2026-05-24T19:44:41.699Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

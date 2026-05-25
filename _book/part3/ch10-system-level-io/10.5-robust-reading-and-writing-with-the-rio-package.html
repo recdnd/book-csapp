@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2078,9 +2080,14 @@
 <blockquote>
 <p>图 10-8 rio_readlineb 和 rio_readnb 函数</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---rio-包的起源">旁注 - RIO 包的起源</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-rio-%E5%8C%85%E7%9A%84%E8%B5%B7%E6%BA%90">旁注 - RIO 包的起源</h3>
 <p>RIO 函数的灵感来自于 W. Richard Stevens 在他的经典网络编程作品【110】中描述的 readLine、readn 和 writen 函数。rio_readn 和 rio_writen 函数与 Stevens 的 readn 和 writen 函数是一样的。然而，Stevens 的 readline 函数有一些局限性在 RI0 中得到了纠正。第一，因为 readline 是带缓冲的，而 readn 不带，所以这两个函数不能在同一描述符上一起使用。第二，因为它使用一个 static 缓冲区，Stevens 的 readline 函数不是线程安全的，这就要求 Stevens 引入一个不同的线程安全的版本，称为 read-line_ro 我们已经在 rio_readlineb 和 rio_readnb 函数中修改了这两个缺陷，使得这两个函数是相互兼容和线程安全的。</p>
+</div>
+
+
+
+
 
                                 
                                 </section>
@@ -2124,7 +2131,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"next":{"title":"10.6 读取文件元数据","level":"6.1.6","depth":2,"path":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","ref":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","articles":[]},"previous":{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","ref":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","mtime":"2026-04-28T05:30:23.967Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"next":{"title":"10.6 读取文件元数据","level":"6.1.6","depth":2,"path":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","ref":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","articles":[]},"previous":{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","ref":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","mtime":"2026-05-24T19:44:41.788Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

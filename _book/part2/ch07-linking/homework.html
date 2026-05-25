@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1885,7 +1887,6 @@
                                 
                                 <h1 id="家庭作业">家庭作业</h1>
 <h2 id="练习题-76">练习题 7.6</h2>
-<h4 id="练习题-76">练习题 7.6</h4>
 <p>这道题是关于图 7-5 的 m.o 模块和下面的 swap.c 函数版本的，该函数计算自己被调用的次数：</p>
 <pre><code class="lang-c"><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> buf[];
 
@@ -1973,10 +1974,8 @@
 </tbody>
 </table>
 <h2 id="练习题-77">练习题 7.7</h2>
-<h4 id="练习题-77">练习题 7.7</h4>
 <p>不改变任何变量名字，修改 7.6.1 节中的 bar5.c，使得 foo5.c 输出 x 和 y 的正确值（也就是整数 15213 和 15212 的十六进制表示）。</p>
 <h2 id="练习题-78">练习题 7.8</h2>
-<h4 id="练习题-78">练习题 7.8</h4>
 <p>在此题中，REF(x,i) → DEF(x,k) 表示链接器将任意对模块 i 中符号 x 的引用与模块 k 中符号 x 的定义相关联。在下面每个例子中，用这种符号来说明链接器是如何解析在每个模块中有多重定义的引用的。如果出现链接时错误（规则 1），写“错误”。如果链接器从定义中任意选择一个（规则 3），那么写“未知”。</p>
 <p>A.</p>
 <p>(a) REF(main.1) → DEF(____.__)</p>
@@ -2006,7 +2005,6 @@
 }                 |     }
 </code></pre>
 <h2 id="练习题-79">练习题 7.9</h2>
-<h4 id="练习题-79">练习题 7.9</h4>
 <p>考虑下面的程序，它由两个目标模块组成：</p>
 <pre><code class="lang-c"><span class="hljs-comment">/* foo6.c */</span>
 <span class="hljs-type">void</span> <span class="hljs-title function_">p2</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;
@@ -2027,16 +2025,13 @@
 </code></pre>
 <p>当在 x86-64Linux 系统中编译和执行这个程序时，即使函数 p2 不初始化变量 main，它也能打印字符串 “0x48\n” 并正常终止。你能解释这一点吗？</p>
 <h2 id="练习题-710">练习题 7.10</h2>
-<h4 id="练习题-710">练习题 7.10</h4>
 <p>a 和 b 表示当前路径中的目标模块或静态库，而 a → b 表示 a 依赖于 b，也就是说 a 引用了一个 b 定义的符号。对于下面的每个场景，给出使得静态链接器能够解析所有符号引用的最小的命令行（即含有最少数量的目标文件和库参数的命令）。</p>
 <p>A. p.o → libx.a → p.o</p>
 <p>B. p.o → libx.a → liby.a 和 liby.a → libx.a</p>
 <p>C. p.o → libx.a → liby.a → libz.a 和 liby.a → libx.a → libz.a</p>
 <h2 id="练习题-711">练习题 7.11</h2>
-<h4 id="练习题-711">练习题 7.11</h4>
 <p>图 7-14 中的程序头部表明数据段占用了内存中 0x230 个字节。然而，其中只有开始的 0x228 字节来自可执行文件的节。是什么引起了这种差异？</p>
 <h2 id="练习题-712">练习题 7.12</h2>
-<h4 id="练习题-712">练习题 7.12</h4>
 <p>考虑目标文件 m.o 中对函数 swap 的调用（作业题 7.6）。</p>
 <pre><code class="lang-c">  <span class="hljs-number">9</span>: e8 <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span>      callq e &lt;main+<span class="hljs-number">0xe</span>&gt;     swap()
 </code></pre>
@@ -2049,7 +2044,6 @@ r.addend = <span class="hljs-number">-4</span>
 <p>A. 假设链接器将 m.o 中的 .text 重定位到地址 0x4004e0，把 swap 重定位到地址 0x4004f8。那么 callq 指令中对 swap 的重定位引用的值应该是什么？</p>
 <p>B. 假设链接器将 m.o 中的 .text 重定位到地址 0x4004d0，把 swap 重定位到地址 0x400500。那么 callq 指令中对 swap 的重定位引用的值应该是什么？</p>
 <h2 id="练习题-713">练习题 7.13</h2>
-<h4 id="练习题-713">练习题 7.13</h4>
 <p>完成下面的任务将帮助你更熟悉处理目标文件的各种工具。</p>
 <p>A. 在你的系统上，lib.c 和 libm.a 的版本中包含多少目标文件？</p>
 <p>B. <strong>gcc -Og</strong> 产生的可执行代码与 <strong>gcc -Og -g</strong> 产生的不同吗？</p>
@@ -2097,7 +2091,7 @@ r.addend = <span class="hljs-number">-4</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.1.16","depth":2,"next":{"title":"第 8 章：异常控制流","level":"5.2","depth":1,"path":"part2/ch08-exceptional-control-flow/README.md","ref":"part2/ch08-exceptional-control-flow/README.md","articles":[{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},{"title":"8.7 操作进程的工具","level":"5.2.7","depth":2,"path":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","ref":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","articles":[]},{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},{"title":"家庭作业","level":"5.2.9","depth":2,"path":"part2/ch08-exceptional-control-flow/homework.md","ref":"part2/ch08-exceptional-control-flow/homework.md","articles":[]}]},"previous":{"title":"7.15 小结","level":"5.1.15","depth":2,"path":"part2/ch07-linking/7.15-summary.md","ref":"part2/ch07-linking/7.15-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/homework.md","mtime":"2026-04-28T05:30:23.958Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.1.16","depth":2,"next":{"title":"第 8 章：异常控制流","level":"5.2","depth":1,"path":"part2/ch08-exceptional-control-flow/README.md","ref":"part2/ch08-exceptional-control-flow/README.md","articles":[{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},{"title":"8.7 操作进程的工具","level":"5.2.7","depth":2,"path":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","ref":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","articles":[]},{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},{"title":"家庭作业","level":"5.2.9","depth":2,"path":"part2/ch08-exceptional-control-flow/homework.md","ref":"part2/ch08-exceptional-control-flow/homework.md","articles":[]}]},"previous":{"title":"7.15 小结","level":"5.1.15","depth":2,"path":"part2/ch07-linking/7.15-summary.md","ref":"part2/ch07-linking/7.15-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/homework.md","mtime":"2026-05-24T18:40:03.531Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

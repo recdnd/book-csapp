@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2191,7 +2193,6 @@ E_p = \frac{S_p}{p}=\frac{T_1}{pT_p}</p>
 <p>加速比还有另外一面，称为<strong>弱扩展</strong>（weak scaling），在增加处理器数量的同时，增加问题的规模，这样随着处理器数量的增加，每个处理器执行的工作量保持不变。在这种描述中，加速比和效率被表达为单位时间完成的工作总量。例如，如果将处理器数量翻倍，同时每个小时也做了两倍的工作量，那么我们就有线性的加速比和 100% 的效率。</p>
 <p>弱扩展常常是比强扩展更真实的衡量值，因为它更准确地反映了我们用更大的机器做更多的工作的愿望。对于科学计算程序来说尤其如此，科学计算问题的规模很容易增加，更大的问题规模直接就意味着更好地预测。不过，还是有一些应用的规模不那么容易增加，对于这样的应用，强扩展是更合适的。例如，实时信号处理应用所执行的工作量常常是由产生信号的物理传感器的属性决定的。改变工作总量需要用不同的物理传感器，这不太实际或者不太必要。对于这类应用，我们通常想要用并行来尽可能快地完成定量的工作。</p>
 <h3 id="练习题-1211">练习题 12.11</h3>
-<h4 id="练习题-1211">练习题 12.11</h4>
 <p>对于下表中的并行程序，填写空白处。假设使用强扩展。</p>
 <table>
 <thead>
@@ -2322,7 +2323,7 @@ E_p = \frac{S_p}{p}=\frac{T_1}{pT_p}</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"next":{"title":"12.7 其他并发问题","level":"6.3.7","depth":2,"path":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","ref":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","articles":[]},"previous":{"title":"12.5 用信号量同步线程","level":"6.3.5","depth":2,"path":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","ref":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","mtime":"2026-04-28T05:30:23.972Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"next":{"title":"12.7 其他并发问题","level":"6.3.7","depth":2,"path":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","ref":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","articles":[]},"previous":{"title":"12.5 用信号量同步线程","level":"6.3.5","depth":2,"path":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","ref":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","mtime":"2026-05-24T18:40:03.515Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1886,9 +1888,11 @@
                                 <h1 id="114-套接字接口">11.4 套接字接口</h1>
 <p><strong>套接字接口</strong>（socket interface）是一组函数，它们和 Unix I/O 函数结合起来，用以创建网络应用。大多数现代系统上都实现套接字接口，包括所有的 Unix 变种、Windows 和 Macintosh 系统。图 11-12 给岀了一个典型的客户端—服务器事务的上下文中的套接字接口概述。当讨论各个函数时，你可以使用这张图来作为向导图。</p>
 <p><img src="../../.gitbook/assets/11-12%20基于套接字接口的网络应用概述.png" alt="图 11-12 基于套接字接口的网络应用概述"></img></p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---套接字接口的起源">旁注 - 套接字接口的起源</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%B5%B7%E6%BA%90">旁注 - 套接字接口的起源</h3>
 <p>套接字接口是加州大学伯克利分校的研究人员在 20 世纪 80 年代早期提出的。因为这个原因，它也经常被叫做伯克利套接字。伯克利的研究者使得套接字接口适用于任何底层的协议。第一个实现的就是针对 TCP/IP 协议的，他们把它包括在 Unix 4.2 BSD 的内核里，并且分发给许多学校和实验室。这在因特网的历史上是一个重大事件。几乎一夜之间，成千上万的人们接触到了 TCP/IP 和它的源代码。它引起了巨大的轰动，并激发了新的网络和网络互联研究的浪潮。</p>
+</div>
+
 <h2 id="1141-套接字地址结构">11.4.1 套接字地址结构</h2>
 <p>从 Linux 内核的角度来看，一个套接字就是通信的一个端点。从 Linux 程序的角度来看，套接字就是一个有相应描述符的打开文件。</p>
 <p>因特网的套接字地址存放在如图 11-13 所示的类型为 sockaddr_in 的 16 字节结构中。对于因特网应用，sin_family 成员是 AF_INET，sin_port 成员是一个 16 位的端口号，而 sin_addr 成员就是一个 32 位的 IP 地址。IP 地址和端口号总是以网络字节顺序（大端法）存放的。</p>
@@ -1910,9 +1914,11 @@
 <blockquote>
 <p>图 11-13 套接字地址结构</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---in后缀意味着什么？">旁注 - _in后缀意味着什么？</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-in%E5%90%8E%E7%BC%80%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F">旁注 - _in后缀意味着什么？</h3>
 <p>in 后缀是互联网络（internet）的缩写，而不是输入（input）的缩写。</p>
+</div>
+
 <p>connect、bind 和 accept 函数要求一个指向与协议相关的套接字地址结构的指针。套接字接口的设计者面临的问题是，如何定义这些函数，使之能接受各种类型的套接字地址结构。今天我们可以使用通用的 <strong>void*</strong> 指针，但是那时在 C 中并不存在这种类型的指针。解决办法是定义套接字函数要求一个指向通用 sockaddr 结构（图 11-13）的指针，然后要求应用程序将与协议特定的结构的指针强制转换成这个通用结构。为了简化代码示例，我们跟随 Steven 的指导，定义下面的类型：</p>
 <pre><code class="lang-c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr</span> <span class="hljs-title">SA</span>;</span>
 </code></pre>
@@ -1976,9 +1982,11 @@
 <p><img src="../../.gitbook/assets/11-14%20监听描述符和已连接描述符的角色.png" alt="图 11-14 监听描述符和已连接描述符的角色"></img></p>
 <p>在第一步中，服务器调用 accept，等待连接请求到达监听描述符，具体地我们设定为描述符 3。回忆一下，描述符 0 ~ 2 是预留给了标准文件的。</p>
 <p>在第二步中，客户端调用 connect 函数，发送一个连接请求到 listenfd。第三步，accept 函数打开了一个新的已连接描述符 connfd（我们假设是描述符 4），在 clientfd 和 connfd 之间建立连接，并且随后返回 connfd 给应用程序。客户端也从 connect 返回，在这一点以后，客户端和服务器就可以分别通过读和写 clientfd 和 connfd 来回传送数据了。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---为何要有监听描述符和已连接描述符之间的区别？">旁注 - 为何要有监听描述符和已连接描述符之间的区别？</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E4%B8%BA%E4%BD%95%E8%A6%81%E6%9C%89%E7%9B%91%E5%90%AC%E6%8F%8F%E8%BF%B0%E7%AC%A6%E5%92%8C%E5%B7%B2%E8%BF%9E%E6%8E%A5%E6%8F%8F%E8%BF%B0%E7%AC%A6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F">旁注 - 为何要有监听描述符和已连接描述符之间的区别？</h3>
 <p>你可能很想知道为什么套接字接口要区别监听描述符和已连接描述符。乍一看，这像是不必要的复杂化。然而，区分这两者被证明是很有用的，因为它使得我们可以建立并发服务器，它能够同时处理许多客户端连接。例如，每次一个连接请求到达监听描述符时，我们可以派生（fork）—个新的进程，它通过已连接描述符与客户端通信。在第 12 章中将介绍更多关于并发服务器的内容。</p>
+</div>
+
 <h2 id="1147-主机和服务的转换">11.4.7 主机和服务的转换</h2>
 <p>Linux 提供了一些强大的函数（称为 getaddrinfo 和 getnameinfo）实现二进制套接字地址结构和主机名、主机地址、服务名和端口号的字符串表示之间的相互转化。当和套接字接口一起使用时，这些函数能使我们编写独立于任何特定版本的 IP 协议的网络程序。</p>
 <h3 id="1-getaddrinfo-函数">1. getaddrinfo 函数</h3>
@@ -2099,8 +2107,7 @@
 <span class="hljs-number">199.16</span>.<span class="hljs-number">156.6</span>
 <span class="hljs-number">199.16</span>.<span class="hljs-number">156.70</span>
 </code></pre>
-<h4 id="练习题-114">练习题 11.4</h4>
-<h4 id="练习题-114">练习题 11.4</h4>
+<h3 id="练习题-114">练习题 11.4</h3>
 <p>函数 getaddrinfo 和 getnameinfo 分别包含了 inet_pton 和 inet_ntop 的功能，提供了更高级别的、独立于任何特殊地址格式的抽象。想看看这到底有多方便，编写 HOSTINFO（图 11-17）的一个版本，用 inet_pton 而不是 getnameinfo 将毎个套接字地址转换成点分十进制地址字符串。</p>
 <h4 id="答案">答案</h4>
 <p>下面是解决方案。注意，使用 inet_ntop 要困难多少，它要求很麻烦的强制类型转换和深层嵌套结构引用。getnameinfo 函数要简单许多，因为它为我们完成了这些工作。</p>
@@ -2340,9 +2347,10 @@ int main(int argc, char **argv)
 <blockquote>
 <p>图 11-22 读和回送文本行的 echo 函数</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---在连接中-eof-意味什么？">旁注 - 在连接中 EOF 意味什么？</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%9C%A8%E8%BF%9E%E6%8E%A5%E4%B8%AD-eof-%E6%84%8F%E5%91%B3%E4%BB%80%E4%B9%88%EF%BC%9F">旁注 - 在连接中 EOF 意味什么？</h3>
 <p>EOF 的概念常常使人们感到迷惑，尤其是在因特网连接的上下文中。首先，我们需要理解其实并没有像 EOF 字符这样的一个东西。进一步来说，EOF 是由内核检测到的一种条件。应用程序在它接收到一个由 read 函数返回的零返回码时，它就会发现出 EOF 条件。对于磁盘文件，当前文件位置超出文件长度时，会发生 EOF。对于因特网连接，当一个进程关闭连接它的那一端时，会发生 EOF。连接另一端的进程在试图读取流中最后一个字节之后的字节时，会检测到 EOF。</p>
+</div>
 
                                 
                                 </section>
@@ -2386,7 +2394,7 @@ int main(int argc, char **argv)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"11.4 套接字接口","level":"6.2.4","depth":2,"next":{"title":"11.5 Web 服务器","level":"6.2.5","depth":2,"path":"part3/ch11-network-programming/11.5-web-servers.md","ref":"part3/ch11-network-programming/11.5-web-servers.md","articles":[]},"previous":{"title":"11.3 全球 IP 因特网","level":"6.2.3","depth":2,"path":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","ref":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.4-the-sockets-interface.md","mtime":"2026-04-28T05:30:23.969Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"11.4 套接字接口","level":"6.2.4","depth":2,"next":{"title":"11.5 Web 服务器","level":"6.2.5","depth":2,"path":"part3/ch11-network-programming/11.5-web-servers.md","ref":"part3/ch11-network-programming/11.5-web-servers.md","articles":[]},"previous":{"title":"11.3 全球 IP 因特网","level":"6.2.3","depth":2,"path":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","ref":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.4-the-sockets-interface.md","mtime":"2026-05-24T19:44:41.856Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

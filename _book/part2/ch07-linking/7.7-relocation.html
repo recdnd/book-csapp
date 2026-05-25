@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1946,8 +1948,10 @@
 <p>图 7-11 main.o 的代码和重定位条目。原始 C 代码在图 7-1 中</p>
 </blockquote>
 <p>main 函数引用了两个全局符号：array 和 sum。为每个引用，汇编器产生一个重定位条目，显示在引用的后面一行上。✦这些重定位条目告诉链接器对 sum 的引用要使用 32 位 PC 相对地址进行重定位，而对 array 的引用要使用 32 位绝对地址进行重定位。接下来两节会详细介绍链接器是如何重定位这些引用的。</p>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦：回想一下. 重定位条目和指令实际上存放在目标文件的不同节中。为了方便，OBJDUMP 工具把它们显示在一起。</p>
+</div>
+
 <h3 id="1-重定位-pc-相对引用">1. 重定位 PC 相对引用</h3>
 <p>图 7-11 的第 6 行中，函数 main 调用 sum 函数，sum 函数是在模块 sum.o 中定义的。call 指令开始于节偏移 0xe 的地方’包括 1 字节的操作码 0xe8，后面跟着的是对目标 sum 的 32 位 PC 相对引用的占位符。</p>
 <p>相应的重定位条目 r 由 4 个字段组成：</p>
@@ -2027,7 +2031,6 @@ r.addend = <span class="hljs-number">0</span>
 <p>图 7-12 可执行文件 prog 的已重定位的 .text 节和 .data 节。原始的 C 代码在图 7-1 中</p>
 </blockquote>
 <h3 id="练习题-74">练习题 7.4</h3>
-<h4 id="练习题-74">练习题 7.4</h4>
 <p>本题是关于图 7-12a 中的已重定位程序的。</p>
 <p>A. 第 5 行中对 sum 的重定位引用的十六进制地址是多少？</p>
 <p>B. 第 5 行中对 sum 的重定位引用的十六进制值是多少？</p>
@@ -2036,7 +2039,6 @@ r.addend = <span class="hljs-number">0</span>
 <p>A. 第 5 行被重定位引用的十六进制地址为 0x4004df。</p>
 <p>B. 第 5 行被重定位引用的十六进制值为 0x5。记住，反汇编列表给岀的引用值是用小端法字节顺序表示的。</p>
 <h3 id="练习题-75">练习题 7.5</h3>
-<h4 id="练习题-75">练习题 7.5</h4>
 <p>考虑目标文件 m.o 中对 swap 函数的调用（图 7-5）。</p>
 <pre><code class="lang-c"><span class="hljs-number">9</span>:  e8 <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span>            callq  e &lt;main+<span class="hljs-number">0xe</span>&gt;      swap()
 </code></pre>
@@ -2108,7 +2110,7 @@ r.addend = <span class="hljs-number">-4</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.7 重定位","level":"5.1.7","depth":2,"next":{"title":"7.8 可执行目标文件","level":"5.1.8","depth":2,"path":"part2/ch07-linking/7.8-executable-object-files.md","ref":"part2/ch07-linking/7.8-executable-object-files.md","articles":[]},"previous":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"path":"part2/ch07-linking/7.6-symbol-resolution.md","ref":"part2/ch07-linking/7.6-symbol-resolution.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.7-relocation.md","mtime":"2026-04-28T05:30:23.957Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.7 重定位","level":"5.1.7","depth":2,"next":{"title":"7.8 可执行目标文件","level":"5.1.8","depth":2,"path":"part2/ch07-linking/7.8-executable-object-files.md","ref":"part2/ch07-linking/7.8-executable-object-files.md","articles":[]},"previous":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"path":"part2/ch07-linking/7.6-symbol-resolution.md","ref":"part2/ch07-linking/7.6-symbol-resolution.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.7-relocation.md","mtime":"2026-05-24T19:44:41.718Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

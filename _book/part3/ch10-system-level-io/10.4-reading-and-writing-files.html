@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1911,9 +1913,12 @@
 <p>图 10-3 一次一个字节地从标准输入复制到标准输出</p>
 </blockquote>
 <p>通过调用 lseek 函数，应用程序能够显示地修改当前文件的位置，这部分内容不在我们的讲述范围之内。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---ssizet-和-sizet-有些什么区别？">旁注 - ssize_t 和 size_t 有些什么区别？</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-ssize-t-%E5%92%8C-size-t-%E6%9C%89%E4%BA%9B%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F">旁注 - ssize_t 和 size_t 有些什么区别？</h3>
 <p>你可能已经注意到了，read 函数有一个 size_t 的输入参数和一个 ssize_t 的返回值。那么这两种类型之间有什么区别呢？在 x86-64 系统中，size_t 被定义为 unsigned long，而 ssize_t（有符号的大小）被定义为 long。read 函数返回一个有符号的大小，而不是一个无符号大小，这是因为出错时它必须返回 -1。有趣的是，返回一个 -1 的可能性使得 read 的最大值减小了一半。</p>
+</div>
+
+
 <p>在某些情况下，read 和 write 传送的字节比应用程序要求的要少。这些<strong>不足值</strong>（short count）不表示有错误。出现这样情况的原因有：</p>
 <ul>
 <li><strong>读时遇到 EOF。</strong>假设我们准备读一个文件，该文件从当前文件位置开始只含有 20 多个字节，而我们以 50 个字节的片进行读取。这样一来，下一个 read 返回的不足值为 20，此后的 read 将通过返回不足值 0 来发出 EOF 信号。</li>
@@ -1964,7 +1969,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"next":{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","ref":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","articles":[]},"previous":{"title":"10.3 打开和关闭文件","level":"6.1.3","depth":2,"path":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","ref":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","mtime":"2026-04-28T05:30:23.967Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"next":{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","ref":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","articles":[]},"previous":{"title":"10.3 打开和关闭文件","level":"6.1.3","depth":2,"path":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","ref":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","mtime":"2026-05-24T19:44:41.782Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

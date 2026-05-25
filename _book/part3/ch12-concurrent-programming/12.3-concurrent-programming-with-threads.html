@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2049,7 +2051,6 @@ Pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, thread, &amp;co
 <p>然而，这样可能会出错，因为它在对等线程的赋值语句和主线程的 accept 语句间引入了<strong>竞争</strong>（race）。如果赋值语句在下一个 accept 之前完成，那么对等线程中的局部变量 connfd 就得到正确的描述符值。然而，如果赋值语句是在 accept 之后才完成的，那么对等线程中的局部变量 connfd 就得到下一次连接的描述符值。那么不幸的结果就是，现在两个线程在同一个描述符上执行输入和输出。为了避免这种潜在的致命竞争，我们必须将 accept 返回的每个已连接描述符分配到它自己的动态分配的内存块，如第 20 ~ 21 行所示。我们会在 12.7.4 节中回过来讨论竞争的问题。</p>
 <p>另一个问题是在线程例程中避免内存泄漏。既然不显式地收回线程，就必须分离每个线程，使得在它终止时它的内存资源能够被收回（第 31 行）。更进一步，我们必须小心释放主线程分配的内存块（第 32 行）。</p>
 <h3 id="练习题-125">练习题 12.5</h3>
-<h4 id="练习题-125">练习题 12.5</h4>
 <p>在图 12-5 中基于进程的服务器中，我们在两个位置小心地关闭了已连接描述符：父进程和子进程。然而，在图 12-14 中基于线程的服务器中，我们只在一个位置关闭了已连接描述符：对等线程。为什么？</p>
 <h4 id="答案">答案</h4>
 <p>因为线程运行在同一个进程中，它们都共享相同的描述符表。无论有多少线程使用这个已连接描述符，这个已连接描述符的文件表的引用计数都等于 1。因此，当我们用完它时，一个 close 操作就足以释放与这个已连接描述符相关的内存资源了。</p>
@@ -2096,7 +2097,7 @@ Pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, thread, &amp;co
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"12.3 基于线程的并发编程","level":"6.3.3","depth":2,"next":{"title":"12.4 多线程程序中的共享变量","level":"6.3.4","depth":2,"path":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","ref":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","articles":[]},"previous":{"title":"12.2 基于 I/O 多路复用的并发编程","level":"6.3.2","depth":2,"path":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","ref":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","mtime":"2026-04-28T05:30:23.971Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"12.3 基于线程的并发编程","level":"6.3.3","depth":2,"next":{"title":"12.4 多线程程序中的共享变量","level":"6.3.4","depth":2,"path":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","ref":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","articles":[]},"previous":{"title":"12.2 基于 I/O 多路复用的并发编程","level":"6.3.2","depth":2,"path":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","ref":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","mtime":"2026-05-24T18:40:03.512Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

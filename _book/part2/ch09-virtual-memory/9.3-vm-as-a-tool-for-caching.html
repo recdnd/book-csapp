@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1904,7 +1906,6 @@
 <p>图 9-4 中的示例展示了一个有 8 个虚拟页和 4 个物理页的系统的页表。四个虚拟页（VP 1、VP 2、VP 4 和 VP 7）当前被缓存在 DRAM 中。两个页（VP 0 和 VP 5 ）还未被分配，而剩下的页（VP 3 和 VP 6）已经被分配了，但是当前还未被缓存。图 9-4 中有一个要点要注意，因为 DRAM 缓存是全相联的，所以任意物理页都可以包含任意虚拟页。</p>
 <p><img src="../../.gitbook/assets/09-04%20页表.png" alt="图 9-4 页表"></img></p>
 <h3 id="练习题-92">练习题 9.2</h3>
-<h4 id="练习题-92">练习题 9.2</h4>
 <p>确定下列虚拟地址大小（n）和页大小（P）的组合所需要的 PTE 数量：</p>
 <table>
 <thead>
@@ -1991,9 +1992,10 @@
 <p>当我们中的许多人都了解了虚拟内存的概念之后，我们的第一印象通常是它的效率应该是非常低。因为不命中处罚很大，我们担心页面调度会破坏程序性能。实际上，虚拟内存工作得相当好，这主要归功于我们的老朋友<strong>局部性</strong>（locality）。</p>
 <p>尽管在整个运行过程中程序引用的不同页面的总数可能超出物理内存总的大小，但是局部性原则保证了在任意时刻，程序将趋向于在一个较小的<strong>活动页面</strong>（active page）集合上工作，这个集合叫做<strong>工作集</strong>（working set）或者<strong>常驻集合</strong>（resident set）。在初始开销，也就是将工作集页面调度到内存中之后，接下来对这个工作集的引用将导致命中，而不会产生额外的磁盘流量。</p>
 <p>只要我们的程序有好的时间局部性，虚拟内存系统就能工作得相当好。但是，当然不是所有的程序都能展现良好的时间局部性。如果工作集的大小超出了物理内存的大小，那么程序将产生一种不幸的状态，叫做<strong>抖动</strong>（thrashing），这时页面将不断地换进换出。虽然虚拟内存通常是有效的，但是如果一个程序性能慢得像爬一样，那么聪明的程序员会考虑是不是发生了抖动。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---统计缺页次数">旁注 - 统计缺页次数</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E7%BB%9F%E8%AE%A1%E7%BC%BA%E9%A1%B5%E6%AC%A1%E6%95%B0">旁注 - 统计缺页次数</h3>
 <p>你可以利用 Linux 的 getrusage 函数监测缺页的数量（以及许多其他的信息）。</p>
+</div>
 
                                 
                                 </section>
@@ -2037,7 +2039,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"9.3 虚拟内存作为缓存的工具","level":"5.3.3","depth":2,"next":{"title":"9.4 虚拟内存作为内存管理的工具","level":"5.3.4","depth":2,"path":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","ref":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","articles":[]},"previous":{"title":"9.2 地址空间","level":"5.3.2","depth":2,"path":"part2/ch09-virtual-memory/9.2-address-spaces.md","ref":"part2/ch09-virtual-memory/9.2-address-spaces.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","mtime":"2026-04-28T05:30:23.962Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"9.3 虚拟内存作为缓存的工具","level":"5.3.3","depth":2,"next":{"title":"9.4 虚拟内存作为内存管理的工具","level":"5.3.4","depth":2,"path":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","ref":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","articles":[]},"previous":{"title":"9.2 地址空间","level":"5.3.2","depth":2,"path":"part2/ch09-virtual-memory/9.2-address-spaces.md","ref":"part2/ch09-virtual-memory/9.2-address-spaces.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","mtime":"2026-05-24T19:44:41.752Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

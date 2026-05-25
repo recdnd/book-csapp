@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1964,7 +1966,6 @@ child ：x=<span class="hljs-number">2</span>
 <p>进程图特别有助于理解带有嵌套 fork 调用的程序。例如，图 8-17 中的程序源码中两次调用了 fork。对应的进程图可帮助我们看清这个程序运行了四个进程，每个都调用了—次 printf，这些 printf 可以以任意顺序执行。</p>
 <p><img src="../../.gitbook/assets/08-17 嵌套fork的进程图.png" alt="图 8-17 嵌套 fork 的进程图"></img></p>
 <h3 id="练习题-82">练习题 8.2</h3>
-<h4 id="练习题-82">练习题 8.2</h4>
 <p>考虑下面的程序：</p>
 <p>
 ```c
@@ -1993,9 +1994,11 @@ p2: x=<span class="hljs-number">1</span>
 </code></pre>
 <h2 id="843-回收子进程">8.4.3 回收子进程</h2>
 <p>当一个进程由于某种原因终止时，内核并不是立即把它从系统中清除。相反，进程被保持在一种已终止的状态中，直到被它的父进程<strong>回收</strong>（reaped）。当父进程回收已终止的子进程时，内核将子进程的退出状态传递给父进程，然后抛弃已终止的进程，从此时开始，该进程就不存在了。一个终止了但还未被回收的进程称为<strong>僵死进程</strong>（zombie）。</p>
-<p><strong>INFO:</strong></p>
-<h4 id="旁注---为什么已终止的子进程被称为僵死进程">旁注 - 为什么已终止的子进程被称为僵死进程</h4>
+<div class="hint hint-info">
+<h4 id="%E6%97%81%E6%B3%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B7%B2%E7%BB%88%E6%AD%A2%E7%9A%84%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%A2%AB%E7%A7%B0%E4%B8%BA%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B">旁注 - 为什么已终止的子进程被称为僵死进程</h4>
 <p>在民间传说中，僵尸是活着的尸体，一种半生半死的实体。僵死进程已经终止了，而内核仍保留着它的某些状态直到父进程回收它为止，从这个意义上说它们是类似的。</p>
+</div>
+
 <p>如果一个父进程终止了，内核会安排 init 进程成为它的孤儿进程的养父。init 进程的 PID 为 1，是在系统启动时由内核创建的，它不会终止，是所有进程的祖先。如果父进程没有回收它的僵死子进程就终止了，那么内核会安排 init 进程去回收它们。不过，长时间运行的程序，比如 shell 或者服务器，总是应该回收它们的僵死子进程。即使僵死子进程没有运行，它们仍然消耗系统的内存资源。</p>
 <p>一个进程可以通过调用 waitpid 函数来等待它的子进程终止或者停止。</p>
 <pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span>
@@ -2037,8 +2040,8 @@ p2: x=<span class="hljs-number">1</span>
 </ul>
 <h3 id="4-错误条件">4. 错误条件</h3>
 <p>如果调用进程没有子进程，那么 waitpid 返回 -1，并且设置 errno 为 ECHILD。如果 waitpid 函数被一个信号中断，那么它返回 -1，并设置 errno 为 EINTR。</p>
-<p><strong>INFO:</strong></p>
-<h4 id="旁注---和-unix-函数相关的常量">旁注 - 和 Unix 函数相关的常量</h4>
+<div class="hint hint-info">
+<h4 id="%E6%97%81%E6%B3%A8-%E5%92%8C-unix-%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9A%84%E5%B8%B8%E9%87%8F">旁注 - 和 Unix 函数相关的常量</h4>
 <p>像 WNOHANG 和 WUNTRACED 这样的常量是由系统头文件定义的。例如，WNOHANG 和 WUNTRACED 是由 wait.h 头文件（间接）定义的：</p>
 <pre><code class="lang-c"><span class="hljs-comment">/* Bits in the third argument to 'waitpid'. */</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> WNOHANG    1   <span class="hljs-comment">/* Don’t block waiting. */</span></span>
@@ -2048,8 +2051,9 @@ p2: x=<span class="hljs-number">1</span>
 <pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span>
 </code></pre>
 <p>每个 Unix 函数的 man 页列出了无论何时你在代码中使用那个函数都要包含的头文件。同时，为了检查诸如 ECHILD 和 EINTR 之类的返回代码，你必须包含 errno.h。为了简化代码示例，我们包含了一个称为 csapp.h 的头文件，它包括了本书中使用的所有函数的头文件。csapp.h 头文件可以从 CS：APP 网站在线获得。</p>
-<h4 id="练习题-83">练习题 8.3</h4>
-<h4 id="练习题-83">练习题 8.3</h4>
+</div>
+
+<h3 id="练习题-83">练习题 8.3</h3>
 <p>列出下面程序所有可能的输出序列：</p>
 <p>
 ```c
@@ -2156,8 +2160,7 @@ child <span class="hljs-number">22967</span> terminated normally with <span clas
 <blockquote>
 <p>图 8-19 使用 waitpid 按照创建子进程的顺序来回收这些僵死子进程</p>
 </blockquote>
-<h4 id="练习题-84">练习题 8.4</h4>
-<h4 id="练习题-84">练习题 8.4</h4>
+<h3 id="练习题-84">练习题 8.4</h3>
 <p>考虑下面的程序：</p>
 <p>
 ```c
@@ -2201,7 +2204,6 @@ int main()
 <span class="hljs-comment">// 总是返回 -1。</span>
 </code></pre>
 <h3 id="练习题-85">练习题 8.5</h3>
-<h4 id="练习题-85">练习题 8.5</h4>
 <p>编写一个 sleep 的包装函数，叫做 snooze，带有下面的接口：</p>
 <pre><code class="lang-c"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> <span class="hljs-title function_">snooze</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> secs)</span>;
 </code></pre>
@@ -2262,11 +2264,12 @@ unsigned int snooze(unsigned int secs) {
 <span class="hljs-comment">// 返回：无。</span>
 </code></pre>
 <p>如果环境数组包含一个形如 “name=oldva1ue” 的字符串，那么 unsetenv 会删除它，而 setenv 会用 newvalue 代替 oldvalue，但是只有在 overwirte 非零时才会这样。如果 name 不存在，那么 setenv 就把 “name=newvalue” 添加到数组中。</p>
-<p><strong>INFO:</strong></p>
-<h4 id="旁注---程序与进程">旁注 - 程序与进程</h4>
+<div class="hint hint-info">
+<h4 id="%E6%97%81%E6%B3%A8-%E7%A8%8B%E5%BA%8F%E4%B8%8E%E8%BF%9B%E7%A8%8B">旁注 - 程序与进程</h4>
 <p>这是一个适当的地方，停下来，确认一下你理解了程序和进程之间的区别。程序是一堆代码和数据；程序可以作为目标文件存在于磁盘上，或者作为段存在于地址空间中。进程是执行中程序的一个具体的实例；程序总是运行在某个进程的上下文中。如果你想要理解 fork 和 execve 函数，理解这个差异是很重要的。fork 函数在新的子进程中运行相同的程序，新的子进程是父进程的一个复制品。execve 函数在当前进程的上下文中加载并运行一个新的程序。它会覆盖当前进程的地址空间，但并没有创建一个新进程。新的程序仍然有相同的 PID，并且继承了调用 execve 函数时已打开的所有文件描述符。</p>
+</div>
+
 <h3 id="练习题-86">练习题 8.6</h3>
-<h4 id="练习题-86">练习题 8.6</h4>
 <p>编写一个叫做 myecho 的程序，打印出它的命令行参数和环境变量。</p>
 <pre><code class="lang-c">linux&gt; ./myecho arg1 arg2
 Command-ine arguments:
@@ -2467,7 +2470,7 @@ int main(int argc, char *argv[], char *envp[])
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.4 进程控制","level":"5.2.4","depth":2,"next":{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},"previous":{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","mtime":"2026-04-28T05:30:23.959Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.4 进程控制","level":"5.2.4","depth":2,"next":{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},"previous":{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","mtime":"2026-05-24T19:44:41.734Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

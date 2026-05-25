@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1899,10 +1901,12 @@
 /tmp/ccSzSuti.o(.text+0x7): undefined reference to <span class="hljs-string">'foo'</span>
 </code></pre>
 <p>对全局符号的符号解析很棘手，还因为多个目标文件可能会定义相同名字的全局符号。在这种情况中，链接器必须要么标志一个错误，要么以某种方法选出一个定义并抛弃其他定义。Linux 系统采纳的方法涉及编译器、汇编器和链接器之间的协作，这样也可能给不警觉的程序员带来一些麻烦。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---对-c-和-java-中链接器符号的重整">旁注 - 对 C++ 和 Java 中链接器符号的重整</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%AF%B9-c-%E5%92%8C-java-%E4%B8%AD%E9%93%BE%E6%8E%A5%E5%99%A8%E7%AC%A6%E5%8F%B7%E7%9A%84%E9%87%8D%E6%95%B4">旁注 - 对 C++ 和 Java 中链接器符号的重整</h3>
 <p>C++ 和 Java 都允许重载方法，这些方法在源代码中有相同的名字，却有不同的参数列表。那么链接器是如何区别这些不同的重载函数之间的差异呢？C++ 和 Java 中能使用重载函数，是因为编译器将每个唯一的方法和参数列表组合编码成一个对链接器来说唯一的名字。这种编码过程叫做重整（mangling），而相反的过程叫做恢复（demangling）。</p>
 <p>幸运的是，C++ 和 Java 使用兼容的重整策略。一个被重整的类名字是由名字中字符的整数数量，后面跟原始名字组成的。比如，类 Foo 被编码成 3Foo。方法被编码为原始方法名，后面加上 __，加上被重整的类名，再加上每个参数的单字母编码。比如，Foo::bar(int, long) 被编码为 bar__3Fooil。重整全局变量和模板名字的策略是相似的。</p>
+</div>
+
 <h2 id="761-链接器如何解析多重定义的全局符号">7.6.1 链接器如何解析多重定义的全局符号</h2>
 <p>链接器的输入是一组可重定位目标模块。每个模块定义一组符号，有些是局部的（只对定义该符号的模块可见），有些是全局的（对其他模块也可见）。如果多个模块定义同名的全局符号，会发生什么呢？下面是 Linux 编译系统采用的方法。</p>
 <p>在编译时，编译器向汇编器输岀每个全局符号，或者是强（strong）或者是弱（weak），而汇编器把这个信息隐含地编码在可重定位目标文件的符号表里。函数和已初始化的全局变量是强符号，未初始化的全局变量是弱符号。</p>
@@ -2030,7 +2034,6 @@ x = 0x0 y = 0x80000000
 <p>这是一个细微而令人讨厌的错误，尤其是因为它只会触发链接器发出一条警告，而且通常要在程序执行很久以后才表现出来，且远离错误发生地。在一个拥有成百上千个模块的大型系统中，这种类型的错误相当难以修正，尤其因为许多程序员根本不知道链接器是如何工作的。当你怀疑有此类错误时，用像 GCC-fno-common 标志这样的选项调用链接器，这个选项会告诉链接器，在遇到多重定义的全局符号时，触发一个错误。或者使用 -Werror 选项，它会把所有的警告都变为错误。</p>
 <p>在 7.5 节中，我们看到了编译器如何按照一个看似绝对的规则来把符号分配为 COMMON 和 .bss。实际上，采用这个惯例是由于在某些情况中链接器允许多个模块定义同名的全局符号。当编译器在翻译某个模块时，遇到一个弱全局符号，比如说 x，它并不知道其他模块是否也定义了 x，如果是，它无法预测链接器该使用 x 的多重定义中的哪一个。所以编祥器把 x 分配成 COMMON，把决定权留给链接器。另一方面，如果 x 初始化为 0，那么它是一个强符号（因此根据规则 2 必须是唯一的），所以编译器可以很自信地将它分配成 .bss。类似地，静态符号的构造就必须是唯一的，所以编译器可以自信地把它们分配成 .data 或 .bss。</p>
 <h3 id="练习题-72">练习题 7.2</h3>
-<h4 id="练习题-72">练习题 7.2</h4>
 <p>在此题中，REF(x.i) → DEF(x.k) 表示链接器将把模块 i 中对符号 x 的任意引用与模块 k 中 x 的定义关联起来。对于下面的每个示例，用这种表示法来说明链接器将如何解析每个模块中对多重定义符号的引用。如果有一个链接时错误（规则 1），写“错误”。如果链接器从定义中任意选择一个（规则 3），则写“未知”。</p>
 <p>A.</p>
 <p>(a) REF(main.1) → DEF(____.__)</p>
@@ -2187,7 +2190,6 @@ linux&gt;gcc -static -o prog2c main2.o -L. -lvector
 </code></pre>
 <p>另一种方法是，我们可以将 libx.a 和 liby.a 合并成一个单独的存档文件。</p>
 <h3 id="练习题-73">练习题 7.3</h3>
-<h4 id="练习题-73">练习题 7.3</h4>
 <p>a 和 b 表示当前目录中的目标模块或者静态库，而 a → b 表示 a 依赖于 b，也就是说 b 定义了一个被 a 引用的符号。对于下面每种场景，请给出最小的命令行（即一个含有最少数量的目标文件和库参数的命令），使得静态链接器能解析所有的符号引用。</p>
 <p>A. p.o → libx.a</p>
 <p>B. p.o → libx.a → liby.a</p>
@@ -2240,7 +2242,7 @@ linux&gt;gcc -static -o prog2c main2.o -L. -lvector
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"next":{"title":"7.7 重定位","level":"5.1.7","depth":2,"path":"part2/ch07-linking/7.7-relocation.md","ref":"part2/ch07-linking/7.7-relocation.md","articles":[]},"previous":{"title":"7.5 符号和符号表","level":"5.1.5","depth":2,"path":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","ref":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.6-symbol-resolution.md","mtime":"2026-04-28T05:30:23.957Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"next":{"title":"7.7 重定位","level":"5.1.7","depth":2,"path":"part2/ch07-linking/7.7-relocation.md","ref":"part2/ch07-linking/7.7-relocation.md","articles":[]},"previous":{"title":"7.5 符号和符号表","level":"5.1.5","depth":2,"path":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","ref":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.6-symbol-resolution.md","mtime":"2026-05-24T19:44:41.718Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

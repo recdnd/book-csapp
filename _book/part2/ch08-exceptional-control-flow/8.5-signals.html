@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2082,12 +2084,14 @@
 <blockquote>
 <p>图 8-26 Linux 信号</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <ul>
 <li>① 多年前，主存是用一种称为磁芯存储器（core memory）的技术来实现的。“转储内存”（dumping core）是一个历史术语，意思是把代码和数据内存段的映像写到磁盘上。</li>
 <li>② 这个信号既不能被捕获，也不能被忽略。</li>
 </ul>
 <p>（来源：man 7 signal。数据来自 Linux Foundation。）</p>
+</div>
+
 <h2 id="851-信号术语">8.5.1 信号术语</h2>
 <p>传送一个信号到目的进程是由两个不同步骤组成的：</p>
 <ul>
@@ -2107,8 +2111,10 @@
 </blockquote>
 <p>一个发出而没有被接收的信号叫做<strong>待处理信号</strong>（pending signal）。在任何时刻，一种类型至多只会有一个待处理信号。如果一个进程有一个类型为上的待处理信号，那么任何接下来发送到这个进程的类型为左的信号都不会排队等待；它们只是被简单地丢弃。一个进程可以有选择性地阻塞接收某种信号。当一种信号被阻塞时，它仍可以被发送，但是产生的待处理信号不会被接收，直到进程取消对这种信号的阻塞。</p>
 <p>一个待处理信号最多只能被接收一次。内核为每个进程在 pending 位向量中维护着待处理信号的集合，而在✦ blocked 位向量✦中维护着被阻塞的信号集合。只要传送了一个类型为 k 的信号，内核就会设置 pending 中的第 k 位，而只要接收了一个类型为 k 的信号，内核就会清除 pending 中的第 k 位。</p>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦ blocked 位向量✦：也称为信号掩码（signal mask）。</p>
+</div>
+
 <h2 id="852-发送信号">8.5.2 发送信号</h2>
 <p>Unix 系统提供了大量向进程发送信号的机制。所有这些机制都是基于进程组（process group）这个概念的。</p>
 <h3 id="1-进程组">1. 进程组</h3>
@@ -2234,7 +2240,6 @@
 <p>信号处理程序可以被其他信号处理程序中断，如图 8-31 所示。在这个例子中，主程序捕获到信号 s，该信号会中断主程序，将控制转移到处理程序 S。S 在运行时，程序捕获信号 t≠s，该信号会中断 S，控制转移到处理程序 T。当 T 返回时，S 从它被中断的地方继续执行。最后，S 返回，控制传送回主程序，主程序从它被中断的地方继续执行。</p>
 <p><img src="../../.gitbook/assets/08-31%20信号处理程序可以被其他信号处理程序中断.png" alt="图 8-31 信号处理程序可以被其他信号处理程序中断"></img></p>
 <h3 id="练习题-87">练习题 8.7</h3>
-<h4 id="练习题-87">练习题 8.7</h4>
 <p>编写一个叫做 snooze 的程序，它有一个命令行参数，用这个参数调用练习题 8.5 中的 snooze 函数，然后终止。编写程序，使得用户可以通过在键盘上输入 Ctrl+C 中断 snooze 函数。比如：</p>
 <pre><code class="lang-c">linux&gt; ./snooze <span class="hljs-number">5</span>
 CTRL+C                     <span class="hljs-comment">// User hits Crtl+C after 3 seconds</span>
@@ -2712,8 +2717,7 @@ Handler reaped child
 CR
 Parent processing input
 </code></pre>
-<h4 id="练习题-88">练习题 8.8</h4>
-<h4 id="练习题-88">练习题 8.8</h4>
+<h3 id="练习题-88">练习题 8.8</h3>
 <p>下面这个程序的输出是什么？</p>
 <p>
 ```c
@@ -3064,7 +3068,7 @@ sigprocmask(SIG_SETMASK, &amp;prev, <span class="hljs-literal">NULL</span>);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.5 信号","level":"5.2.5","depth":2,"next":{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},"previous":{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","mtime":"2026-04-28T05:30:23.959Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.5 信号","level":"5.2.5","depth":2,"next":{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},"previous":{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","mtime":"2026-05-24T19:44:41.742Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

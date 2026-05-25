@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1965,7 +1967,6 @@ b_{n-1},\cdots,b_1,b_0</p>
 <p>一旦 select 返回，我们就用 FD_ISSET 宏指令来确定哪个描述符准备好可以读了。如果是标准输入准备好了（第 25 行），我们就调用 command 函数，该函数在返回到主程序前，会读、解析和响应命令。如果是监听描述符准备好了（第 27 行），我们就调用 accept 来得到一个已连接描述符，然后调用图 11-22 中的 echo 函数，它会将来自客户端的每一行又回送回去，直到客户端关闭这个连接中它的那一端。</p>
 <p>虽然这个程序是使用 select 的一个很好示例，但是它仍然留下了一些问题待解决。问题是一旦它连接到某个客户端，就会连续回送输入行，直到客户端关闭这个连接中它的那一端。因此，如果键入一个命令到标准输入，你将不会得到响应，直到服务器和客户端之间结 束。一个更好的方法是更细粒度的多路复用，服务器每次循环（至多）回送一个文本行。</p>
 <h3 id="练习题-123">练习题 12.3</h3>
-<h4 id="练习题-123">练习题 12.3</h4>
 <p>在 Linux 系统里，在标准输入上键入 Ctrl+D 表示 EOF。图 12-6 中的程序阻塞在对 select 的调用上时，如果你键入 Ctrl+D 会发生什么？</p>
 <h4 id="答案">答案</h4>
 <p>回想一下，如果一个从描述符中读一个字节的请求不会阻塞，那么这个描述符就准备好可以读了。假如 EOF 在一个描述符上为真，那么描述符也准备好可读了，因为读操作将立即返回一个零返回码，表示 EOF。因此，键入 Ctrl+D 会导致 select 函数返回，准备好的集合中有描述符 0。</p>
@@ -2109,13 +2110,14 @@ b_{n-1},\cdots,b_1,b_0</p>
 </blockquote>
 <p>根据图 12-7 中的有限状态模型，select 函数检测到输入事件，而 add_client 函数创建一个新的逻辑流（状态机）。check_clients 函数回送输入行，从而执行状态转移，而且当客户端完成文本行发送时，它还要删除这个状态机。</p>
 <h3 id="练习题-124">练习题 12.4</h3>
-<h4 id="练习题-124">练习题 12.4</h4>
 <p>图 12-8 所示的服务器中，我们在每次调用 select 之前都立即小心地重新初始化 pool.ready_set 变量。为什么？</p>
 <h4 id="答案">答案</h4>
 <p>因为变量 <strong>pool.read_set</strong> 既作为输入参数也作为输出参数，所以我们在每一次调用 select 之前都重新初始化它。在输入时，它包含读集合。在输出，它包含准备好的集合。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---事件驱动的-web-服务器">旁注 - 事件驱动的 Web 服务器</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84-web-%E6%9C%8D%E5%8A%A1%E5%99%A8">旁注 - 事件驱动的 Web 服务器</h3>
 <p>尽管有 12.2.2 节中说明的缺点，现代高性能服务器（例如 Node.js、nginx 和 Tornado）使用的都是基于 I/O 多路复用的事件驱动的编程方式，主要是因为相比于进程和线程的方式，它有明显的性能优势。</p>
+</div>
+
 <h2 id="1222-io-多路复用技术的优劣">12.2.2 I/O 多路复用技术的优劣</h2>
 <p>图 12-8 中的服务器提供了一个很好的基于 I/O 多路复用的事件驱动编程的优缺点示例。<strong>事件驱动设计的一个优点是，它比基于进程的设计给了程序员更多的对程序行为的控制。</strong>例如，我们可以设想编写一个事件驱动的并发服务器，为某些客户端提供它们需要的服务，而这对于基于进程的并发服务器来说，是很困难的。</p>
 <p><strong>另一个优点是，一个基于 I/O 多路复用的事件驱动服务器是运行在单一进程上下文中的，因此每个逻辑流都能访问该进程的全部地址空间。</strong>这使得在流之间共享数据变得很容易。一个与作为单个进程运行相关的优点是，你可以利用熟悉的调试工具，例如 GDB，来调试你的并发服务器，就像对顺序程序那样。最后，事件驱动设计常常比基于进程的设计要高效得多，因为它们不需要进程上下文切换来调度新的流。</p>
@@ -2163,7 +2165,7 @@ b_{n-1},\cdots,b_1,b_0</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"12.2 基于 I/O 多路复用的并发编程","level":"6.3.2","depth":2,"next":{"title":"12.3 基于线程的并发编程","level":"6.3.3","depth":2,"path":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","ref":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","articles":[]},"previous":{"title":"12.1 基于进程的并发编程","level":"6.3.1","depth":2,"path":"part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.md","ref":"part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","mtime":"2026-04-28T05:30:23.971Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"12.2 基于 I/O 多路复用的并发编程","level":"6.3.2","depth":2,"next":{"title":"12.3 基于线程的并发编程","level":"6.3.3","depth":2,"path":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","ref":"part3/ch12-concurrent-programming/12.3-concurrent-programming-with-threads.md","articles":[]},"previous":{"title":"12.1 基于进程的并发编程","level":"6.3.1","depth":2,"path":"part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.md","ref":"part3/ch12-concurrent-programming/12.1-concurrent-programming-with-processes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.2-concurrent-programming-with-io-multiplexing.md","mtime":"2026-05-24T19:44:41.888Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

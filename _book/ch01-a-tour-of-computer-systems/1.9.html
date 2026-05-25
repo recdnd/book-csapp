@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../styles/website.css">
+        
     
         
     
@@ -1896,12 +1898,13 @@ T<em>{new} = (1-\alpha)T</em>{old}+(\alpha T<em>{old})/k=T</em>{old}[(1-\alpha)+
 S=\frac{1}{(1-\alpha)+\alpha / k} \tag{1.1}</p>
 <p>$$</p>
 <p>举个例子，考虑这样一种情况，系统的某个部分初始耗时比例为 60%（α =0.6），其加速比例因子为 3（k=3）。则我们可以获得的加速比为 1/[0.4+0.6/3]=1.67 倍。虽然我们对系统的一个主要部分做出了重大改进，但是获得的系统加速比却明显小于这部分的加速比。这就是 Amdahl 定律的主要观点——要想显著加速整个系统，必须提升全系统中相当大的部分的速度。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---表示相对性能">旁注 - 表示相对性能</h3>
-<p>性能提升最好的表示方法就是用比例的形式 $$T<em>{old}/T</em>{new}$$，其中，$$T<em>{old}$$ 为原始系统所需时间， $$T</em>{new}$$ 为修改后的系统所需时间。如果有所改进，则比值应大于 1。我们用后缀 “×” 来表示比例，因此，“2.2×” 读作 “2.2 倍”。</p>
-<p>表示相对变化更传统的方法是用百分比，这种方法适用于变化小的情况，但其定义是模糊的。应该等于 $$100 \cdot (T<em>{old}-T</em>{new})/T<em>{new}$$ ，还是 $$100 \cdot (T</em>{old}-T<em>{new})/T</em>{old}$$，还是其他的值？此外，它对较大的变化也没有太大意义。与简单地说性能提升 2.2× 相比，“性能提升了 120%” 更难理解。 </p>
-<h4 id="练习题-11">练习题 1.1</h4>
-<h4 id="练习题-11">练习题 1.1</h4>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E8%A1%A8%E7%A4%BA%E7%9B%B8%E5%AF%B9%E6%80%A7%E8%83%BD">旁注 - 表示相对性能</h3>
+<p>性能提升最好的表示方法就是用比例的形式 <script type="math/tex">T_{old}/T_{new}</script>，其中，<script type="math/tex">T_{old}</script> 为原始系统所需时间， <script type="math/tex">T_{new}</script> 为修改后的系统所需时间。如果有所改进，则比值应大于 1。我们用后缀 “×” 来表示比例，因此，“2.2×” 读作 “2.2 倍”。</p>
+<p>表示相对变化更传统的方法是用百分比，这种方法适用于变化小的情况，但其定义是模糊的。应该等于 <script type="math/tex">100 \cdot (T_{old}-T_{new})/T_{new}</script> ，还是 <script type="math/tex">100 \cdot (T_{old}-T_{new})/T_{old}</script>，还是其他的值？此外，它对较大的变化也没有太大意义。与简单地说性能提升 2.2× 相比，“性能提升了 120%” 更难理解。</p>
+</div>
+
+<h3 id="练习题-11">练习题 1.1</h3>
 <p>假设你是个卡车司机，要将土豆从爱达荷州的 Boise 运送到明尼苏达州的 Minneapolis，全程 2500 公里。在限速范围内，你估计平均速度为 100 公里/小时，整个行程需要 25 个小时。</p>
 <p>A. 你听到新闻说蒙大拿州刚刚取消了限速，这使得行程中有 1500 公里卡车的速度可以为 150 公里/小时。那么这对整个行程的加速比是多少？</p>
 <p>B. 你可以在 www.fasttrucks.com 网站上为自已的卡车买个新的涡轮增压器。网站现货供应各种型号，不过速度越快，价格越高。如果想要让整个行程的加速比为 1.67×，那么你必须以多快的速度通过蒙大拿州？</p>
@@ -1909,8 +1912,7 @@ S=\frac{1}{(1-\alpha)+\alpha / k} \tag{1.1}</p>
 <p>该问题说明 Amdahl 定律不仅仅适用于计算机系统。</p>
 <p>A. 根据公式 1.1，有 α=0.6，k=1.5。更直接地说，在蒙大拿行驶的 1500 公里需要10个小时，而其他行程也需要 10 个小时。则加速比为 25/(10＋10)=1.25×。</p>
 <p>B. 根据公式 1.1，有 α=0.6，要求 S=1.67，则可算出 k。更直接地说，要使行程加速度达到 1.67×，我们必须把全程时间减少到 15 个小时。蒙大拿以外仍要求为 10 小时，因此，通过蒙大拿的时间就为 5 个小时。这就要求行驶速度为 300 公里/小时，对卡车来说这个速度太快了！</p>
-<h4 id="练习题-12">练习题 1.2</h4>
-<h4 id="练习题-12">练习题 1.2</h4>
+<h3 id="练习题-12">练习题 1.2</h3>
 <p>公司的市场部向你的客户承诺，下一个版本的软件性能将改进 2×。这项任务被分配给你。你已经确认只有 80% 的系统能够被改进，那么，这部分需要被改进多少（即 k 取何值）才能达到整体性能目标？ </p>
 <h4 id="答案">答案</h4>
 <p>理解 Amdahl 定律最好的方法就是解决一些实例。本题要求你从特殊的角度来看公式 1.1。</p>
@@ -1996,7 +1998,7 @@ S_{\infty}=\frac{1}{(1-\alpha)} \tag{1.2}</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.9 重要主题","level":"3.1.9","depth":2,"next":{"title":"1.10 小结","level":"3.1.10","depth":2,"path":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","ref":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","articles":[]},"previous":{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.9.md","mtime":"2026-04-28T05:30:23.947Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.9 重要主题","level":"3.1.9","depth":2,"next":{"title":"1.10 小结","level":"3.1.10","depth":2,"path":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","ref":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","articles":[]},"previous":{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.9.md","mtime":"2026-05-24T19:44:41.700Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1907,7 +1909,6 @@
 <p>多个流并发地执行的一般现象被称为<strong>并发</strong>（concurrency）。一个进程和其他进程轮流运行的概念称为<strong>多任务</strong>（multitasking）o 一个进程执行它的控制流的一部分的每一时间段叫做<strong>时间片</strong>（time slice）。因此，多任务也叫做<strong>时间分片</strong>（timeslicing）。例如，图 8-12 中，进程 A 的流由两个时间片组成。</p>
 <p>注意，并发流的思想与流运行的处理器核数或者计算机数无关。如果两个流在时间上重叠，那么它们就是并发的，即使它们是运行在同一个处理器上。不过，有时我们会发现确认并行流是很有帮助的，它是并发流的一个真子集。如果两个流并发地运行在不同的处理器核或者计算机上，那么我们称它们为<strong>并行流</strong>（parallel flow），它们<strong>并行地运行</strong>（running in parallel），且<strong>并行地执行</strong>（parallel execution）。</p>
 <h3 id="练习题-81">练习题 8.1</h3>
-<h4 id="练习题-81">练习题 8.1</h4>
 <p>考虑三个具有下述起始和结束时间的进程：</p>
 <table>
 <thead>
@@ -2023,7 +2024,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.2 进程","level":"5.2.2","depth":2,"next":{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},"previous":{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","mtime":"2026-04-28T05:30:23.958Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.2 进程","level":"5.2.2","depth":2,"next":{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},"previous":{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","mtime":"2026-05-24T18:40:03.553Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

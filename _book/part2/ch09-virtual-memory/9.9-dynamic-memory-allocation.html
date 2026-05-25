@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1903,9 +1905,11 @@
 <span class="hljs-comment">// 返回：若成功则为已分配块的指针，若出错则为 NULL。</span>
 </code></pre>
 <p>malloc 函数返回一个指针，指向大小为至少 size 字节的内存块，这个块会为可能包含在这个块内的任何数据对象类型做对齐。实际中，对齐依赖于编译代码在 32 位模式（<strong>gcc -m32</strong>）还是 64 位模式（默认的）中运行。在 32 位模式中，malloc 返回的块的地址总是 8 的倍数。在 64 位模式中，该地址总是 16 的倍数。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---一个字有多大">旁注 - 一个字有多大</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E4%B8%80%E4%B8%AA%E5%AD%97%E6%9C%89%E5%A4%9A%E5%A4%A7">旁注 - 一个字有多大</h3>
 <p>回想一下在第 3 章中我们对机器代码的讨论，Intel 将 4 字节对象称为双字。然而，在本节中，我们会假设字是 4 字节的对象，而双字是 8 字节的对象，这和传统术语是一致的。</p>
+</div>
+
 <p>如果 malloc 遇到问题（例如，程序要求的内存块比可用的虚拟内存还要大），那么它就返回 NULL，并设置 errno。malloc 不初始化它返回的内存。那些想要已初始化的动态内存的应用程序可以使用 calloc，calloc 是一个基于 malloc 的瘦包装函数，它将分配的内存初始化为零。想要改变一个以前已分配块的大小，可以使用 realloc 函数。</p>
 <p>动态内存分配器，例如 malloc，可以通过使用 mmap 和 munmap 函数，显式地分配和释放堆内存，或者还可以使用 sbrk 函数：</p>
 <pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
@@ -1997,9 +2001,11 @@ R<em>0,R_1,\cdots,R_k,\cdots,R</em>{n-1}</p>
 U<em>k = \frac{max</em>{i\leqslant k}P_i}{H_k}</p>
 <p>$$</p>
 <p>那么，分配器的目标就是在整个序列中使峰值利用率 $$U_{n-1}$$ 最大化。正如我们将要看到的，在最大化吞吐率和最大化利用率之间是互相牵制的。特别是，以堆利用率为代价，很容易编写出吞吐率最大化的分配器。分配器设计中一个有趣的挑战就是在两个目标之间找到一个适当的平衡。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---放宽单调性假设">旁注 - 放宽单调性假设</h3>
-<p>我们可以通过让成为前$$\small k+1$$个请求的最高峰，从而使得在我们对$$U_k$$的定义中放宽单调非递减的假设，并且允许堆增长和降低。</p>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E6%94%BE%E5%AE%BD%E5%8D%95%E8%B0%83%E6%80%A7%E5%81%87%E8%AE%BE">旁注 - 放宽单调性假设</h3>
+<p>我们可以通过让成为前<script type="math/tex">\small k+1</script>个请求的最高峰，从而使得在我们对<script type="math/tex">U_k</script>的定义中放宽单调非递减的假设，并且允许堆增长和降低。</p>
+</div>
+
 <h2 id="994-碎片">9.9.4 碎片</h2>
 <p>造成堆利用率很低的主要原因是一种称为<strong>碎片</strong>（fragmentation）的现象，当虽然有未使用的内存但不能用来满足分配请求时，就发生这种现象。有两种形式的碎片：内部碎片（internal fragmentation）和外部碎片（external fragmentation）。</p>
 <p><strong>内部碎片</strong>是在一个已分配块比有效载荷大时发生的。很多原因都可能造成这个问题。例如，一个分配器的实现可能对已分配块强加一个最小的大小值，而这个大小要比某个请求的有效载荷大。或者，就如我们在图 9-34b 中看到的，分配器可能增加块大小以满足对齐约束条件。</p>
@@ -2034,7 +2040,6 @@ U<em>k = \frac{max</em>{i\leqslant k}P_i}{H_k}</p>
 <p>隐式空闲链表的优点是简单。显著的缺点是任何操作的开销，例如放置分配的块，要求对空闲链表进行搜索，该搜索所需时间与堆中已分配块和空闲块的总数呈线性关系。</p>
 <p>很重要的一点就是意识到系统对齐要求和分配器对块格式的选择会对分配器上的最小块大小有强制的要求。没有已分配块或者空闲块可以比这个最小值还小。例如，如果我们假设一个双字的对齐要求，那么每个块的大小都必须是双字（8 字节）的倍数。因此，图 9-35 中的块格式就导致最小的块大小为两个字：一个字作头，另一个字维持对齐要求。即使应用只请求一字节，分配器也仍然需要创建一个两字的块。</p>
 <h3 id="练习题-96">练习题 9.6</h3>
-<h4 id="练习题-96">练习题 9.6</h4>
 <p>确定下面 malloc 请求序列产生的块大小和头部值。假设：1）分配器保持双字对齐，并且使用块格式如图 9-35 中所示的隐式空闲链表。2）块大小向上舍入为最接近的 8 字节的倍数。</p>
 <table>
 <thead>
@@ -2147,7 +2152,6 @@ U<em>k = \frac{max</em>{i\leqslant k}P_i}{H_k}</p>
 <p>边界标记的概念是简单优雅的，它对许多不同类型的分配器和空闲链表组织都是通用的。然而，它也存在一个潜在的缺陷。它要求每个块都保持一个头部和一个脚部，在应用程序操作许多个小块时，会产生显著的内存开销。例如，如果一个图形应用通过反复调用 malloc 和 free 来动态地创建和销毁图形节点，并且每个图形节点都只要求两个内存字，那么头部和脚部将占用每个已分配块的一半的空间。</p>
 <p>幸运的是，有一种非常聪明的边界标记的优化方法，能够使得在已分配块中不再需要脚部。回想一下，当我们试图在内存中合并当前块以及前面的块和后面的块时，只有在前面的块是空闲时，才会需要用到它的脚部。如果我们把前面块的已分配/空闲位存放在当前块中多出来的低位中，那么已分配的块就不需要脚部了，这样我们就可以将这个多出来的空间用作有效载荷了。不过请注意，空闲块仍然需要脚部。</p>
 <h3 id="练习题-97">练习题 9.7</h3>
-<h4 id="练习题-97">练习题 9.7</h4>
 <p>确定下面每种对齐要求和块格式的组合的最小的块大小。假设：隐式空闲链表，不允许有效载荷为零，头部和脚部存放在 4 字节的字中。</p>
 <table>
 <thead>
@@ -2447,8 +2451,7 @@ U<em>k = \frac{max</em>{i\leqslant k}P_i}{H_k}</p>
 </blockquote>
 <p>一旦分配器调整了请求的大小，它就会搜索空闲链表，寻找一个合适的空闲块（第 18 行）。如果有合适的，那么分配器就放置这个请求块，并可选地分割出多余的部分（第 19 行），然后返回新分配块的地址。</p>
 <p>如果分配器不能够发现一个匹配的块，那么就用一个新的空闲块来扩展堆（第 24 ~ 26 行），把请求块放置在这个新的空闲块里，可选地分割这个块（第 27 行），然后返回一个指针，指向这个新分配的块。</p>
-<h4 id="练习题-98">练习题 9.8</h4>
-<h4 id="练习题-98">练习题 9.8</h4>
+<h3 id="练习题-98">练习题 9.8</h3>
 <p>为 9.9.12 节中描述的简单分配器实现一个 find_fit 函数。</p>
 <pre><code class="lang-c"><span class="hljs-type">static</span> <span class="hljs-type">void</span> *<span class="hljs-title function_">find_fit</span><span class="hljs-params">(<span class="hljs-type">size_t</span> asize)</span>
 </code></pre>
@@ -2472,8 +2475,7 @@ static void *find_fit(size_t asize)
 }
 ```
 </p>
-<h4 id="练习题-99">练习题 9.9</h4>
-<h4 id="练习题-99">练习题 9.9</h4>
+<h3 id="练习题-99">练习题 9.9</h3>
 <p>为示例的分配器编写一个place函数。</p>
 <pre><code class="lang-c"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">place</span><span class="hljs-params">(<span class="hljs-type">void</span> *bp, <span class="hljs-type">size_t</span> asize)</span>
 </code></pre>
@@ -2524,8 +2526,7 @@ static void place(void *bp, size_t asize)
 <p>为了分配一个给定大小的块，我们检査相应的空闲链表。如果链表非空，我们简单地分配其中第一块的全部。空闲块是不会分割以满足分配请求的。如果链表为空，分配器就向操作系统请求一个固定大小的额外内存片（通常是页大小的整数倍），将这个片分成大小相等的块，并将这些块链接起来形成新的空闲链表。要释放一个块，分配器只要简单地将这个块插入到相应的空闲链表的前部。</p>
 <p>这种简单的方法有许多优点。分配和释放块都是很快的常数时间操作。而且，每个片中都是大小相等的块，不分割，不合并，这意味着每个块只有很少的内存开销。由于每个片只有大小相同的块，那么一个已分配块的大小就可以从它的地址中推断出来。因为没有合并，所以已分配块的头部就不需要一个已分配/空闲标记。因此已分配块不需要头部，同时因为没有合并，它们也不需要脚部。因为分配和释放操作都是在空闲链表的起始处操作，所以链表只需要是单向的，而不用是双向的。关键点在于，在任何块中都需要的唯一字段是每个空闲块中的一个字的 succ 指针，因此最小块大小就是一个字。</p>
 <p>一个显著的缺点是，简单分离存储很容易造成内部和外部碎片。因为空闲块是不会被分割的，所以可能会造成内部碎片。更糟的是，因为不会合并空闲块，所以某些引用模式会引起极多的外部碎片（见练习题 9.10）。</p>
-<h4 id="练习题-910">练习题 9.10</h4>
-<h4 id="练习题-910">练习题 9.10</h4>
+<h3 id="练习题-910">练习题 9.10</h3>
 <p>描述一个在基于简单分离存储的分配器中会导致严重外部碎片的引用模式。</p>
 <h4 id="答案">答案</h4>
 <p>这里有一个会引起外部碎片的模式：应用对第一个大小类做大量的分配和释放请求，然后对第二个大小类做大量的分配和释放请求，接下来是对第三个大小类做大量的分配和释放请求，以此类推。对于每个大小类，分配器都创建了许多不会被回收的存储器，因为分配器不会合并，也因为应用不会再向这个大小类再次请求块了。</p>
@@ -2589,7 +2590,7 @@ xxx\cdots x10000</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"9.9 动态内存分配","level":"5.3.9","depth":2,"next":{"title":"9.10 垃圾收集","level":"5.3.10","depth":2,"path":"part2/ch09-virtual-memory/9.10-garbage-collection.md","ref":"part2/ch09-virtual-memory/9.10-garbage-collection.md","articles":[]},"previous":{"title":"9.8 内存映射","level":"5.3.8","depth":2,"path":"part2/ch09-virtual-memory/9.8-memory-mapping.md","ref":"part2/ch09-virtual-memory/9.8-memory-mapping.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","mtime":"2026-04-28T05:30:23.963Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"9.9 动态内存分配","level":"5.3.9","depth":2,"next":{"title":"9.10 垃圾收集","level":"5.3.10","depth":2,"path":"part2/ch09-virtual-memory/9.10-garbage-collection.md","ref":"part2/ch09-virtual-memory/9.10-garbage-collection.md","articles":[]},"previous":{"title":"9.8 内存映射","level":"5.3.8","depth":2,"path":"part2/ch09-virtual-memory/9.8-memory-mapping.md","ref":"part2/ch09-virtual-memory/9.8-memory-mapping.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","mtime":"2026-05-24T19:44:41.770Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

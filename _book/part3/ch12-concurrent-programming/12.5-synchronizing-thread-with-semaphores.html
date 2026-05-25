@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1960,7 +1962,6 @@ BOOM! cnt=<span class="hljs-number">1404746</span>
 <p>另一方面，图 12-18b 的顺序产生一个不正确的 cnt 的值。会发生这样的问题是因为，线程 2 在第 5 步加载 ent，是在第 2 步线程 1 加载 cnt 之后，而在第 6 步线程 1 存储它的更新值之前。因此，每个线程最终都会存储一个值为 1 的更新后的计数器值。我们能够借助于一种叫做<strong>进度图</strong>（progress graph）的方法来阐明这些正确的和不正确的指令顺序的概念，这个图我们将在下一节中介绍。</p>
 <p><img src="../../.gitbook/assets/1218-badcnt.c-zhong-di-yi-ci-xun-huan-die-dai-de-zhi-ling-shun-xu-.png" alt="图 12-18 badcnt.c 中第一次循环迭代的指令顺序"></img></p>
 <h3 id="练习题-127">练习题 12.7</h3>
-<h4 id="练习题-127">练习题 12.7</h4>
 <p>根据 badcnt.c 的指令顺序完成下表：</p>
 <table>
 <thead>
@@ -2171,7 +2172,6 @@ H_1,L_1,U_1,H_2,L_2,S_1,T_1,U_2,S_2,T_2</p>
 </blockquote>
 <p>任何安全轨迹线都将正确地更新共享计数器。为了保证线程化程序示例的正确执行（实际上任何共享全局数据结构的并发程序的正确执行）我们必须以某种方式<strong>同步</strong>线程，使它们总是有一条安全轨迹线。一个经典的方法是基于信号量的思想，接下来我们就介绍它。</p>
 <h3 id="练习题-128">练习题 12.8</h3>
-<h4 id="练习题-128">练习题 12.8</h4>
 <p>使用图 12-21 中的进度图，将下列轨迹线划分为安全的或者不安全的。</p>
 <p>A. $$H_1,L_1,U_1,S_1,H_2,L_2,U_2,S_2,T_2,T_1$$ </p>
 <p>B. $$H_2,L_2,H_1,L_1,U_1,S_1,T_1,U_2,S_2,T_2$$ </p>
@@ -2206,9 +2206,11 @@ H_1,L_1,U_1,H_2,L_2,S_1,T_1,U_2,S_2,T_2</p>
 
 <span class="hljs-comment">// 返回：无。</span>
 </code></pre>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---p-和-v-名字的起源">旁注 - P 和 V 名字的起源</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-p-%E5%92%8C-v-%E5%90%8D%E5%AD%97%E7%9A%84%E8%B5%B7%E6%BA%90">旁注 - P 和 V 名字的起源</h3>
 <p>Edsger Dijkstra（1930 — 2002）出生于荷兰。名字 P 和 V 来源于荷兰语单词 Proberen（测试）和 Verhogen（增加）。</p>
+</div>
+
 <h2 id="1253-使用信号量来实现互斥">12.5.3 使用信号量来实现互斥</h2>
 <p>信号量提供了一种很方便的方法来确保对共享变量的互斥访问。基本思想是将每个共享变量（或者一组相关的共享变量）与一个信号量 s（初始为 1）联系起来，然后用$$P(s)$$和$$V(s)$$操作将相应的临界区包围起来。</p>
 <p>以这种方式来保护共享变量的信号量叫做<strong>二元信号量</strong>（binary semaphore），因为它的值总是 0 或者 1。以提供互斥为目的的二元信号量常常也称为<strong>互斥锁</strong>（mutex）。在一个互斥锁上执行 P 操作称为对互斥锁加锁。类似地，执行 V 操作称为对互斥锁解锁。对一个互斥锁加了锁但是还没有解锁的线程称为占用这个互斥锁。一个被用作一组可用资源的计数器的信号量被称为<strong>计数信号量</strong>。</p>
@@ -2239,9 +2241,11 @@ OK cnt=<span class="hljs-number">2000000</span>
 linux&gt; ./goodcnt <span class="hljs-number">1000000</span>
 OK cnt=<span class="hljs-number">2000000</span>
 </code></pre>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---进度图的局限性">旁注 - 进度图的局限性</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E8%BF%9B%E5%BA%A6%E5%9B%BE%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7">旁注 - 进度图的局限性</h3>
 <p>进度图给了我们一种较好的方法，将在单处理器上的并发程序执行可视化，也帮助我们理解为什么需要同步。然而，它们确实也有局限性，特别是对于在多处理器上的并发执行，在多处理器上一组 CPU/高速缓存对共享同一个主存。多处理器的工作方式是进度图不能解释的。特别是，一个多处理器内存系统可以处于一种状态，不对应于进度图中任何轨迹线。不管如何，结论总是一样的：无论是在单处理器还是多处理器上运行程序，都要同步你对共享变量的访问。</p>
+</div>
+
 <h2 id="1254-利用信号量来调度共享资源">12.5.4 利用信号量来调度共享资源</h2>
 <p>除了提供互斥之外，信号量的另一个重要作用是调度对共享资源的访问。在这种场景中，一个线程用信号量操作来通知另一个线程，程序状态中的某个条件已经为真了。两个经典而有用的例子是<strong>生产者—消费者</strong>和<strong>读者—写者</strong>问题。</p>
 <h3 id="1-生产者—消费者问题">1. 生产者—消费者问题</h3>
@@ -2314,8 +2318,7 @@ OK cnt=<span class="hljs-number">2000000</span>
 <blockquote>
 <p>图 12-25 SBUF：同步对有限缓冲区并发访问的包</p>
 </blockquote>
-<h4 id="练习题-129">练习题 12.9</h4>
-<h4 id="练习题-129">练习题 12.9</h4>
+<h3 id="练习题-129">练习题 12.9</h3>
 <p>设 p 表示生产者数量，c 表示消费者数量，而 n 表示以项目单元为单位的缓冲区大小。对于下面的每个场景，指出 sbuf_insert 和 sbuf_remove 中的互斥锁信号量是否是必需的。</p>
 <p>A. $$p=1，c=1，n\gt1$$ </p>
 <p>B. $$p=1，c=1，n=1$$ </p>
@@ -2378,15 +2381,16 @@ OK cnt=<span class="hljs-number">2000000</span>
 <p>图 12-26 对第一类读者—写者问题的解答。读者优先级高于写者</p>
 </blockquote>
 <p>对这两种读者—写者问题的正确解答可能导致饥饿（starvation），饥饿就是一个线程无限期地阻塞，无法进展。例如，图 12-26 所示的解答中，如果有读者不断地到达，写者就可能无限期地等待。</p>
-<h4 id="练习题-1210">练习题 12.10</h4>
-<h4 id="练习题-1210">练习题 12.10</h4>
+<h3 id="练习题-1210">练习题 12.10</h3>
 <p>图 12-26 所示的对第一类读者—写者问题的解答给予读者较高的优先级，但是从某种意义上说，这种优先级是很弱的，因为一个离开临界区的写者可能重启一个在等待的写者，而不是一个在等待的读者。描述出一个场景，其中这种弱优先级会导致一群写者使得一个读者饥饿。</p>
 <h4 id="答案">答案</h4>
 <p>假设一个特殊的信号量实现为每一个信号量使用了一个 LIFO 的线程栈。当一个线程在 P 操作中. 阻塞在一个信号量上，它的 ID 就被压入栈中。类似地，V 操作从栈中弹出栈顶的线程 ID，并重启这个线程。根据这个栈的实现，一个在它的临界区中的竞争的写者会简单地等待，直到在它释放这个信号量之前另一个写者阻塞在这个信号量上。在这种场景中，当两个写者来回地传递控制权时，正在等待的读者可能会永远地等待下去。</p>
 <p>注意，虽然用 FIFO 队列而不是用 LIFO 更符合直觉，但是使用 LIF。的栈也是对的，而且也没有违反 P 和 V 操作的语义。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---其他同步机制">旁注 - 其他同步机制</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%85%B6%E4%BB%96%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6">旁注 - 其他同步机制</h3>
 <p>我们已经向你展示了如何利用信号量来同步线程，主要是因为它们简单、经典，并且有一个清晰的语义模型。但是你应该知道还是存在着其他同步技术的。例如，Java 线程是用一种叫做 Java 监控器（Java Monitor）【48】的机制来同步的，它提供了对信号量互斥和调度能力的更高级别的抽象；实际上，监控器可以用信号量来实现。再来看一个例子，Pthreads 接口定义了一组对互斥锁和条件变量的同步操作。Pthreads 互斥锁被用来实现互斥。条件变量用来调度对共享资源的访问，例如在一个生产者—消费者程序中的有限缓冲区。</p>
+</div>
+
 <h2 id="1255-综合：基于预线程化的并发服务器">12.5.5 综合：基于预线程化的并发服务器</h2>
 <p>我们已经知道了如何使用信号量来访问共享变量和调度对共享资源的访问。为了帮助你更清晰地理解这些思想，让我们把它们应用到一个基于称为<strong>预线程化</strong>（prethreading）技术的并发服务器上。</p>
 <p>在图 12-14 所示的并发服务器中，我们为每一个新客户端创建了一个新线程。这种方法的缺点是我们为每一个新客户端创建一个新线程，导致不小的代价。一个基于预线程化的服务器试图通过使用如图 12-27 所示的生产者—消费者模型来降低这种开销。服务器是由一个主线程和一组工作者线程构成的。主线程不断地接受来自客户端的连接请求，并将得到的连接描述符放在一个有限缓冲区中。每一个工作者线程反复地从共享缓冲区中取出描述符，为客户端服务，然后等待下一个描述符。</p>
@@ -2479,9 +2483,10 @@ OK cnt=<span class="hljs-number">2000000</span>
 <p>图 12-29 echo_cnt：echo 的一个版本，它对从客户端接收的所有字节计数</p>
 </blockquote>
 <p>一旦程序包被初始化，echo_cnt 函数会初始化 RIO 带缓冲区的 I/O 包（第 20 行），然后回送从客户端接收到的每一个文本行。注意，在第 23 ~ 25 行中对共享变量 byte_cnt 的访问是被 P 和 V 操作保护的。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---基于线程的事件驱动程序">旁注 - 基于线程的事件驱动程序</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%9F%BA%E4%BA%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F">旁注 - 基于线程的事件驱动程序</h3>
 <p>I/O 多路复用不是编写事件驱动程序的唯一方法。例如，你可能已经注意到我们刚才开发的并发的预线程化的服务器实际上是一个事件驱动服务器，带有主线程和工作者线程的简单状态机。主线程有两种状态（“等待连接请求” 和 “等待可用的缓冲区槽位”）、两个 I/O 事件（“连接请求到达” 和 “缓冲区槽位变为可用”）和两个转换（“接受连接请求” 和“插入缓冲区项目”）。类似地，每个工作者线程有一个状态（“等待可用的缓冲项目”）、一个 I/O 事件（“缓冲区项目变为可用”）和一个转换（“取出缓冲区项目”）。</p>
+</div>
 
                                 
                                 </section>
@@ -2525,7 +2530,7 @@ OK cnt=<span class="hljs-number">2000000</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"12.5 用信号量同步线程","level":"6.3.5","depth":2,"next":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","ref":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","articles":[]},"previous":{"title":"12.4 多线程程序中的共享变量","level":"6.3.4","depth":2,"path":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","ref":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","mtime":"2026-04-28T05:30:23.972Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"12.5 用信号量同步线程","level":"6.3.5","depth":2,"next":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","ref":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","articles":[]},"previous":{"title":"12.4 多线程程序中的共享变量","level":"6.3.4","depth":2,"path":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","ref":"part3/ch12-concurrent-programming/12.4-shared-variables-in-threaded-programs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.5-synchronizing-thread-with-semaphores.md","mtime":"2026-05-24T19:44:41.899Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

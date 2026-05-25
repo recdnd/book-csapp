@@ -36,8 +36,13 @@ fi
 echo "[2/6] Building HonKit..."
 npm run build
 
-echo "[3/6] Writing CNAME (${DOMAIN})..."
+echo "[3/6] Writing CNAME (${DOMAIN}) and .nojekyll..."
 echo "${DOMAIN}" > _book/CNAME
+# GitHub Pages runs Jekyll by default, which silently drops any file/dir
+# starting with "_" or "." (e.g. .gitbook/assets, _imgs). That breaks every
+# image. An empty .nojekyll at the published root disables Jekyll so the
+# HonKit output is served verbatim.
+: > _book/.nojekyll
 
 echo "[4/6] Preparing temporary deploy branch (${TMP_BRANCH})..."
 if git show-ref --verify --quiet "refs/heads/${TMP_BRANCH}"; then

@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1905,9 +1907,11 @@
 }
 </code></pre>
 <p>在这种情况中，编译器向汇编器输出两个不同名字的局部链接器符号。比如，它可以用 x.1 表示函数 f 中的定义，而用 x.2 表示函数 g 中的定义。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="给-c-语言初学者---利用-static-属性隐藏变量和函数名字">给 C 语言初学者 - 利用 static 属性隐藏变量和函数名字</h3>
-<p>C 程序员使用 static 属性隐藏模块内部的变量和函数声明，就像你在 Java 和 C++ 中使用 public 和 private 声明一样。在 C 中，源文件扮演模块的角色。任何带有 static 属性声明的全局变量或者函数都是模块私有的。类似地，任何不带 static 属性声明的全局变量和函数都是公共的，可以被其他模块访问。尽可能用 static 属性来保护你的变量和函数是很好的编程习惯。 </p>
+<div class="hint hint-info">
+<h3 id="%E7%BB%99-c-%E8%AF%AD%E8%A8%80%E5%88%9D%E5%AD%A6%E8%80%85-%E5%88%A9%E7%94%A8-static-%E5%B1%9E%E6%80%A7%E9%9A%90%E8%97%8F%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0%E5%90%8D%E5%AD%97">给 C 语言初学者 - 利用 static 属性隐藏变量和函数名字</h3>
+<p>C 程序员使用 static 属性隐藏模块内部的变量和函数声明，就像你在 Java 和 C++ 中使用 public 和 private 声明一样。在 C 中，源文件扮演模块的角色。任何带有 static 属性声明的全局变量或者函数都是模块私有的。类似地，任何不带 static 属性声明的全局变量和函数都是公共的，可以被其他模块访问。尽可能用 static 属性来保护你的变量和函数是很好的编程习惯。</p>
+</div>
+
 <p>符号表是由汇编器构造的，使用编译器输出到汇编语言 .s 文件中的符号。.symtab 节中包含 ELF 符号表。这张符号表包含一个条目的数组。图 7-4 展示了每个条目的格式。</p>
 <h4 id="codelinkelfstructsc">code/link/elfstructs.c</h4>
 <pre><code class="lang-c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
@@ -1994,7 +1998,6 @@
 </table>
 <p>在这个例子中，我们看到全局符号 main 定义的条目，它是一个位于 .text 节中偏移量为 0（即 value 值）处的 24 字节函数。其后跟随着的是全局符号 array 的定义，它是一个位于 .data 节中偏移量为 0 处的 8 字节目标。最后一个条目来自对外部符号 sum 的引用。READELF 用一个整数索引来标识每个节。Ndx=1 表示 .text 节，而 Ndx=3 表示 .data 节。</p>
 <h3 id="练习题-71">练习题 7.1</h3>
-<h4 id="练习题-71">练习题 7.1</h4>
 <p>这个题目针对图 7-5 中的 m.o 和 swap.o 模块。对于每个在 swap.o 中定义或引用的符号，请指出它是否在模块 swap.o 中的 .symtab 节中有一个符号表条目。如果是，请指出定义该符号的模块（swap.o 或者 m.o）、符号类型（局部、全局或者外部）以及它在模块中被分配到的节（.text、.data、.bss 或 COMMON）。</p>
 <table>
 <thead>
@@ -2170,7 +2173,7 @@ void swap()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.5 符号和符号表","level":"5.1.5","depth":2,"next":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"path":"part2/ch07-linking/7.6-symbol-resolution.md","ref":"part2/ch07-linking/7.6-symbol-resolution.md","articles":[]},"previous":{"title":"7.4 可重定位目标文件","level":"5.1.4","depth":2,"path":"part2/ch07-linking/7.4-relocatable-object-files.md","ref":"part2/ch07-linking/7.4-relocatable-object-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","mtime":"2026-04-28T05:30:23.956Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.5 符号和符号表","level":"5.1.5","depth":2,"next":{"title":"7.6 符号解析","level":"5.1.6","depth":2,"path":"part2/ch07-linking/7.6-symbol-resolution.md","ref":"part2/ch07-linking/7.6-symbol-resolution.md","articles":[]},"previous":{"title":"7.4 可重定位目标文件","level":"5.1.4","depth":2,"path":"part2/ch07-linking/7.4-relocatable-object-files.md","ref":"part2/ch07-linking/7.4-relocatable-object-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.5-symbols-and-symbol-tables.md","mtime":"2026-05-24T19:44:41.717Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

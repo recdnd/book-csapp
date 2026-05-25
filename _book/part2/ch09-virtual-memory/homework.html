@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1885,7 +1887,6 @@
                                 
                                 <h1 id="家庭作业">家庭作业</h1>
 <h2 id="练习题-911">练习题 9.11</h2>
-<h4 id="练习题-911">练习题 9.11</h4>
 <p>在下面的一系列问题中，你要展示 9.6.4 节中的示例内存系统如何将虚拟地址翻译成物理地址，以及如何访问缓存。对于给定的虚拟地址，请指出访问的 TLB 条目、物理地址，以及返回的缓存字节值。请指明是否 TLB 不命中，是否发生了缺页，是否发生了缓存不命中。如果有缓存不命中，对于“返回的缓存字节”用 “—” 来表示。如果有缺页，对于 “PPN” 用 "—”来表示，而 C 部分和 D 部分就空着。</p>
 <p><strong>虚拟地址：0x027C</strong></p>
 <p>A. 虚拟地址格式</p>
@@ -1957,7 +1958,6 @@
 </tbody>
 </table>
 <h2 id="练习题-912">练习题 9.12</h2>
-<h4 id="练习题-912">练习题 9.12</h4>
 <p>对于下面的地址，重复习题 9.11：</p>
 <p><strong>虚拟地址：0x03a9</strong></p>
 <p>A. 虚拟地址格式</p>
@@ -2028,8 +2028,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="练习题-913">练习题 9.1<strong>3</strong></h2>
-<h4 id="练习题-913">练习题 9.13</h4>
+<h2 id="练习题-913">练习题 9.13</h2>
 <p>对于下面的地址，重复习题 9.11：</p>
 <p><strong>虚拟地址：0x0040</strong></p>
 <p>A. 虚拟地址格式</p>
@@ -2101,10 +2100,8 @@
 </tbody>
 </table>
 <h2 id="练习题-914">练习题 9.14</h2>
-<h4 id="练习题-914">练习题 9.14</h4>
 <p>假设有一个输入文件 hello.txt，由字符串 “Hello, world!\n” 组成，编写一个 C 程序，使用 mmap 将 hello.txt 的内容改变为 “Jello, world! \n”。</p>
 <h2 id="练习题-915">练习题 9.15</h2>
-<h4 id="练习题-915">练习题 9.15</h4>
 <p>确定下面的 malloc 请求序列得到的块大小和头部值。假设：1）分配器保持双字对齐，使用隐式空闲链表，以及图 9-35 中的块格式。2）块大小向上舍入为最接近的 8 字节的倍数。</p>
 <table>
 <thead>
@@ -2137,7 +2134,6 @@
 </tbody>
 </table>
 <h2 id="练习题-916">练习题 9.16</h2>
-<h4 id="练习题-916">练习题 9.16</h4>
 <p>确定下面对齐要求和块格式的每个组合的最小块大小。假设：显式空闲链表、每个空闲块中有四字节的 pred 和 succ 指针、不允许有效载荷的大小为零，并且头部和脚部存放在一个四字节的字中。</p>
 <table>
 <thead>
@@ -2175,13 +2171,10 @@
 </tbody>
 </table>
 <h2 id="练习题-917">练习题 9.17</h2>
-<h4 id="练习题-917">练习题 9.17</h4>
 <p>开发 9.9.12 节中的分配器的一个版本，执行下一次适配搜索，而不是首次适配搜索。</p>
 <h2 id="练习题-918">练习题 9.18</h2>
-<h4 id="练习题-918">练习题 9.18</h4>
 <p>9.9.12 节中的分配器要求每个块既有头部也有脚部，以实现常数时间的合并。修改分配器，使得空闲块需要头部和脚部，而已分配块只需要头部。</p>
 <h2 id="练习题-919">练习题 9.19</h2>
-<h4 id="练习题-919">练习题 9.19</h4>
 <p>下面给出了三组关于内存管理和垃圾收集的陈述。在每一组中，只有一句陈述是正确的。你的任务就是判断哪一句是正确的。</p>
 <ol>
 <li><ul>
@@ -2206,8 +2199,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="练习题-919">练习题 9.19</h2>
-<h4 id="练习题-919">练习题 9.19</h4>
+<h2 id="练习题-920">练习题 9.20</h2>
 <p>编写你自己的 malloc 和 free 版本，将它的运行时间和空间利用率与标准 C 库提供的 malloc 版本进行比较。</p>
 
                                 
@@ -2252,7 +2244,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.3.13","depth":2,"next":{"title":"第 10 章：系统级 I/O","level":"6.1","depth":1,"path":"part3/ch10-system-level-io/README.md","ref":"part3/ch10-system-level-io/README.md","articles":[{"title":"10.1 Unix I/O","level":"6.1.1","depth":2,"path":"part3/ch10-system-level-io/10.1-unix-io.md","ref":"part3/ch10-system-level-io/10.1-unix-io.md","articles":[]},{"title":"10.2 文件","level":"6.1.2","depth":2,"path":"part3/ch10-system-level-io/10.2-files.md","ref":"part3/ch10-system-level-io/10.2-files.md","articles":[]},{"title":"10.3 打开和关闭文件","level":"6.1.3","depth":2,"path":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","ref":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","articles":[]},{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","ref":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","articles":[]},{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","ref":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","articles":[]},{"title":"10.6 读取文件元数据","level":"6.1.6","depth":2,"path":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","ref":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","articles":[]},{"title":"10.7 读取目录内容","level":"6.1.7","depth":2,"path":"part3/ch10-system-level-io/10.7-reading-directory-contents.md","ref":"part3/ch10-system-level-io/10.7-reading-directory-contents.md","articles":[]},{"title":"10.8 共享文件","level":"6.1.8","depth":2,"path":"part3/ch10-system-level-io/10.8-sharing-files.md","ref":"part3/ch10-system-level-io/10.8-sharing-files.md","articles":[]},{"title":"10.9 I/O 重定向","level":"6.1.9","depth":2,"path":"part3/ch10-system-level-io/10.9-io-redirection.md","ref":"part3/ch10-system-level-io/10.9-io-redirection.md","articles":[]},{"title":"10.10 标准 I/O","level":"6.1.10","depth":2,"path":"part3/ch10-system-level-io/10.10-standard-io.md","ref":"part3/ch10-system-level-io/10.10-standard-io.md","articles":[]},{"title":"10.11 综合：我该使用哪些 I/O 函数？","level":"6.1.11","depth":2,"path":"part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.md","ref":"part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.md","articles":[]},{"title":"10.12 小结","level":"6.1.12","depth":2,"path":"part3/ch10-system-level-io/10.12-summary.md","ref":"part3/ch10-system-level-io/10.12-summary.md","articles":[]},{"title":"家庭作业","level":"6.1.13","depth":2,"path":"part3/ch10-system-level-io/homework.md","ref":"part3/ch10-system-level-io/homework.md","articles":[]}]},"previous":{"title":"9.12 小结","level":"5.3.12","depth":2,"path":"part2/ch09-virtual-memory/9.12-summary.md","ref":"part2/ch09-virtual-memory/9.12-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/homework.md","mtime":"2026-04-28T05:30:23.965Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.3.13","depth":2,"next":{"title":"第 10 章：系统级 I/O","level":"6.1","depth":1,"path":"part3/ch10-system-level-io/README.md","ref":"part3/ch10-system-level-io/README.md","articles":[{"title":"10.1 Unix I/O","level":"6.1.1","depth":2,"path":"part3/ch10-system-level-io/10.1-unix-io.md","ref":"part3/ch10-system-level-io/10.1-unix-io.md","articles":[]},{"title":"10.2 文件","level":"6.1.2","depth":2,"path":"part3/ch10-system-level-io/10.2-files.md","ref":"part3/ch10-system-level-io/10.2-files.md","articles":[]},{"title":"10.3 打开和关闭文件","level":"6.1.3","depth":2,"path":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","ref":"part3/ch10-system-level-io/10.3-opening-and-closing-files.md","articles":[]},{"title":"10.4 读和写文件","level":"6.1.4","depth":2,"path":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","ref":"part3/ch10-system-level-io/10.4-reading-and-writing-files.md","articles":[]},{"title":"10.5 用 RIO 包健壮地读写","level":"6.1.5","depth":2,"path":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","ref":"part3/ch10-system-level-io/10.5-robust-reading-and-writing-with-the-rio-package.md","articles":[]},{"title":"10.6 读取文件元数据","level":"6.1.6","depth":2,"path":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","ref":"part3/ch10-system-level-io/10.6-reading-file-metadata.md","articles":[]},{"title":"10.7 读取目录内容","level":"6.1.7","depth":2,"path":"part3/ch10-system-level-io/10.7-reading-directory-contents.md","ref":"part3/ch10-system-level-io/10.7-reading-directory-contents.md","articles":[]},{"title":"10.8 共享文件","level":"6.1.8","depth":2,"path":"part3/ch10-system-level-io/10.8-sharing-files.md","ref":"part3/ch10-system-level-io/10.8-sharing-files.md","articles":[]},{"title":"10.9 I/O 重定向","level":"6.1.9","depth":2,"path":"part3/ch10-system-level-io/10.9-io-redirection.md","ref":"part3/ch10-system-level-io/10.9-io-redirection.md","articles":[]},{"title":"10.10 标准 I/O","level":"6.1.10","depth":2,"path":"part3/ch10-system-level-io/10.10-standard-io.md","ref":"part3/ch10-system-level-io/10.10-standard-io.md","articles":[]},{"title":"10.11 综合：我该使用哪些 I/O 函数？","level":"6.1.11","depth":2,"path":"part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.md","ref":"part3/ch10-system-level-io/10.11-putting-it-together-which-io-functions-should-i-use.md","articles":[]},{"title":"10.12 小结","level":"6.1.12","depth":2,"path":"part3/ch10-system-level-io/10.12-summary.md","ref":"part3/ch10-system-level-io/10.12-summary.md","articles":[]},{"title":"家庭作业","level":"6.1.13","depth":2,"path":"part3/ch10-system-level-io/homework.md","ref":"part3/ch10-system-level-io/homework.md","articles":[]}]},"previous":{"title":"9.12 小结","level":"5.3.12","depth":2,"path":"part2/ch09-virtual-memory/9.12-summary.md","ref":"part2/ch09-virtual-memory/9.12-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/homework.md","mtime":"2026-05-24T18:57:05.824Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

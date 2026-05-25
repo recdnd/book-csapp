@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1885,7 +1887,6 @@
                                 
                                 <h1 id="家庭作业">家庭作业</h1>
 <h2 id="练习题-89">练习题 8.9</h2>
-<h4 id="练习题-89">练习题 8.9</h4>
 <p>考虑四个具有如下开始和结束时间的进程：</p>
 <table>
 <thead>
@@ -1953,13 +1954,11 @@
 </tbody>
 </table>
 <h2 id="练习题-810">练习题 8.10</h2>
-<h4 id="练习题-810">练习题 8.10</h4>
 <p>在这一章里，我们介绍了一些具有不寻常的调用和返回行为的函数：setjmp、longjmp、execve 和 fork。找到下列行为中和每个函数相匹配的一种：</p>
 <p>A. 调用一次，返回两次。</p>
 <p>B. 调用一次，从不返回。</p>
 <p>C. 调用一次，返回一次或者多次。</p>
 <h2 id="练习题-811">练习题 8.11</h2>
-<h4 id="练习题-811">练习题 8.11</h4>
 <p>这个程序会输出多少个 “hello” 输出行？</p>
 <p>
 ```c
@@ -1977,7 +1976,6 @@ int main()
 ```
 </p>
 <h2 id="练习题-812">练习题 8.12</h2>
-<h4 id="练习题-812">练习题 8.12</h4>
 <p>这个程序会输出多少个 “hello” 输出行？</p>
 <p>
 ```c
@@ -2000,7 +1998,6 @@ int main()
 ```
 </p>
 <h2 id="练习题-813">练习题 8.13</h2>
-<h4 id="练习题-813">练习题 8.13</h4>
 <p>下面程序的一种可能的输出是什么？</p>
 <p>
 ```c
@@ -2019,7 +2016,6 @@ int main() 
 ```
 </p>
 <h2 id="练习题-814">练习题 8.14</h2>
-<h4 id="练习题-814">练习题 8.14</h4>
 <p>这个程序会输出多少个 “hello” 输出行？</p>
 <p>
 ```c
@@ -2044,7 +2040,6 @@ int main()
 ```
 </p>
 <h2 id="练习题-815">练习题 8.15</h2>
-<h4 id="练习题-815">练习题 8.15</h4>
 <p>这个程序会输出多少个 “hello” 输出行？</p>
 <p>
 ```c
@@ -2069,7 +2064,6 @@ int main()
 ```
 </p>
 <h2 id="练习题-816">练习题 8.16</h2>
-<h4 id="练习题-816">练习题 8.16</h4>
 <p>下面这个程序的输出是什么？</p>
 <p>
 ```c
@@ -2091,10 +2085,8 @@ int main()
 ```
 </p>
 <h2 id="练习题-817">练习题 8.17</h2>
-<h4 id="练习题-817">练习题 8.17</h4>
 <p>列举练习题 8.4 中程序所有可能的输出。</p>
 <h2 id="练习题-818">练习题 8.18</h2>
-<h4 id="练习题-818">练习题 8.18</h4>
 <p>考虑下面的程序：</p>
 <p>
 ```c
@@ -2126,7 +2118,6 @@ int main()
 <p>D. 122001</p>
 <p>E. 100212</p>
 <h2 id="练习题-819">练习题 8.19</h2>
-<h4 id="练习题-819">练习题 8.19</h4>
 <p>下面的函数会打印多少行输出？用一个 n 的函数给出答案。假设$$\small n \geqslant 1$$。</p>
 <p>
 ```c
@@ -2141,8 +2132,7 @@ void foo(int n)
 }
 ```
 </p>
-<p>练习题 8.20</p>
-<h4 id="练习题-820">练习题 8.20</h4>
+<h2 id="练习题-820">练习题 8.20</h2>
 <p>使用 execve 编写一个叫做 myls 的程序，该程序的行为和 /bin/ls 程序的一样。你的程序应该接受相同的命令行参数，解释同样的环境变量，并产生相同的输岀。</p>
 <p>Is 程序从 COLUMNS 环境变量中获得屏幕的宽度。如果没有设置 COLUMNS，那么 ls 会假设屏幕宽 80 列。因此，你可以通过把 COLUMNS 环境设置得小于 80，来检查你对环境变量的处理：</p>
 <pre><code class="lang-text">linux&gt; setenv COLUMNS 40
@@ -2156,8 +2146,7 @@ linux&gt; ./myls
 . // Output is now 80 columns wide
 .
 </code></pre>
-<p>练习题 8.21</p>
-<h4 id="练习题-821">练习题 8.21</h4>
+<h2 id="练习题-821">练习题 8.21</h2>
 <p>下面的程序可能的输岀序列是什么？</p>
 <p>
 ```c
@@ -2176,14 +2165,12 @@ int main()
 }
 ```
 </p>
-<p>练习题 8.22</p>
-<h4 id="练习题-822">练习题 8.22</h4>
+<h2 id="练习题-822">练习题 8.22</h2>
 <p>编写 Unix system 函数的你自己的版本</p>
 <pre><code class="lang-c"><span class="hljs-type">int</span> <span class="hljs-title function_">mysystem</span><span class="hljs-params">(<span class="hljs-type">char</span>* command)</span>;
 </code></pre>
 <p>mysystem 函数通过调用 “/bin/sh-ccommand” 来执行 command，然后在 command 完成后返回。如果 command（通过调用 exit 函数或者执行一条 return 语句）正常退出，那么 mysystem 返回 command 退出状态。例如，如果 command 通过调用 exit(8) 终止，那么 mysystem 返回值 8。否则，如果 command 是异常终止的，那么 mysystem 就返回 shell 返回的状态。</p>
-<p>练习题 8.23</p>
-<h4 id="练习题-823">练习题 8.23</h4>
+<h2 id="练习题-823">练习题 8.23</h2>
 <p>你的一个同事想要使用信号来让一个父进程对发生在子进程中的事件计数。其想法是每次发生一个事件时，通过向父进程发送一个信号来通知它，并且让父进程的信号处理程序对一个全局变量 counter 加一，在子进程终止之后，父进程就可以检查这个变量。然而，当他在系统上运行图 8-45 中的测试程序时，发现当父进程调用 printf 时，counter 的值总是 2，即使子进程向父进程发送了 5 个信号也是如此。他很困惑，向你寻求帮助。你能解释这个程序有什么错误吗？</p>
 <p>
 ```c
@@ -2221,8 +2208,7 @@ int main()
 <blockquote>
 <p>图 8-45 家庭作业 8.23 中引用的计数器程序</p>
 </blockquote>
-<p>练习题 8.24</p>
-<h4 id="练习题-824">练习题 8.24</h4>
+<h2 id="练习题-824">练习题 8.24</h2>
 <p>修改图 8-18 中的程序，以满足下面两个条件：</p>
 <p>1）每个子进程在试图写一个只读文本段中的位置时会异常终止。</p>
 <p>2）父进程打印和下面所示相同（除了 PID）的输出：</p>
@@ -2230,11 +2216,9 @@ int main()
 child 12254 terminated by signal 11: Segmentation fault
 </code></pre>
 <p>提示：请参考 psignal(3) 的 man 页。</p>
-<p>练习题 8.25</p>
-<h4 id="练习题-825">练习题 8.25</h4>
+<h2 id="练习题-825">练习题 8.25</h2>
 <p>编写 fgets 函数的一个版本，叫做 tfgets，它 5 秒钟后会超时。tfgets 函数接收和 fgets 相同的输入。如果用户在 5 秒内不键入一个输入行，tfgets 返回 NULL。否则，它返回一个指向输入行的指针。</p>
-<p>练习题 8.26</p>
-<h4 id="练习题-826">练习题 8.26</h4>
+<h2 id="练习题-826">练习题 8.26</h2>
 <p>以图 8-23 中的示例作为开始点，编写一个支持作业控制的 shell 程序。shell 必须具有以下特性：</p>
 <ul>
 <li>用户输入的命令行由一个 name、零个或者多个参数组成，它们都由一个或者多个空格分隔开。如果 name 是一个内置命令，那么 shell 就立即处理它，并等待下一个命令行。否则，shell 就假设 name 是一个可执行文件，在一个初始的子进程（作业）的上下文中加载并运行它。作业的进程组 ID 与子进程的 PID 相同。</li>
@@ -2246,8 +2230,10 @@ child 12254 terminated by signal 11: Segmentation fault
 <li>内置命令 fg job 通过发送一个 SIGCONT 信号重启 job，然后在前台运行它。</li>
 <li>shell 回收它所有的僵死子进程。如果任何作业因为收到一个未捕获的信号而终止，那么 shell 就输出一条消息到终端，消息中包含该作业的 PID 和对该信号的描述。</li>
 </ul>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦：注意这是对真实的 shell 工作方式的简化。真实的 shell 里，内核响应 Ctrl+C（Ctrl+Z），把 SIGINT（SIGTSTP）直接发送给终端前台进程组中的每个进程。shell 用 tcsetpgrp 函数管理这个进程组的成员，用 tcsetattr 函数管理终端的属性，这两个函数都超出了本书讲述的范围。可以参考【62】获得详细信息。</p>
+</div>
+
 <p>图 8-46 展示了一个 shell 会话示例。</p>
 <pre><code class="lang-bash">linux&gt; ./shell                              <span class="hljs-comment"># Run your shell program</span>
 
@@ -2335,7 +2321,7 @@ linux&gt;                                      <span class="hljs-comment"># Back
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.2.9","depth":2,"next":{"title":"第 9 章：虚拟内存","level":"5.3","depth":1,"path":"part2/ch09-virtual-memory/README.md","ref":"part2/ch09-virtual-memory/README.md","articles":[{"title":"9.1 物理和虚拟寻址","level":"5.3.1","depth":2,"path":"part2/ch09-virtual-memory/9.1-physical-and-virtual-addressing.md","ref":"part2/ch09-virtual-memory/9.1-physical-and-virtual-addressing.md","articles":[]},{"title":"9.2 地址空间","level":"5.3.2","depth":2,"path":"part2/ch09-virtual-memory/9.2-address-spaces.md","ref":"part2/ch09-virtual-memory/9.2-address-spaces.md","articles":[]},{"title":"9.3 虚拟内存作为缓存的工具","level":"5.3.3","depth":2,"path":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","ref":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","articles":[]},{"title":"9.4 虚拟内存作为内存管理的工具","level":"5.3.4","depth":2,"path":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","ref":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","articles":[]},{"title":"9.5 虚拟内存作为内存保护的工具","level":"5.3.5","depth":2,"path":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","ref":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","articles":[]},{"title":"9.6 地址翻译","level":"5.3.6","depth":2,"path":"part2/ch09-virtual-memory/9.6-address-translation.md","ref":"part2/ch09-virtual-memory/9.6-address-translation.md","articles":[]},{"title":"9.7 案例研究：Intel Core i7 / Linux 内存系统","level":"5.3.7","depth":2,"path":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","ref":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","articles":[]},{"title":"9.8 内存映射","level":"5.3.8","depth":2,"path":"part2/ch09-virtual-memory/9.8-memory-mapping.md","ref":"part2/ch09-virtual-memory/9.8-memory-mapping.md","articles":[]},{"title":"9.9 动态内存分配","level":"5.3.9","depth":2,"path":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","ref":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","articles":[]},{"title":"9.10 垃圾收集","level":"5.3.10","depth":2,"path":"part2/ch09-virtual-memory/9.10-garbage-collection.md","ref":"part2/ch09-virtual-memory/9.10-garbage-collection.md","articles":[]},{"title":"9.11 C 程序中常见的与内存有关的错误","level":"5.3.11","depth":2,"path":"part2/ch09-virtual-memory/9.11-common-memoory-related-bugs-in-c-programs.md","ref":"part2/ch09-virtual-memory/9.11-common-memoory-related-bugs-in-c-programs.md","articles":[]},{"title":"9.12 小结","level":"5.3.12","depth":2,"path":"part2/ch09-virtual-memory/9.12-summary.md","ref":"part2/ch09-virtual-memory/9.12-summary.md","articles":[]},{"title":"家庭作业","level":"5.3.13","depth":2,"path":"part2/ch09-virtual-memory/homework.md","ref":"part2/ch09-virtual-memory/homework.md","articles":[]}]},"previous":{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/homework.md","mtime":"2026-04-28T05:30:23.960Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"家庭作业","level":"5.2.9","depth":2,"next":{"title":"第 9 章：虚拟内存","level":"5.3","depth":1,"path":"part2/ch09-virtual-memory/README.md","ref":"part2/ch09-virtual-memory/README.md","articles":[{"title":"9.1 物理和虚拟寻址","level":"5.3.1","depth":2,"path":"part2/ch09-virtual-memory/9.1-physical-and-virtual-addressing.md","ref":"part2/ch09-virtual-memory/9.1-physical-and-virtual-addressing.md","articles":[]},{"title":"9.2 地址空间","level":"5.3.2","depth":2,"path":"part2/ch09-virtual-memory/9.2-address-spaces.md","ref":"part2/ch09-virtual-memory/9.2-address-spaces.md","articles":[]},{"title":"9.3 虚拟内存作为缓存的工具","level":"5.3.3","depth":2,"path":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","ref":"part2/ch09-virtual-memory/9.3-vm-as-a-tool-for-caching.md","articles":[]},{"title":"9.4 虚拟内存作为内存管理的工具","level":"5.3.4","depth":2,"path":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","ref":"part2/ch09-virtual-memory/9.4-vm-as-a-tool-for-memory-management.md","articles":[]},{"title":"9.5 虚拟内存作为内存保护的工具","level":"5.3.5","depth":2,"path":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","ref":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","articles":[]},{"title":"9.6 地址翻译","level":"5.3.6","depth":2,"path":"part2/ch09-virtual-memory/9.6-address-translation.md","ref":"part2/ch09-virtual-memory/9.6-address-translation.md","articles":[]},{"title":"9.7 案例研究：Intel Core i7 / Linux 内存系统","level":"5.3.7","depth":2,"path":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","ref":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","articles":[]},{"title":"9.8 内存映射","level":"5.3.8","depth":2,"path":"part2/ch09-virtual-memory/9.8-memory-mapping.md","ref":"part2/ch09-virtual-memory/9.8-memory-mapping.md","articles":[]},{"title":"9.9 动态内存分配","level":"5.3.9","depth":2,"path":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","ref":"part2/ch09-virtual-memory/9.9-dynamic-memory-allocation.md","articles":[]},{"title":"9.10 垃圾收集","level":"5.3.10","depth":2,"path":"part2/ch09-virtual-memory/9.10-garbage-collection.md","ref":"part2/ch09-virtual-memory/9.10-garbage-collection.md","articles":[]},{"title":"9.11 C 程序中常见的与内存有关的错误","level":"5.3.11","depth":2,"path":"part2/ch09-virtual-memory/9.11-common-memoory-related-bugs-in-c-programs.md","ref":"part2/ch09-virtual-memory/9.11-common-memoory-related-bugs-in-c-programs.md","articles":[]},{"title":"9.12 小结","level":"5.3.12","depth":2,"path":"part2/ch09-virtual-memory/9.12-summary.md","ref":"part2/ch09-virtual-memory/9.12-summary.md","articles":[]},{"title":"家庭作业","level":"5.3.13","depth":2,"path":"part2/ch09-virtual-memory/homework.md","ref":"part2/ch09-virtual-memory/homework.md","articles":[]}]},"previous":{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/homework.md","mtime":"2026-05-24T19:44:41.747Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

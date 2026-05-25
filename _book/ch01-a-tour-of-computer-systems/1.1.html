@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../styles/website.css">
+        
     
         
     
@@ -1886,13 +1888,16 @@
                                 <h1 id="11-信息就是位--上下文">1.1 信息就是位 + 上下文</h1>
 <p>hello 程序的生命周期是从一个<strong>源程序</strong>（或者说源文件）开始的，即程序员通过编辑器创建并保存的文本文件，文件名是 hello.c。源程序实际上就是一个由值 0 和 1 组成的位（又称为比特）序列，8 个位被组织成一组，称为字节。每个字节表示程序中的某些文本字符。</p>
 <p>大部分的现代计算机系统都使用 ASCII 标准来表示文本字符，这种方式实际上就是用一个唯一的单字节大小的✦整数值✦来表示每个字符。比如，图 1-2 中给出了 hello.c 程序的 ASCII 码表示。</p>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦整数值✦：有其他编码方式用于表示非英语类语言文本。具体讨论参见 2.1.4 节的旁注。</p>
+</div>
+
+
 <p><img src="../.gitbook/assets/01-01-hello.c-ascii-text.png" alt="图 1-2 hello.c 的 ASCII 文本表示"></img></p>
 <p>hello.c 程序是以字节序列的方式储存在文件中的。每个字节都有一个整数值，对应于某些字符。例如，第一个字节的整数值是 35，它对应的就是字符 “#”。第二个字节的整数值为 105，它对应的字符是 ‘i’，依此类推。注意，每个文本行都是以一个看不见的换行符 ‘\n’ 来结束的，它所对应的整数值为 10。像 hello.c 这样只由 ASCII 字符构成的文件称为<strong>文本文件</strong>，所有其他文件都称为<strong>二进制文件</strong>。</p>
 <p>hello.c 的表示方法说明了一个基本思想∶系统中所有的信息——包括磁盘文件、内存中的程序、内存中存放的用户数据以及网络上传送的数据，都是由一串比特表示的。区分不同数据对象的唯一方法是我们读到这些数据对象时的上下文。比如，在不同的上下文中，一个同样的字节序列可能表示一个整数、浮点数、字符串或者机器指令。 作为程序员，我们需要了解数字的机器表示方式，因为它们与实际的整数和实数是不同的。它们是对真值的有限近似值，有时候会有意想不到的行为表现。这方面的基本原理将在第 2 章中详细描述。</p>
-<p><strong>INFO:</strong></p>
-<h2 id="旁注-编程语言的起源">旁注 编程语言的起源</h2>
+<div class="hint hint-info">
+<h2 id="%E6%97%81%E6%B3%A8-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E8%B5%B7%E6%BA%90">旁注 编程语言的起源</h2>
 <p>C 语言是贝尔实验室的 Dennis Ritchie 于 1969 年 ~ 1973 年间创建的。美国国家标准学会（American National Standards Institute，ANSI）在 1989 年颁布了 ANSI C 的标准，后来 C 语言的标准化成了国际标准化组织（International StandardsOrganization，ISO）的责任。这些标准定义了C语言和一系列函数库，即所谓的 <strong>C 标准库</strong>。Kernighan 和 Ritchie 在他们的经典著作中描述了 ANSI C，这本著作被人们满怀感情地称为 “K&amp;R”【61】。用 Ritchic 的话来说【92】，C 语言是“古怪的、有缺陷的，但同时也是一个巨大的成功”。为什么会成功呢?</p>
 <ul>
 <li><strong>C 语言与 Unix 操作系统关系密切。</strong>C 从一开始就是作为一种用于 Unix 系统的程序语言开发出来的。大部分 Unix 内核（操作系统的核心部分），以及所有支撑工具和函数库都是用 C 语言编写的。20 世纪 70 年代后期到 80 年代初期，Unix 风行于高等院校，许多人开始接触 C 语言并喜欢上它。因为 Unix 几乎全部是用 C 编写的，它可以很方便地移植到新的机器上，这种特点为 C 和 Unix 赢得了更为广泛的支持。</li>
@@ -1900,6 +1905,9 @@
 <li><strong>C语言是为实践目的设计的。</strong>C 语言是设计用来实现 Unix 操作系统的。后来，其他人发现能够用这门语言无障碍地编写他们想要的程序。</li>
 </ul>
 <p>C 语言是系统级编程的首选，同时它也非常适用于应用级程序的编写。然而，它也并非适用于所有的程序员和所有的情况。C 语言的指针是造成程序员困惑和程序错误的一个常见原因。同时，C 语言还缺乏对非常有用的抽象的显式支持，例如类、对象和异常。像 C++ 和 Java 这样针对应用级程序的新程序语言解决了这些问题。</p>
+</div>
+
+
 
                                 
                                 </section>
@@ -1943,7 +1951,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.1 信息就是位 + 上下文","level":"3.1.1","depth":2,"next":{"title":"1.2 程序被其他程序翻译成不同的格式","level":"3.1.2","depth":2,"path":"ch01-a-tour-of-computer-systems/1.2.md","ref":"ch01-a-tour-of-computer-systems/1.2.md","articles":[]},"previous":{"title":"第 1 章：计算机系统漫游","level":"3.1","depth":1,"path":"ch01-a-tour-of-computer-systems/README.md","ref":"ch01-a-tour-of-computer-systems/README.md","articles":[{"title":"1.1 信息就是位 + 上下文","level":"3.1.1","depth":2,"path":"ch01-a-tour-of-computer-systems/1.1.md","ref":"ch01-a-tour-of-computer-systems/1.1.md","articles":[]},{"title":"1.2 程序被其他程序翻译成不同的格式","level":"3.1.2","depth":2,"path":"ch01-a-tour-of-computer-systems/1.2.md","ref":"ch01-a-tour-of-computer-systems/1.2.md","articles":[]},{"title":"1.3 了解编译系统如何工作是大有益处的","level":"3.1.3","depth":2,"path":"ch01-a-tour-of-computer-systems/1.3.md","ref":"ch01-a-tour-of-computer-systems/1.3.md","articles":[]},{"title":"1.4 处理器读并解释储存在内存中的指令","level":"3.1.4","depth":2,"path":"ch01-a-tour-of-computer-systems/1.4.md","ref":"ch01-a-tour-of-computer-systems/1.4.md","articles":[]},{"title":"1.5 高速缓存至关重要","level":"3.1.5","depth":2,"path":"ch01-a-tour-of-computer-systems/1.5.md","ref":"ch01-a-tour-of-computer-systems/1.5.md","articles":[]},{"title":"1.6 存储设备形成层次结构","level":"3.1.6","depth":2,"path":"ch01-a-tour-of-computer-systems/1.6.md","ref":"ch01-a-tour-of-computer-systems/1.6.md","articles":[]},{"title":"1.7 操作系统管理硬件","level":"3.1.7","depth":2,"path":"ch01-a-tour-of-computer-systems/1.7.md","ref":"ch01-a-tour-of-computer-systems/1.7.md","articles":[]},{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},{"title":"1.9 重要主题","level":"3.1.9","depth":2,"path":"ch01-a-tour-of-computer-systems/1.9.md","ref":"ch01-a-tour-of-computer-systems/1.9.md","articles":[]},{"title":"1.10 小结","level":"3.1.10","depth":2,"path":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","ref":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.1.md","mtime":"2026-04-28T05:30:23.943Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.1 信息就是位 + 上下文","level":"3.1.1","depth":2,"next":{"title":"1.2 程序被其他程序翻译成不同的格式","level":"3.1.2","depth":2,"path":"ch01-a-tour-of-computer-systems/1.2.md","ref":"ch01-a-tour-of-computer-systems/1.2.md","articles":[]},"previous":{"title":"第 1 章：计算机系统漫游","level":"3.1","depth":1,"path":"ch01-a-tour-of-computer-systems/README.md","ref":"ch01-a-tour-of-computer-systems/README.md","articles":[{"title":"1.1 信息就是位 + 上下文","level":"3.1.1","depth":2,"path":"ch01-a-tour-of-computer-systems/1.1.md","ref":"ch01-a-tour-of-computer-systems/1.1.md","articles":[]},{"title":"1.2 程序被其他程序翻译成不同的格式","level":"3.1.2","depth":2,"path":"ch01-a-tour-of-computer-systems/1.2.md","ref":"ch01-a-tour-of-computer-systems/1.2.md","articles":[]},{"title":"1.3 了解编译系统如何工作是大有益处的","level":"3.1.3","depth":2,"path":"ch01-a-tour-of-computer-systems/1.3.md","ref":"ch01-a-tour-of-computer-systems/1.3.md","articles":[]},{"title":"1.4 处理器读并解释储存在内存中的指令","level":"3.1.4","depth":2,"path":"ch01-a-tour-of-computer-systems/1.4.md","ref":"ch01-a-tour-of-computer-systems/1.4.md","articles":[]},{"title":"1.5 高速缓存至关重要","level":"3.1.5","depth":2,"path":"ch01-a-tour-of-computer-systems/1.5.md","ref":"ch01-a-tour-of-computer-systems/1.5.md","articles":[]},{"title":"1.6 存储设备形成层次结构","level":"3.1.6","depth":2,"path":"ch01-a-tour-of-computer-systems/1.6.md","ref":"ch01-a-tour-of-computer-systems/1.6.md","articles":[]},{"title":"1.7 操作系统管理硬件","level":"3.1.7","depth":2,"path":"ch01-a-tour-of-computer-systems/1.7.md","ref":"ch01-a-tour-of-computer-systems/1.7.md","articles":[]},{"title":"1.8 系统之间利用网络通信","level":"3.1.8","depth":2,"path":"ch01-a-tour-of-computer-systems/1.8.md","ref":"ch01-a-tour-of-computer-systems/1.8.md","articles":[]},{"title":"1.9 重要主题","level":"3.1.9","depth":2,"path":"ch01-a-tour-of-computer-systems/1.9.md","ref":"ch01-a-tour-of-computer-systems/1.9.md","articles":[]},{"title":"1.10 小结","level":"3.1.10","depth":2,"path":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","ref":"ch01-a-tour-of-computer-systems/1.10-xiao-jie.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ch01-a-tour-of-computer-systems/1.1.md","mtime":"2026-05-24T19:44:41.695Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -2010,7 +2012,6 @@ A' &amp;\text{如果虚拟地址 } A \text{ 处的数据在 PAS 的物理地址 
 <li><strong>第 7 步：</strong>缺页处理程序返回到原来的进程，再次执行导致缺页的指令。CPU 将引起缺页的虚拟地址重新发送给 MMU。因为虚拟页面现在缓存在物理内存中，所以就会命中，在 MMU 执行了图 9-13b 中的步骤之后，主存就会将所请求字返回给处理器。</li>
 </ul>
 <h3 id="练习题-93">练习题 9.3</h3>
-<h4 id="练习题-93">练习题 9.3</h4>
 <p>给定一个 32 位的虚拟地址空间和一个 24 位的物理地址，对于下面的页面大小 P，确定 VPN、VPO、PPN 和 PPO 中的位数：</p>
 <table>
 <thead>
@@ -2164,7 +2165,6 @@ A' &amp;\text{如果虚拟地址 } A \text{ 处的数据在 PAS 的物理地址 
 <p>因为组 0x5 中的标记与 CT 相匹配，所以缓存检测到一个命中，读出在偏移量 CO 处的数据字节（0x36），并将它返回给 MMU，随后 MMU 将它传递回 CPU。</p>
 <p>翻译过程的其他路径也是可能的。例如，如果 TLB 不命中，那么 MMU 必须从页表中的 PTE 中取出 PPN。如果得到的 PTE 是无效的，那么就产生一个缺页，内核必须调入合适的页面，重新运行这条加载指令。另一种可能性是 PTE 是有效的，但是所需要的内存块在缓存中不命中。</p>
 <h3 id="练习题-94">练习题 9.4</h3>
-<h4 id="练习题-94">练习题 9.4</h4>
 <p>说明 9.6.4 节中的示例内存系统是如何将一个虚拟地址翻译成一个物理地址和访问缓存的。对于给定的虚拟地址，指明访问的 TLB 条目、物理地址和返回的缓存字节值。指出是否发生了 TLB 不命中，是否发生了缺页，以及是否发生了缓存不命中。如果是缓存不命中，在“返回的缓存字节”栏中输入 “—”。如果有缺页，则在 “PPN” 一栏中输入 “—”，并且将 C 部分和 D 部分空着。</p>
 <p>虚拟地址：0x03d7</p>
 <p>A. 虚拟地址格式</p>
@@ -2348,7 +2348,7 @@ A' &amp;\text{如果虚拟地址 } A \text{ 处的数据在 PAS 的物理地址 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"9.6 地址翻译","level":"5.3.6","depth":2,"next":{"title":"9.7 案例研究：Intel Core i7 / Linux 内存系统","level":"5.3.7","depth":2,"path":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","ref":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","articles":[]},"previous":{"title":"9.5 虚拟内存作为内存保护的工具","level":"5.3.5","depth":2,"path":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","ref":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.6-address-translation.md","mtime":"2026-04-28T05:30:23.962Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"9.6 地址翻译","level":"5.3.6","depth":2,"next":{"title":"9.7 案例研究：Intel Core i7 / Linux 内存系统","level":"5.3.7","depth":2,"path":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","ref":"part2/ch09-virtual-memory/9.7-case-study-the-intel-core-i7-linux-memory-system.md","articles":[]},"previous":{"title":"9.5 虚拟内存作为内存保护的工具","level":"5.3.5","depth":2,"path":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","ref":"part2/ch09-virtual-memory/9.5-vm-as-a-tool-for-memory-protection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch09-virtual-memory/9.6-address-translation.md","mtime":"2026-05-24T18:40:03.536Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

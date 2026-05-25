@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../styles/website.css">
+        
     
         
     
@@ -1906,9 +1908,12 @@
 </ul>
 <p>文中每段代码示例都是由经过 GCC 编译的 C 程序直接生成并在 Linux 系统上进行了测试，没有任何人为的改动。当然，你的系统上 GCC 的版本可能不同，或者根本就是另外一种编译器，那么可能生成不一样的机器代码，但是整体行为表现应该是一样的。所有的源程序代码都可以从 csapp.cs.cmu.edu 上 的CS：APP 主页上获取。在本书中，源程序的文件名列在两条水平线的右边，水平线之间是格式化的代码。比如，图1中的程序能在 <strong>code/intro/</strong> 目录下的 <strong>hello.c</strong> 文件中找到。当遇到这些示例程序时，我们鼓励你在自己的系统上试着运行它们。</p>
 <p>为了避免本书体积过大、内容过多，我们添加了许多网络旁注（Web aside），包括一些对本书主要内容的补充资料。本书中用 CHAP：TOP 这样的标记形式来引用这些旁注，这里 CHAP 是该章主题的缩写编码，而 TOP 是涉及的话题的缩写编码。例如，网络旁注 DATA：BOOL 包含对第 2 章中数据表示里面有关布尔代数内容的补充资料；而网络旁注 ARCH：VLOG 包含的是用 Verilog 硬件描述语言进行处理器设计的资料，是对第 4 章中处理器设计部分的补充。所有的网络旁注都可以从 CS：APP 的主页上获取。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---什么是旁注">旁注 - 什么是旁注</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%81%E6%B3%A8">旁注 - 什么是旁注</h3>
 <p>在整本书中，你将会遇到很多以这种形式出现的旁注。旁注是附加说明，能使你对当前讨论的主题多一些了解。旁注可以有很多用处。一些是小的历史故事。例如，C 语言、Linux 和 Internet 是从何而来的？有些旁注则是用来澄清学生们经常感到疑感的问题。例如，高速缓存的行、组和块有什么区别？还有些旁注给出了一些现实世界的例子。例如，一个浮点错误怎么毁掉了法国的一枚火箭，或是给出市面上出售的一个磁盘驱动器的几何和运行参数。最后，还有一些旁注仅仅就是一些有趣的内容，例如，什么是“hoinky”？</p>
+</div>
+
+
 <h2 id="本书概述">本书概述</h2>
 <p>本书由 12 章组成，旨在阐述计算机系统的核心概念。内容概述如下：</p>
 <ul>
@@ -1922,8 +1927,11 @@
 <li><strong>第5章：优化程序性能。</strong> 在这一章里，我们介绍了许多提高代码性能的技术，主要思想就是让程序员通过使编译器能够生成更有效的机器代码来学习编写 C 代码。我们一开始介绍的是减少程序需要做的工作的变换，这些是在任何机器上写任何程序时都应该遵循的。然后讲的是增加生成的机器代码中指令级并行度的变换，因而提高了程序在现代“超标量”处理器上的性能。为了解释这些变换行之有效的原理，我们介绍了一个简单的操作模型，它描述了现代乱序处理器是如何工作的，然后给出了如何根据一个程序的图形化表示中的关键路径来测量一个程序可能的性能。你会惊讶于对 C 代码做一些简单的变换能给程序带来多大的速度提升。</li>
 <li><strong>第6章：存储器层次结构。</strong> 对应用程序员来说，存储器系统是计算机系统中最直接可见的部分之一。到目前为止，读者一直认同这样一个存储器系统概念模型，认为它是一个有一致访问时间的线性数组。实际上，存储器系统是一个由不同容量、造价和访问时间的存储设备组成的层次结构。我们讲述不同类型的随机存取存储器（RAM）和只读存储器（ROM），以及磁盘和✦固态硬盘✦的几何形状和组织构造。我们描述这些存储设备是如何放置在层次结构中的，讲述访问局部性是如何使这种层次结构成为可能的。我们通过一个独特的观点使这些理论具体化，那就是将存储器系统视为一个“存储器山”，山脊是时间局部性，而斜坡是空间局部性。最后，我们向读者阐述如何通过改善程序的时间局部性和空间局部性来提高应用程序的性能。</li>
 </ul>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦固态硬盘✦：直译应为固态驱动器，但固态硬盘一词已经被大家接受，所以沿用。——译者注</p>
+</div>
+
+
 <ul>
 <li><strong>第7章：链接。</strong> 本章讲述静态和动态链接，包括的概念有可重定位的和可执行的目标文件、符号解析、重定位、静态库、共享目标库、位置无关代码，以及库打桩。大多数讲述系统的书中都不讲链接，我们要讲述它是出于以下原因。第一，程序员遇到的最令人迷惑的问题中，有一些和链接时的小故障有关，尤其是对那些大型软件包来说。第二，链接器生成的目标文件是与一些像加载、虚拟内存和内存映射这样的概念相关的。</li>
 <li><strong>第8章：异常控制流。</strong> 在本书的这个部分，我们通过介绍异常控制流（即除正常分支和过程调用以外的控制流的变化）的一般概念，打破单一程序的模型。我们给出存在于系统所有层次的异常控制流的例子，从底层的硬件异常和中断，到并发进程的上下文切换，到由于接收 Linux 信号引起的控制流突变，到 C 语言中破坏栈原则的非本地跳转。 在这一章，我们介绍进程的基本概念，进程是对一个正在执行的程序的一种抽象。读者会学习进程是如何工作的，以及如何在应用程序中创建和操纵进程。我们会展示应用程序员如何通过 Linux 系统调用来使用多个进程。学完本章之后，读者就能够编写带作业控制的 Linux shell 了。同时，这里也会向读者初步展示程序的并发执行会引起不确定的行为。</li>
@@ -2051,7 +2059,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"前言","level":"2.5","depth":1,"next":{"title":"关于作者","level":"2.6","depth":1,"path":"publish-info/about-authors.md","ref":"publish-info/about-authors.md","articles":[]},"previous":{"title":"译者序","level":"2.4","depth":1,"path":"publish-info/translators-preface.md","ref":"publish-info/translators-preface.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"publish-info/preface.md","mtime":"2026-04-28T05:30:23.974Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"前言","level":"2.5","depth":1,"next":{"title":"关于作者","level":"2.6","depth":1,"path":"publish-info/about-authors.md","ref":"publish-info/about-authors.md","articles":[]},"previous":{"title":"译者序","level":"2.4","depth":1,"path":"publish-info/translators-preface.md","ref":"publish-info/translators-preface.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"publish-info/preface.md","mtime":"2026-05-24T19:44:41.911Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

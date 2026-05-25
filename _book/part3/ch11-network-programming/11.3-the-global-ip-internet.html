@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1895,10 +1897,12 @@
 <li>因特网主机上的进程能够通过<strong>连接</strong>（connection）和任何其他因特网主机上的进程通信。</li>
 </ul>
 <p>接下来三节将更详细地讨论这些基本的因特网概念。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---ipv4-和-ipv6">旁注 - IPv4 和 IPv6</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-ipv4-%E5%92%8C-ipv6">旁注 - IPv4 和 IPv6</h3>
 <p>最初的因特网协议，使用 32 位地址，称为因特网协议版本 4（Internet Protocol Version 4，IPv4）01996 年，因特网工程任务组织（Internet Engineering Task Force，IETF）提出了一个新版本的 IP，称为因特网协议版本 6（IPv6），它使用的是 128 位地址，意在替代 IPv4。但是直到 2015 年，大约 20 年后，因特网流量的绝大部分还是由 IPv4 网络承载的。例如，只有 4% 的访问 Google 服务的用户使用 IPv6【42】。</p>
 <p>因为 IPv6 的使用率较低，本书不会讨论 IPv6 的细节，而只是集中注意力于 IPv4 背后的概念。当我们谈论因特网时，我们指的是基于 IPv4 的因特网。但是，本章后面介绍的书写客户端和服务器的技术是基于现代接口的，与任何特殊的协议无关。</p>
+</div>
+
 <h2 id="1131-ip-地址">11.3.1 IP 地址</h2>
 <p>一个 IP 地址就是一个 32 位无符号整数。网络程序将 IP 地址存放在如图 11-9 所示的 <strong>IP 地址结构</strong>中。</p>
 <h4 id="codenetpnetpfragmentsc">code/netp/netpfragments.c</h4>
@@ -1940,7 +1944,6 @@
 <p>在这些函数名中，“n” 代表网络，“p” 代表表示。它们可以处理 32 位 IPv4 地址（AF_INET）（就像这里展示的那样），或者 128 位 IPv6 地址（AF_INET6）（这部分我们不讲）。</p>
 <p>inet_pton 函数将一个点分十进制串（src）转换为一个二进制的网络字节顺序的 IP 地址（dst）o 如果 src 没有指向一个合法的点分十进制字符串，那么该函数就返回 0。任何其他错误会返回 -1，并设置 errno。相似地，inet_ntop 函数将一个二进制的网络字节顺序的 IP 地址（src）转换为它所对应的点分十进制表示，并把得到的以 null 结尾的字符串的最多 size 个字节复制到 dst。</p>
 <h3 id="练习题-111">练习题 11.1</h3>
-<h4 id="练习题-111">练习题 11.1</h4>
 <p>完成下表：</p>
 <table>
 <thead>
@@ -2012,7 +2015,6 @@
 </tbody>
 </table>
 <h3 id="练习题-112">练习题 11.2</h3>
-<h4 id="练习题-112">练习题 11.2</h4>
 <p>编写程序 hex2dd.c，将它的十六进制参数转换为点分十进制串并打印出结果。例如</p>
 <pre><code class="lang-c">linux&gt; ./hex2dd <span class="hljs-number">0x8002c2f2</span>
 <span class="hljs-number">128.2</span>.<span class="hljs-number">194.242</span>
@@ -2044,7 +2046,6 @@ int main(int argc, char**argv)
 ```
 </hex></p>
 <h3 id="练习题-113">练习题 11.3</h3>
-<h4 id="练习题-113">练习题 11.3</h4>
 <p>编写程序 dd2hex.c，将它的点分十进制参数转换为十六进制数并打印出结果。例如</p>
 <pre><code class="lang-c">linux&gt; ./dd2hex <span class="hljs-number">128.2</span>.<span class="hljs-number">194.242</span>
 <span class="hljs-number">0x8002c2f2</span>
@@ -2081,8 +2082,10 @@ int main(int argc, char **argv)
 <p>层次结构可以表示为一棵树。树的节点表示域名，反向到根的路径形成了域名。子树称为<strong>子域</strong>（subdomain）。层次结构中的第一层是一个未命名的根节点。下一层是一组<strong>一级域名</strong>（first-level domain name），由非营利组织 ICANN（Internet Corporation for Assigned Namesand Numbers，因特网分配名字数字协会）定义。常见的第一层域名包括 com、edu、gov、org 和 net。</p>
 <p>下一层是<strong>二级</strong>（second-level）域名，例如 <strong>cmu.edu</strong>，这些域名是由 ICANN 的各个授权代理按照先到先服务的基础分配的。一旦一个组织得到了一个二级域名，那么它就可以在这个子域中创建任何新的域名了，例如 <strong>cs.cmu.edu</strong>。</p>
 <p>因特网定义了域名集合和 IP 地址集合之间的映射。直到 1988 年，这个映射都是通过一个叫做 <strong>HOSTS.TXT</strong> 的文本文件来手工维护的。从那以后，这个映射是通过分布世界范围内的数据库（称为 <strong>DNS</strong>（Domain Name System，域名系统））来维护的。从概念上而言，DNS 数据库由上百万的<strong>主机条目结构</strong>（host entry structure）组成，其中每条定义了一组域名和一组 IP 地址之间的映射。从数学意义上讲，可以认为每条主机条目就是一个域名和 IP 地址的等价类。我们可以用 Linux 的 <strong>NSLOOKUP</strong> 程序来探究 DNS 映射的一些属性，这个程序能展示与某个 IP 地址对应的域名。✦</p>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦：我们重新调整了 NSLOOKUP 的输出以提高可读性。</p>
+</div>
+
 <p>每台因特网主机都有本地定义的域名 localhost，这个域名总是映射为<strong>回送地址</strong>（loopback address）127.0.0.1：</p>
 <pre><code class="lang-c">linux&gt; nslookup localhost
 Address: <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>
@@ -2122,14 +2125,18 @@ Address: <span class="hljs-number">199.16</span>.<span class="hljs-number">156.7
 linux&gt; nslookup ics.cs.cmu.edu
 *** Can’t find ics.cs.cmu.edu: No answer
 </code></pre>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>旁注 - 有多少因特网主机？</p>
 <p>因特网软件协会（Internet Software Consortium，www.isc.org）自从 1987 年以后，每年进行两次因特网域名调查。这个调查通过计算已经分配给一个域名的 IP 地址的数量来估算因特网主机的数量，展示了一种令人吃惊的趋势。自从 1987 年以来，当时一共大约有 20 000 台因特网主机，主机的数量已经在指数性增长。到 2015 年，已经有大约  1000 000 000 台因特网主机了。</p>
+</div>
+
 <p>11.3.3 因特网连接</p>
 <p>因特网客户端和服务器通过在连接上发送和接收字节流来通信。从连接一对进程的意义上而言，连接是点对点的。从数据可以同时双向流动的角度来说，它是全双工的。并且从（除了一些如粗心的耕锄机操作员切断了电缆引起灾难性的失败以外）由源进程发出的字节流最终被目的进程以它发出的顺序收到它的角度来说，它也是可靠的。</p>
 <p>一个套接字是连接的一个端点。每个套接字都有相应的套接字地址，是由一个因特网地址和一个 16 位的整数✦<strong>端口</strong>✦组成的，用“地址：端口”来表示。</p>
-<p><strong>INFO:</strong></p>
+<div class="hint hint-info">
 <p>✦端口✦：这些软件端口与网络中交换机和路由器的硬件端口没有关系。</p>
+</div>
+
 <p>当客户端发起一个连接请求时，客户端套接字地址中的端口是由内核自动分配的，称为<strong>临时端口</strong>（ephemeral port）.然而，服务器套接字地址中的端口通常是某个<strong>知名端口</strong>，是和这个服务相对应的。例如，Web 服务器通常使用端口 80，而电子邮件服务器使用端口 25。每个具有知名端口的服务都有一个对应的知名的服务名。例如，Web 服务的知名名字是 http，email 的知名名字是 smtp。文件 <strong>/etc/services</strong> 包含一张这台机器提供的知名名字和知名端口之间的映射。</p>
 <p>一个连接是由它两端的套接字地址唯一确定的。这对套接字地址叫做<strong>套接字对</strong>（socket pair），由下列元组来表示：</p>
 <p><strong>(cliaddr:cliport, servaddr:servport)</strong></p>
@@ -2141,12 +2148,13 @@ linux&gt; nslookup ics.cs.cmu.edu
 <p><strong>208.216.181.15:80</strong></p>
 <p>其中端口号 80 是和 Web 服务相关联的知名端口号。给定这些客户端和服务器套接字地址，客户端和服务器之间的连接就由下列套接字对唯一确定了：</p>
 <p><strong>(128.2.194.242:51213, 208.216.181.15:80)</strong></p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---因特网的起源"><strong>旁注 - 因特网的起源</strong></h3>
+<div class="hint hint-info">
+<h3 id="-%E6%97%81%E6%B3%A8-%E5%9B%A0%E7%89%B9%E7%BD%91%E7%9A%84%E8%B5%B7%E6%BA%90"><strong>旁注 - 因特网的起源</strong></h3>
 <p>因特网是政府、学校和工业界合作的最成功的示例之一。它成功的因素很多，但是我们认为有两点尤其重要：美国政府 30 年持续不变的投资，以及充满激情的研究人员对麻省理工学院的 Dave Clarke 提出的“粗略一致和能用的代码”的投入。</p>
 <p>因特网的种子是在 1957 年播下的，其时正值冷战的高峰，苏联发射 Sputnik，第一颗人造地球卫星，震惊了世界。作为响应，美国政府创建了高级研究计划署（ARPA），其任务就是重建美国在科学与技术上的领导地位。1967 年，ARPA 的 Lawrence Roberts 提出了一个计划，建立一个叫做 ARPANET 的新网络。第一个 ARPANET 节点是在 1969 年建立并运行的。到 1971 年，已有 13 个 ARPANET 节点，而且 email 作为第一个重要的网络应用涌现出来。</p>
 <p>1972 年，Robert Kahn 概括了网络互联的一般原则：一组互相连接的网络，通过叫做“路由器”的黑盒子按照“以尽力传送作为基础”在互相独立处理的网络间实现通信。1974 年，Kahn 和 Vinton Cerf 发表了 TCP/IP 协议的第一本详细资料，到 1982 年它成为了 ARPANET 的标准网络互联协议。1983 年 1 月 1 日，ARPANET 的每个节点都切换到 TCP/IP，标志着全球 IP 因特网的诞生。</p>
 <p>1985 年，Paul Mockapetris 发明了 DNS，有 1000 多台因特网主机。1986 年，国家科学基金会（NSF）用 56 KB/s 的电话线连接了 13 个节点，构建了 NSFNET 的骨干网。其后在 1988 年升级到 1.5 MB/s T1 的连接速率，1991 年为 45 MB/s T3 的连接速率。到 1988 年，有超过 50 000 台主机。1989 年，原始的 ARPANET 正式退休了。1995 年，已经有几乎 10 000 000 台因特网主机了，NSF 取消了 NSFNET，并且用基于由公众网络接入点连接的私有商业骨干网的现代因特网架构取代了它。</p>
+</div>
 
                                 
                                 </section>
@@ -2190,7 +2198,7 @@ linux&gt; nslookup ics.cs.cmu.edu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"11.3 全球 IP 因特网","level":"6.2.3","depth":2,"next":{"title":"11.4 套接字接口","level":"6.2.4","depth":2,"path":"part3/ch11-network-programming/11.4-the-sockets-interface.md","ref":"part3/ch11-network-programming/11.4-the-sockets-interface.md","articles":[]},"previous":{"title":"11.2 网络","level":"6.2.2","depth":2,"path":"part3/ch11-network-programming/11.2-networks.md","ref":"part3/ch11-network-programming/11.2-networks.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","mtime":"2026-04-28T05:30:23.968Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"11.3 全球 IP 因特网","level":"6.2.3","depth":2,"next":{"title":"11.4 套接字接口","level":"6.2.4","depth":2,"path":"part3/ch11-network-programming/11.4-the-sockets-interface.md","ref":"part3/ch11-network-programming/11.4-the-sockets-interface.md","articles":[]},"previous":{"title":"11.2 网络","level":"6.2.2","depth":2,"path":"part3/ch11-network-programming/11.2-networks.md","ref":"part3/ch11-network-programming/11.2-networks.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch11-network-programming/11.3-the-global-ip-internet.md","mtime":"2026-05-24T19:44:41.852Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

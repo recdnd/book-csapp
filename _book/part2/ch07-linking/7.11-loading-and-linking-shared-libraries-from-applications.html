@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1968,9 +1970,12 @@
 <blockquote>
 <p>图 7-17 示例程序 3。在运行时动态加载和链接共享库 libvector.so</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---共享库和-java-本地接口">旁注 - 共享库和 Java 本地接口</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%85%B1%E4%BA%AB%E5%BA%93%E5%92%8C-java-%E6%9C%AC%E5%9C%B0%E6%8E%A5%E5%8F%A3">旁注 - 共享库和 Java 本地接口</h3>
 <p>Java 定义了一个标准调用规则，叫做 Java 本地接口（Java Native Interface，JNI），它允许 Java 程序调用“本地的” C 和 C++ 函数。JNI 的基本思想是将本地 C 函数（如 foo）编译到一个共享库中（如 foo.so）。 当一个正在运行的 Java 程序试图调用函数 foo 时，Java 解释器利用 dlopen 接口（或者与其类似的接口）动态链接和加载 foo.so，然后再调用 foo。</p>
+</div>
+
+
 
                                 
                                 </section>
@@ -2014,7 +2019,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.11 从应用程序中加载和链接共享库","level":"5.1.11","depth":2,"next":{"title":"7.12 位置无关代码","level":"5.1.12","depth":2,"path":"part2/ch07-linking/7.12-position-independent-code.md","ref":"part2/ch07-linking/7.12-position-independent-code.md","articles":[]},"previous":{"title":"7.10 动态链接共享库","level":"5.1.10","depth":2,"path":"part2/ch07-linking/7.10-dynamic-linking-with-shared-libraries.md","ref":"part2/ch07-linking/7.10-dynamic-linking-with-shared-libraries.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.11-loading-and-linking-shared-libraries-from-applications.md","mtime":"2026-04-28T05:30:23.955Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.11 从应用程序中加载和链接共享库","level":"5.1.11","depth":2,"next":{"title":"7.12 位置无关代码","level":"5.1.12","depth":2,"path":"part2/ch07-linking/7.12-position-independent-code.md","ref":"part2/ch07-linking/7.12-position-independent-code.md","articles":[]},"previous":{"title":"7.10 动态链接共享库","level":"5.1.10","depth":2,"path":"part2/ch07-linking/7.10-dynamic-linking-with-shared-libraries.md","ref":"part2/ch07-linking/7.10-dynamic-linking-with-shared-libraries.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch07-linking/7.11-loading-and-linking-shared-libraries-from-applications.md","mtime":"2026-05-24T19:44:41.713Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

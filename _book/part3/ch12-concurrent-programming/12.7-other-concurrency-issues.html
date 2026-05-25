@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1949,7 +1951,6 @@
 <p>然而，如果把假设放宽松一点，允许显式可重入函数中一些参数是引用传递的（即允许它们传递指针），那么我们就得到了一个<strong>隐式可重入的</strong>（implicitly reentrant）函数，也就是说，如果调用线程小心地传递指向非共享数据的指针，那么它是可重入的。例如，图 12-40 中的 rand_r 函数就是隐式可重入的。</p>
 <p>我们总是使用术语<strong>可重入的</strong>（reentrant）既包括显式可重入函数也包括隐式可重入函数。然而，认识到可重入性有时既是调用者也是被调用者的属性，并不只是被调用者单独的属性是非常重要的。</p>
 <h3 id="练习题-1212">练习题 12.12</h3>
-<h4 id="练习题-1212">练习题 12.12</h4>
 <p>图 12-38 中的 ctime_ts 函数是线程安全的，但不是可重入的。请解释说明。</p>
 <h4 id="答案">答案</h4>
 <p>ctime_ts 函数不是可重入函数，因为每次调用都共享相同的由 gethostbyname 函数返回的 static 变量。然而，它是线程安全的，因为对共享变量的访问是被 P 和 V 操作保护的，因此是互斥的。</p>
@@ -2092,12 +2093,10 @@ Hello from thread <span class="hljs-number">2</span>
 Hello from thread <span class="hljs-number">3</span>
 </code></pre>
 <h3 id="练习题-1213">练习题 12.13</h3>
-<h4 id="练习题-1213">练习题 12.13</h4>
 <p>在图 12-43 中，我们可能想要在主线程中的第 14 行后立即释放已分配的内存块，而不是在对等线程中释放它。但是这会是个坏注意。为什么？</p>
 <h4 id="答案">答案</h4>
 <p>如果在第 14 行调用了 pthread_create 之后，我们立即释放块，那么将引入一个新的竞争，这次竞争发生在主线程对 free 的调用和线程例程中第 24 行的赋值语句之间。</p>
 <h3 id="练习题-1214">练习题 12.14</h3>
-<h4 id="练习题-1214">练习题 12.14</h4>
 <p>A. 在图 12-43 中，我们通过为每个整数 ID 分配一个独立的块来消除竞争。给出一个不调用 malloc 或者 free 函数的不同的方法。</p>
 <p>B. 这种方法的利弊是什么？</p>
 <h4 id="答案">答案</h4>
@@ -2123,7 +2122,6 @@ Hello from thread <span class="hljs-number">3</span>
 <p>例如，我们可以通过这样的方法来解决图 12-44 中的死锁问题：在每个线程中先对 s 加锁，然后再对 t 加锁。图 12-45 展示了得到的进度图。</p>
 <p><img src="../../.gitbook/assets/1245-yi-ge-wu-si-suo-cheng-xu-de-jin-du-tu-.png" alt="图 12-45 一个无死锁程序的进度图"></img></p>
 <h3 id="练习题-1215">练习题 12.15</h3>
-<h4 id="练习题-1215">练习题 12.15</h4>
 <p>思考下面的程序，它试图使用一对信号量来实现互斥。</p>
 <pre><code class="lang-c">初始时： s = <span class="hljs-number">1</span>, t = <span class="hljs-number">0.</span>
 
@@ -2188,7 +2186,7 @@ V(t);    |   V(t);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"12.7 其他并发问题","level":"6.3.7","depth":2,"next":{"title":"12.8 小结","level":"6.3.8","depth":2,"path":"part3/ch12-concurrent-programming/12.8-summary.md","ref":"part3/ch12-concurrent-programming/12.8-summary.md","articles":[]},"previous":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","ref":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","mtime":"2026-04-28T05:30:23.973Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"12.7 其他并发问题","level":"6.3.7","depth":2,"next":{"title":"12.8 小结","level":"6.3.8","depth":2,"path":"part3/ch12-concurrent-programming/12.8-summary.md","ref":"part3/ch12-concurrent-programming/12.8-summary.md","articles":[]},"previous":{"title":"12.6 使用线程提高并行性","level":"6.3.6","depth":2,"path":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","ref":"part3/ch12-concurrent-programming/12.6-using-threads-for-parallelism.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch12-concurrent-programming/12.7-other-concurrency-issues.md","mtime":"2026-05-24T18:40:03.510Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

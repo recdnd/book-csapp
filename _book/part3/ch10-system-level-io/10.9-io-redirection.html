@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1900,16 +1902,16 @@
 <blockquote>
 <p>图 10-15 通过调用 dup2(4,1) 重定向标准输出之后的内核数据结构。初始状态如图 10-12 所示</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---左边和右边的-hoinkies">旁注 - 左边和右边的 hoinkies</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%B7%A6%E8%BE%B9%E5%92%8C%E5%8F%B3%E8%BE%B9%E7%9A%84-hoinkies">旁注 - 左边和右边的 hoinkies</h3>
 <p>为了避免和其他括号类型操作符比如 “]” 和 “[” 相混淆，我们总是将 shell 的 “&gt;” 操作符称为 “右 hoinky”，而将 “&lt;” 操作符称为 “左 hoinky"。</p>
+</div>
+
 <h3 id="练习题-104">练习题 10.4</h3>
-<h4 id="练习题-104">练习题 10.4</h4>
 <p>如何用 dup2 将标准输入重定向到描述符 5？</p>
 <h4 id="答案">答案</h4>
 <p>重定向标准输入（描述符 0）到描述符 5，我们将调用 <strong>dup2(5, 0)</strong> 或者等价的 <strong>dup2(5, STDIN_FILENO)</strong>。</p>
 <h3 id="练习题-105">练习题 10.5</h3>
-<h4 id="练习题-105">练习题 10.5</h4>
 <p>假设磁盘文件 foobar.txt 由 6 个 ASCII 码字符 “foobar” 组成，那么下列程序的输出是什么？</p>
 <pre><code class="lang-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"csapp.h"</span></span>
 
@@ -1975,7 +1977,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"10.9 I/O 重定向","level":"6.1.9","depth":2,"next":{"title":"10.10 标准 I/O","level":"6.1.10","depth":2,"path":"part3/ch10-system-level-io/10.10-standard-io.md","ref":"part3/ch10-system-level-io/10.10-standard-io.md","articles":[]},"previous":{"title":"10.8 共享文件","level":"6.1.8","depth":2,"path":"part3/ch10-system-level-io/10.8-sharing-files.md","ref":"part3/ch10-system-level-io/10.8-sharing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.9-io-redirection.md","mtime":"2026-04-28T05:30:23.967Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"10.9 I/O 重定向","level":"6.1.9","depth":2,"next":{"title":"10.10 标准 I/O","level":"6.1.10","depth":2,"path":"part3/ch10-system-level-io/10.10-standard-io.md","ref":"part3/ch10-system-level-io/10.10-standard-io.md","articles":[]},"previous":{"title":"10.8 共享文件","level":"6.1.8","depth":2,"path":"part3/ch10-system-level-io/10.8-sharing-files.md","ref":"part3/ch10-system-level-io/10.8-sharing-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part3/ch10-system-level-io/10.9-io-redirection.md","mtime":"2026-05-24T19:44:41.839Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

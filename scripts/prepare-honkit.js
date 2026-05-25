@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
+const kramed = require("kramed");
 
 const root = process.cwd();
 const skipDirs = new Set([".git", "node_modules", "_book"]);
@@ -41,11 +42,18 @@ function normalize(content) {
   next = next.replace(/\{\%\s*tab\s+title="([^"]+)"\s*\%\}/g, "\n#### $1\n");
   next = next.replace(/\{\%\s*endtab\s*\%\}/g, "");
 
-  // GitBook hint blocks -> plain emphasized heading
-  next = next.replace(/\{\%\s*hint\s+style="([^"]+)"\s*\%\}/g, (_, style) => {
-    return `\n**${style.toUpperCase()}:**\n`;
-  });
-  next = next.replace(/\{\%\s*endhint\s*\%\}/g, "");
+  // GitBook hint blocks -> styled callout <div> with PRE-RENDERED body.
+  // HonKit's markdown engine (kramed) does not parse markdown inside a raw
+  // block-level <div>, so we render the body to HTML here and emit the whole
+  // thing as a raw HTML block. This preserves headings/bold/lists inside the
+  // callout (57 of the book's hints contain such formatting).
+  next = next.replace(
+    /\{\%\s*hint\s+style="([^"]+)"\s*\%\}\s*\n([\s\S]*?)\n\s*\{\%\s*endhint\s*\%\}/g,
+    (_, style, body) => {
+      const html = kramed(body.trim()).trim();
+      return `<div class="hint hint-${style}">\n${html}\n</div>`;
+    }
+  );
 
   return next;
 }

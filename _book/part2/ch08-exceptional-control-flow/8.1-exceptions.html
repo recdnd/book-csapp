@@ -37,6 +37,8 @@
 
     
         
+        <link rel="stylesheet" href="../../styles/website.css">
+        
     
         
     
@@ -1898,9 +1900,12 @@
 <li>处理程序终止被中断的程序。</li>
 </ol>
 <p>8.1.2 节将讲述关于这些可能性的更多内容。</p>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---硬件异常与软件异常">旁注 - 硬件异常与软件异常</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E7%A1%AC%E4%BB%B6%E5%BC%82%E5%B8%B8%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%BC%82%E5%B8%B8">旁注 - 硬件异常与软件异常</h3>
 <p>C++ 和 Java 的程序员会注意到术语 “异常” 也用来描述由 C++ 和 Java 以 catch、throw 和 try 语句形式提供的应用级 ECF。如果想严格清晰，我们必须区别 “硬件” 和“软件” 异常，但这通常是不必要的，因为从上下文中就能够很清楚地知道是哪种含义。</p>
+</div>
+
+
 <h2 id="811-异常处理">8.1.1 异常处理</h2>
 <p>异常可能会难以理解，因为处理异常需要硬件和软件紧密合作。很容易搞混哪个部分执行哪个任务。让我们更详细地来看看硬件和软件的分工吧。</p>
 <p>系统中可能的每种类型的异常都分配了一个唯一的非负整数的<strong>异常号</strong>（exception number）。其中一些号码是由处理器的设计者分配的，其他号码是由操作系统内核（操作系统常驻内存的部分）的设计者分配的。前者的示例包括被零除、缺页、内存访问违例、断点以及算术运算溢出。后者的示例包括系统调用和来自外部 I/O 设备的信号。</p>
@@ -2139,9 +2144,12 @@ main:
 <blockquote>
 <p>图 8-11 直接用 Linux 系统调用来实现 hello 程序</p>
 </blockquote>
-<p><strong>INFO:</strong></p>
-<h3 id="旁注---关于术语的注释">旁注 - 关于术语的注释</h3>
+<div class="hint hint-info">
+<h3 id="%E6%97%81%E6%B3%A8-%E5%85%B3%E4%BA%8E%E6%9C%AF%E8%AF%AD%E7%9A%84%E6%B3%A8%E9%87%8A">旁注 - 关于术语的注释</h3>
 <p>各种异常类型的术语根据系统的不同而有所不同。处理器 ISA 规范通常会区分异步“中断”和同步“异常”，但是并没有提供描述这些非常相似的概念的概括性的术语。为了避免不断地提到“异常和中断”以及“异常或者中断”，我们用单词“异常”作为通用的术语，而且只有在必要时才区别异步异常（中断）和同步异常（陷阱、故障和终止）。正如我们提到过的，对于每个系统而言，基本的概念都是相同的，但是你应该意识到一些制造厂商的手册会用“异常" 仅仅表示同步事件引起的控制流的改变。</p>
+</div>
+
+
 
                                 
                                 </section>
@@ -2185,7 +2193,7 @@ main:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.1 异常","level":"5.2.1","depth":2,"next":{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},"previous":{"title":"第 8 章：异常控制流","level":"5.2","depth":1,"path":"part2/ch08-exceptional-control-flow/README.md","ref":"part2/ch08-exceptional-control-flow/README.md","articles":[{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},{"title":"8.7 操作进程的工具","level":"5.2.7","depth":2,"path":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","ref":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","articles":[]},{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},{"title":"家庭作业","level":"5.2.9","depth":2,"path":"part2/ch08-exceptional-control-flow/homework.md","ref":"part2/ch08-exceptional-control-flow/homework.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","mtime":"2026-04-28T05:30:23.958Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T05:33:59.921Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.1 异常","level":"5.2.1","depth":2,"next":{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},"previous":{"title":"第 8 章：异常控制流","level":"5.2","depth":1,"path":"part2/ch08-exceptional-control-flow/README.md","ref":"part2/ch08-exceptional-control-flow/README.md","articles":[{"title":"8.1 异常","level":"5.2.1","depth":2,"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","ref":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","articles":[]},{"title":"8.2 进程","level":"5.2.2","depth":2,"path":"part2/ch08-exceptional-control-flow/8.2-processes.md","ref":"part2/ch08-exceptional-control-flow/8.2-processes.md","articles":[]},{"title":"8.3 系统调用错误处理","level":"5.2.3","depth":2,"path":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","ref":"part2/ch08-exceptional-control-flow/8.3-system-call-error-handling.md","articles":[]},{"title":"8.4 进程控制","level":"5.2.4","depth":2,"path":"part2/ch08-exceptional-control-flow/8.4-process-control.md","ref":"part2/ch08-exceptional-control-flow/8.4-process-control.md","articles":[]},{"title":"8.5 信号","level":"5.2.5","depth":2,"path":"part2/ch08-exceptional-control-flow/8.5-signals.md","ref":"part2/ch08-exceptional-control-flow/8.5-signals.md","articles":[]},{"title":"8.6 非本地跳转","level":"5.2.6","depth":2,"path":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","ref":"part2/ch08-exceptional-control-flow/8.6-nonlocal-jumps.md","articles":[]},{"title":"8.7 操作进程的工具","level":"5.2.7","depth":2,"path":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","ref":"part2/ch08-exceptional-control-flow/8.7-tools-for-manipulating-processes.md","articles":[]},{"title":"8.8 小结","level":"5.2.8","depth":2,"path":"part2/ch08-exceptional-control-flow/8.8-summary.md","ref":"part2/ch08-exceptional-control-flow/8.8-summary.md","articles":[]},{"title":"家庭作业","level":"5.2.9","depth":2,"path":"part2/ch08-exceptional-control-flow/homework.md","ref":"part2/ch08-exceptional-control-flow/homework.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["tabs"],"pluginsConfig":{"tabs":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/ch08-exceptional-control-flow/8.1-exceptions.md","mtime":"2026-05-24T19:44:41.724Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-25T03:30:25.957Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
