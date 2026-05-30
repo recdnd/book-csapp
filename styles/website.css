@@ -20,13 +20,48 @@
   animation: none !important;
 }
 
+/* ============================================================
+   全站藍色統一為系統藍 #0000ff（包含連結、目錄、搜尋結果等）
+   ============================================================ */
+.book .markdown-section a,
+.book .markdown-section a:link,
+.book .markdown-section a:visited,
+.book .markdown-section a:hover,
+.book .markdown-section a:active,
+.book .book-summary ul.summary li.active > a,
+.book .book-summary ul.summary li a:hover,
+.book #book-search-results .search-results .has-results .search-results-item a,
+.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal a,
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal a {
+  color: #0000ff !important;
+}
+
+.hint-info {
+  border-left-color: #0000ff !important;
+}
+
 /* 桌面端字體選單（左上 A）：改為純 hover，移入即開、移出即關。 */
 @media screen and (min-width: 601px) {
   .book .book-header .font-settings {
     position: fixed !important;
-    top: 0 !important;
+    top: 8px !important;
     left: 12px !important;
+    transform: none !important;
     z-index: 120 !important;
+  }
+
+  /* 側欄展開時把 A 按鈕移到側欄右側，避免重疊。 */
+  .book.with-summary .book-header .font-settings {
+    left: 312px !important;
+  }
+
+  .book .book-header .font-settings .btn {
+    color: #7e888b !important;
+  }
+
+  .book .book-header .font-settings .btn:hover,
+  .book .book-header .font-settings .btn:focus-visible {
+    color: #e04e19 !important;
   }
 
   .book .book-header .font-settings .dropdown-menu,

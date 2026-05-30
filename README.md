@@ -1,23 +1,19 @@
-## 移植版信息（我们维护的版本）
+## 移植版信息（你现在读到的版本）
 
-- 版本定位：本仓库为《深入理解计算机系统》中文电子书与实验材料的移植维护版。
-- 在线站点：`book-csapp.vercel.app`（自定义域名同步中）。
-- 代码仓库：[https://github.com/recdnd/book-csapp](https://github.com/recdnd/book-csapp)
+- 本站为《深入理解计算机系统》中文电子书与实验材料的移植维护版。
+- 在线站点：[csapp.bin.ooo](https://csapp.bin.ooo)
+- Git仓库：[github.com/recdnd/book-csapp](https://github.com/recdnd/book-csapp)
+- 制作者：Rec Dungeons [rec.ooo](https://rec.ooo)
 
-# 本电子书信息
+# 原电子书信息
 
  个人整理的《深入理解计算机系统》中文电子版（原书第 3 版）与实验材料：[https://hansimov.gitbook.io/csapp/](https://hansimov.gitbook.io/csapp/)
 
-制作者：[**Hansimov**](https://github.com/Hansimov)\*\*\*\*
-
-OCR 支持：WPS PDF
-
-感谢：[**九卿**](https://github.com/taseikyo)
-
-GitHub：[https://github.com/Hansimov/csapp](https://github.com/Hansimov/csapp)
-
-已施工部分：序、前言、第 1、7、8、9、10、11、12 章，全部实验简介，实验 1、2 文档
-
+制作者：[**Hansimov**](https://github.com/Hansimov)\*\*\*\*  
+OCR 支持：WPS PDF  
+感谢：[**九卿**](https://github.com/taseikyo)  
+GitHub：[https://github.com/Hansimov/csapp](https://github.com/Hansimov/csapp)  
+已施工部分：序、前言、第 1、7、8、9、10、11、12 章，全部实验简介，实验 1、2 文档  
 待施工部分：第 2、3、4、5、6 章，实验 3、4、5、6、7、8、9 文档
 
 - [第 1 章：计算机系统漫游](ch01-a-tour-of-computer-systems/)
