@@ -22,9 +22,17 @@
 
 /* 桌面端字體選單（左上 A）：改為純 hover，移入即開、移出即關。 */
 @media screen and (min-width: 601px) {
+  .book .book-header .font-settings {
+    position: fixed !important;
+    top: 0 !important;
+    left: 12px !important;
+    z-index: 120 !important;
+  }
+
   .book .book-header .font-settings .dropdown-menu,
   .book .book-header .font-settings .dropdown-menu.open {
     display: none !important;
+    z-index: 121 !important;
   }
 
   .book .book-header .font-settings:hover .dropdown-menu,
