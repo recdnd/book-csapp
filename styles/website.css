@@ -198,6 +198,92 @@
   .book-header .btn:has(.fa-align-justify) .fa-align-justify {
     font-size: 20px !important;
   }
+
+  /* 翻頁鍵：移動版改為懸浮圓鈕，左右貼邊、垂直置中，與 toggle 同款半透明 + blur */
+  .navigation {
+    position: fixed !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 38px !important;
+    height: 38px !important;
+    max-width: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 18px !important;
+    color: #555 !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    z-index: 120 !important;
+    opacity: 0.92;
+    float: none !important;
+  }
+  .navigation.navigation-prev { left: 12px !important; right: auto !important; margin-left: 0 !important; }
+  .navigation.navigation-next { right: 12px !important; left: auto !important; margin-right: 0 !important; }
+  .navigation:hover,
+  .navigation:active { color: #e04e19 !important; background: rgba(0, 0, 0, 0.14) !important; }
+
+  /* A 字體選單：移動版懸浮圓鈕，置右上，與 toggle / 翻頁鍵同款（半透明 + blur） */
+  .book .book-header .font-settings,
+  .book.with-summary .book-header .font-settings {
+    position: fixed !important;
+    top: 12px !important;
+    left: auto !important;
+    right: 12px !important;
+    transform: none !important;
+    z-index: 120 !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0.92;
+  }
+  .book .book-header .font-settings .btn {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    color: #555 !important;
+    background: transparent !important;
+    border: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+  }
+  .book .book-header .font-settings .btn:hover,
+  .book .book-header .font-settings .btn:focus-visible {
+    color: #e04e19 !important;
+    background: transparent !important;
+  }
+  /* dropdown 從 A 右側對齊向下展開，避免溢出右邊界 */
+  .book .book-header .font-settings .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    z-index: 121 !important;
+  }
+
+  /* 正文：手機上把 page-inner 邊距收緊，max-width 解開（窄螢幕已是滿版），減少「飄」感 */
+  .page-inner {
+    max-width: 100% !important;
+    padding: 16px 14px 28px !important;
+  }
 }
 
 /* ============================================================
