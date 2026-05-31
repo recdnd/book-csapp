@@ -116,23 +116,37 @@
    做法：沿用 theme.js 已注入、已接好開合功能的那顆按鈕
    （.btn.js-toolbar-action 內含 <i class="fa fa-align-justify">），
    只用 CSS 把它移到邊欄邊界並換成 ❮ / ❯。不需改 script.js。
-   邊欄寬 300px：展開時鈕貼 left:300px、收合時回 left:0。
+   邊欄寬改為 280px：展開時鈕貼 left:280px、收合時回 left:0。
    ============================================================ */
+.book-summary {
+  width: 280px !important;
+}
+
+@media screen and (min-width: 600px) {
+  .book.with-summary .book-body {
+    left: 280px !important;
+    transform: none !important;
+  }
+}
+
 .book-header .btn:has(.fa-align-justify) {
   position: fixed !important;
   top: 50% !important;
   left: 0 !important;                 /* 收合：貼畫面左緣 */
   transform: translateY(-50%) !important;
   z-index: 50 !important;
-  height: auto !important;
   width: auto !important;
+  height: auto !important;
   padding: 8px 6px !important;
   line-height: 1 !important;
   border: 0 !important;
+  border-radius: 0 !important;
   background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 .book.with-summary .book-header .btn:has(.fa-align-justify) {
-  left: 300px !important;             /* 展開：貼邊欄右邊界 */
+  left: 280px !important;             /* 展開：貼邊欄右邊界 */
 }
 .book-header .fa-align-justify {
   font-size: 16px;
@@ -148,6 +162,42 @@
 }
 .book-header .btn:has(.fa-align-justify):hover .fa-align-justify {
   color: #e04e19;
+}
+
+/* 移動端：側欄開合鈕採小圓浮動按鈕，貼近底部左側。 */
+@media screen and (max-width: 600px) {
+  .book-summary {
+    width: calc(100% - 72px) !important;
+    /* left handled by theme: closed=-100% (max-width:1240), open=0 (.with-summary) */
+  }
+
+  .book.with-summary .book-body {
+    transform: translate(calc(100% - 72px), 0) !important;
+  }
+
+  .book-header .btn:has(.fa-align-justify),
+  .book.with-summary .book-header .btn:has(.fa-align-justify) {
+    top: auto !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    transform: none !important;
+    z-index: 120 !important;
+    opacity: 0.92;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .book-header .btn:has(.fa-align-justify) .fa-align-justify {
+    font-size: 20px !important;
+  }
 }
 
 /* ============================================================
