@@ -52,7 +52,7 @@
 
   /* 側欄展開時把 A 按鈕移到側欄右側，避免重疊。 */
   .book.with-summary .book-header .font-settings {
-    left: 312px !important;
+    left: 296px !important;
   }
 
   .book .book-header .font-settings .btn {
