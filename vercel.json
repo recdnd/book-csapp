@@ -1,4 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "_book"
+  "outputDirectory": "_book",
+  "git": { "deploymentEnabled": { "wind/*": false } }
 }
