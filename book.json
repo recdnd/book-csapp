@@ -1,5 +1,7 @@
 {
   "plugins": [
     "tabs"
-  ]
+  ],
+  "description": "《深入理解计算机系统》(CS:APP 原书第 3 版) 中文电子书与实验材料的移植维护版, 基于 Hansimov 的整理版本.",
+  "siteUrl": "https://csapp.bin.ooo/"
 }

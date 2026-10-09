@@ -1,0 +1,19 @@
+{% extends template.self %}
+
+{# seo: description / canonical / og for csapp.bin.ooo. Delete this file to fall back to the theme default. #}
+{% set seo_path = file.path|replace("README.md", "")|replace(".md", ".html") %}
+{% set seo_url = config.siteUrl + seo_path %}
+{% set seo_desc = page.description|d(config.description if seo_path == "" else "", true) %}
+
+{% block description %}{{ seo_desc }}{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="canonical" href="{{ seo_url }}" />
+    <meta property="og:type" content="{% if seo_path == "" %}website{% else %}article{% endif %}" />
+    <meta property="og:site_name" content="csapp.bin.ooo" />
+    <meta property="og:title" content="{{ page.title }}" />
+    {% if seo_desc %}<meta property="og:description" content="{{ seo_desc }}" />{% endif %}
+    <meta property="og:url" content="{{ seo_url }}" />
+    <meta name="twitter:card" content="summary" />
+{% endblock %}
